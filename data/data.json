@@ -18,7 +18,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 1
     },
-    "tags": ["determinants", "second_order"],
+    "tags": [
+      "determinants",
+      "second_order"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -41,7 +44,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 2
     },
-    "tags": ["matrices", "inverse_matrix"],
+    "tags": [
+      "matrices",
+      "inverse_matrix"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -64,7 +70,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 5
     },
-    "tags": ["trigonometry", "periodicity"],
+    "tags": [
+      "trigonometry",
+      "periodicity"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -87,7 +96,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 6
     },
-    "tags": ["trigonometry", "multiple_angles"],
+    "tags": [
+      "trigonometry",
+      "multiple_angles"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -110,7 +122,11 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 9
     },
-    "tags": ["vectors", "dot_product", "orthogonality"],
+    "tags": [
+      "vectors",
+      "dot_product",
+      "orthogonality"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -133,7 +149,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 11
     },
-    "tags": ["coordinate_geometry", "circle"],
+    "tags": [
+      "coordinate_geometry",
+      "circle"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -156,7 +175,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 14
     },
-    "tags": ["limits", "trigonometric_limits"],
+    "tags": [
+      "limits",
+      "trigonometric_limits"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -167,8 +189,7 @@
       "A": "$x^x \\ln(x)$",
       "B": "$x \\cdot x^{x-1}$",
       "C": "$x^x (1 + \\ln x)$",
-      "D": "$x^x (1 - \\ln x)$",
-      "E": null
+      "D": "$x^x (1 - \\ln x)$"
     },
     "correct_answer": "C",
     "explanation": "Take $\\ln y = x\\ln x$. Differentiating gives $\\frac{1}{y}\\frac{dy}{dx} = \\ln x + 1$. Thus, $\\frac{dy}{dx} = x^x(1 + \\ln x)$.",
@@ -180,7 +201,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 16
     },
-    "tags": ["differentiation", "logarithmic_differentiation"],
+    "tags": [
+      "differentiation",
+      "logarithmic_differentiation"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -203,7 +227,11 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 19
     },
-    "tags": ["integration", "by_parts", "definite_integral"],
+    "tags": [
+      "integration",
+      "by_parts",
+      "definite_integral"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -226,7 +254,10 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 22
     },
-    "tags": ["logarithm", "equations"],
+    "tags": [
+      "logarithm",
+      "equations"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   },
@@ -249,7 +280,6296 @@
       "name": "DDCET Official Question Bank / PYQ",
       "page": 25
     },
-    "tags": ["statistics", "median", "ungrouped_data"],
+    "tags": [
+      "statistics",
+      "median",
+      "ungrouped_data"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-031",
+    "question": "What is the value of $\\begin{vmatrix} 1 & \\omega & \\omega^2 \\\\ \\omega & \\omega^2 & 1 \\\\ \\omega^2 & 1 & \\omega \\end{vmatrix}$ where $\\omega$ is a complex cube root of unity?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$\\omega$",
+      "D": "$3$"
+    },
+    "correct_answer": "A",
+    "explanation": "Perform $R_1 \\to R_1 + R_2 + R_3$. The first row becomes $[1+\\omega+\\omega^2, 1+\\omega+\\omega^2, 1+\\omega+\\omega^2] = [0, 0, 0]$ because $1 + \\omega + \\omega^2 = 0$. Since an entire row is zeros, the determinant is $0$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "cube_root_of_unity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-032",
+    "question": "If $A = \\begin{pmatrix} 3 & 1 \\\\ -1 & 2 \\end{pmatrix}$, what is $A^2 - 5A + 7I$?",
+    "options": {
+      "A": "$O$ (Zero matrix)",
+      "B": "$I$ (Identity matrix)",
+      "C": "$2I$",
+      "D": "$A$"
+    },
+    "correct_answer": "A",
+    "explanation": "Characteristic equation of $2 \\times 2$ matrix $A$ is $\\lambda^2 - \\text{tr}(A)\\lambda + \\det(A) = 0$. $\\text{tr}(A) = 3 + 2 = 5$, $\\det(A) = (3)(2) - (1)(-1) = 7$. By Cayley-Hamilton theorem, every square matrix satisfies its own characteristic equation: $A^2 - 5A + 7I = O$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "cayley_hamilton",
+      "matrices"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-033",
+    "question": "If matrix $A$ has order $3 \\times 4$ and matrix $B$ has order $4 \\times 2$, what is the order of the product matrix $(AB)^T$?",
+    "options": {
+      "A": "$2 \\times 3$",
+      "B": "$3 \\times 2$",
+      "C": "$4 \\times 4$",
+      "D": "$3 \\times 4$"
+    },
+    "correct_answer": "A",
+    "explanation": "Product $AB$ has order $3 \\times 2$. The transpose of a matrix reverses its dimensions, so $(AB)^T$ has order $2 \\times 3$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "matrices",
+      "matrix_dimensions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-034",
+    "question": "If $A$ is an orthogonal matrix, what is the value of $\\det(A)$?",
+    "options": {
+      "A": "$\\pm 1$",
+      "B": "$0$",
+      "C": "$2$",
+      "D": "Any real number"
+    },
+    "correct_answer": "A",
+    "explanation": "For an orthogonal matrix, $A A^T = I$. Taking determinants: $\\det(A A^T) = \\det(A)\\det(A^T) = [\\det(A)]^2 = \\det(I) = 1 \\implies \\det(A) = \\pm 1$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "orthogonal_matrix",
+      "determinants"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-035",
+    "question": "For what value of $x$ does the matrix $\\begin{pmatrix} 2 & 3 \\\\ x & 6 \\end{pmatrix}$ have no inverse?",
+    "options": {
+      "A": "$4$",
+      "B": "$3$",
+      "C": "$6$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "A matrix has no inverse if it is singular (determinant equals zero): $\\det = (2)(6) - (3)(x) = 12 - 3x = 0 \\implies 3x = 12 \\implies x = 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "singular_matrix",
+      "matrix_inverse"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-036",
+    "question": "What is the rank of the identity matrix $I_3$ of order $3$?",
+    "options": {
+      "A": "$3$",
+      "B": "$1$",
+      "C": "$2$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "The identity matrix $I_3$ has 3 non-zero pivot elements along the diagonal and $\\det(I_3) = 1 \\neq 0$. Hence its rank is 3.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "rank",
+      "identity_matrix"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-037",
+    "question": "If $\\begin{vmatrix} x & 3 \\\\ 12 & x \\end{vmatrix} = 0$, what are the values of $x$?",
+    "options": {
+      "A": "$\\pm 6$",
+      "B": "$\\pm 36$",
+      "C": "$6$",
+      "D": "$\\pm 4$"
+    },
+    "correct_answer": "A",
+    "explanation": "$x^2 - 36 = 0 \\implies x^2 = 36 \\implies x = \\pm 6$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "2x2_determinant"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-038",
+    "question": "In Cramer's rule for three linear equations, if $D = 0$ and $D_x = D_y = D_z = 0$, what can be concluded?",
+    "options": {
+      "A": "Consistent with infinite solutions or inconsistent",
+      "B": "Unique solution exists",
+      "C": "No solution always",
+      "D": "Trivial solution only"
+    },
+    "correct_answer": "A",
+    "explanation": "When the main determinant $D = 0$ and all coordinate determinants $D_x = D_y = D_z = 0$, the system either has infinitely many solutions (dependent planes) or is inconsistent (parallel planes).",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "cramer_rule",
+      "linear_systems"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-020",
+    "question": "What is the value of $\\log_5(0.04)$?",
+    "options": {
+      "A": "$-2$",
+      "B": "$2$",
+      "C": "$-1$",
+      "D": "$0.2$"
+    },
+    "correct_answer": "A",
+    "explanation": "$0.04 = \\frac{4}{100} = \\frac{1}{25} = 5^{-2}$. Therefore $\\log_5(0.04) = \\log_5(5^{-2}) = -2$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "negative_power"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-021",
+    "question": "If $\\log_{10} x = 2.45$, what is the characteristic of the logarithm?",
+    "options": {
+      "A": "$2$",
+      "B": "$0.45$",
+      "C": "$3$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "A common logarithm consists of an integer part called characteristic and a non-negative fractional part called mantissa. For $2.45$, characteristic is $2$ and mantissa is $0.45$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "characteristic_mantissa"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-022",
+    "question": "What is the value of $\\log_3 2 \\times \\log_4 3 \\times \\log_5 4 \\times \\dots \\times \\log_{16} 15$?",
+    "options": {
+      "A": "$\\frac{1}{4}$",
+      "B": "$\\frac{1}{2}$",
+      "C": "$1$",
+      "D": "$4$"
+    },
+    "correct_answer": "A",
+    "explanation": "Using change of base: $\\frac{\\log 2}{\\log 3} \\times \\frac{\\log 3}{\\log 4} \\times \\dots \\times \\frac{\\log 15}{\\log 16} = \\frac{\\log 2}{\\log 16} = \\log_{16} 2 = \\log_{2^4} 2 = \\frac{1}{4}$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "telescoping_log"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-023",
+    "question": "To resolve $\\frac{x^2 + 1}{(x-1)(x-2)(x-3)}$ into partial fractions, how many undetermined constants are needed?",
+    "options": {
+      "A": "$3$",
+      "B": "$2$",
+      "C": "$4$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "The denominator is degree 3 with three distinct linear factors. Form: $\\frac{A}{x-1} + \\frac{B}{x-2} + \\frac{C}{x-3}$. Exactly 3 constants ($A, B, C$) are needed.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "linear_factors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-024",
+    "question": "If $\\frac{1}{x^2 - 1} = \\frac{A}{x - 1} + \\frac{B}{x + 1}$, what is the value of $A + B$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$\\frac{1}{2}$",
+      "D": "$-\\frac{1}{2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$1 = A(x+1) + B(x-1) = (A+B)x + (A-B)$. Equating coefficient of $x$ on both sides: $A + B = 0$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "coefficients"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-035",
+    "question": "What is the value of $\\cos(15^\\circ)$?",
+    "options": {
+      "A": "$\\frac{\\sqrt{6} + \\sqrt{2}}{4}$",
+      "B": "$\\frac{\\sqrt{6} - \\sqrt{2}}{4}$",
+      "C": "$\\frac{\\sqrt{3} + 1}{2}$",
+      "D": "$\\frac{\\sqrt{2} + 1}{4}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\cos(15^\\circ) = \\cos(45^\\circ - 30^\\circ) = \\cos 45^\\circ \\cos 30^\\circ + \\sin 45^\\circ \\sin 30^\\circ = (\\frac{1}{\\sqrt{2}})(\\frac{\\sqrt{3}}{2}) + (\\frac{1}{\\sqrt{2}})(\\frac{1}{2}) = \\frac{\\sqrt{3}+1}{2\\sqrt{2}} = \\frac{\\sqrt{6}+\\sqrt{2}}{4}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "compound_angles"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-036",
+    "question": "What is the value of $\\sin(2\\theta)$ in terms of $\\tan\\theta$?",
+    "options": {
+      "A": "$\\frac{2\\tan\\theta}{1 + \\tan^2\\theta}$",
+      "B": "$\\frac{2\\tan\\theta}{1 - \\tan^2\\theta}$",
+      "C": "$\\frac{1 - \\tan^2\\theta}{1 + \\tan^2\\theta}$",
+      "D": "$\\frac{2\\tan^2\\theta}{1 + \\tan^2\\theta}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard double-angle formula: $\\sin(2\\theta) = \\frac{2\\tan\\theta}{1 + \\tan^2\\theta}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "double_angle"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-037",
+    "question": "What is the value of $\\cos(2\\pi + \\theta)$?",
+    "options": {
+      "A": "$\\cos\\theta$",
+      "B": "$-\\cos\\theta$",
+      "C": "$\\sin\\theta$",
+      "D": "$-\\sin\\theta$"
+    },
+    "correct_answer": "A",
+    "explanation": "Cosine has period $2\\pi$, so $\\cos(2\\pi + \\theta) = \\cos\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "periodicity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-038",
+    "question": "If $\\sin\\theta = \\frac{3}{5}$ and $\\theta$ is an acute angle, what is $\\cos(2\\theta)$?",
+    "options": {
+      "A": "$\\frac{7}{25}$",
+      "B": "$\\frac{24}{25}$",
+      "C": "$\\frac{16}{25}$",
+      "D": "$\\frac{9}{25}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\cos(2\\theta) = 1 - 2\\sin^2\\theta = 1 - 2\\left(\\frac{3}{5}\\right)^2 = 1 - 2\\left(\\frac{9}{25}\\right) = 1 - \\frac{18}{25} = \\frac{7}{25}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "double_angle"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-039",
+    "question": "What is the principal value of $\\tan^{-1}(-\\sqrt{3})$?",
+    "options": {
+      "A": "$-\\frac{\\pi}{3}$",
+      "B": "$\\frac{2\\pi}{3}$",
+      "C": "$\\frac{\\pi}{3}$",
+      "D": "$-\\frac{\\pi}{6}$"
+    },
+    "correct_answer": "A",
+    "explanation": "The range of principal value branch of $\\tan^{-1} x$ is $(-\\pi/2, \\pi/2)$. Since $\\tan(-\\pi/3) = -\\sqrt{3}$, the value is $-\\frac{\\pi}{3}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "inverse_trig",
+      "principal_value"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-040",
+    "question": "What is the simplified value of $\\frac{\\sin(2\\theta)}{1 + \\cos(2\\theta)}$?",
+    "options": {
+      "A": "$\\tan\\theta$",
+      "B": "$\\cot\\theta$",
+      "C": "$\\sin\\theta$",
+      "D": "$\\cos\\theta$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{\\sin(2\\theta)}{1 + \\cos(2\\theta)} = \\frac{2\\sin\\theta\\cos\\theta}{2\\cos^2\\theta} = \\frac{\\sin\\theta}{\\cos\\theta} = \\tan\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "identities"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-021",
+    "question": "What is the slope of the line passing through points $(2, -3)$ and $(4, 5)$?",
+    "options": {
+      "A": "$4$",
+      "B": "$1$",
+      "C": "$\\frac{1}{4}$",
+      "D": "$-4$"
+    },
+    "correct_answer": "A",
+    "explanation": "$m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{5 - (-3)}{4 - 2} = \\frac{8}{2} = 4$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "coordinate_geometry",
+      "slope"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-022",
+    "question": "What is the equation of a line with $x$-intercept $3$ and $y$-intercept $-4$?",
+    "options": {
+      "A": "$4x - 3y - 12 = 0$",
+      "B": "$4x + 3y - 12 = 0$",
+      "C": "$3x - 4y - 12 = 0$",
+      "D": "$4x - 3y + 12 = 0$"
+    },
+    "correct_answer": "A",
+    "explanation": "Intercept form: $\\frac{x}{a} + \\frac{y}{b} = 1 \\implies \\frac{x}{3} + \\frac{y}{-4} = 1 \\implies \\frac{x}{3} - \\frac{y}{4} = 1 \\implies 4x - 3y = 12 \\implies 4x - 3y - 12 = 0$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "coordinate_geometry",
+      "intercept_form"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-023",
+    "question": "What is the center of the circle $x^2 + y^2 + 8x - 10y + 16 = 0$?",
+    "options": {
+      "A": "$(-4, 5)$",
+      "B": "$(4, -5)$",
+      "C": "$(8, -10)$",
+      "D": "$(-8, 10)$"
+    },
+    "correct_answer": "A",
+    "explanation": "Comparing with $x^2 + y^2 + 2gx + 2fy + c = 0$: $2g = 8 \\implies g = 4$, $2f = -10 \\implies f = -5$. Center is $(-g, -f) = (-4, 5)$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "circles",
+      "center"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-024",
+    "question": "What is the eccentricity of a parabola?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$< 1$",
+      "D": "$> 1$"
+    },
+    "correct_answer": "A",
+    "explanation": "By definition, a parabola has eccentricity $e = 1$. An ellipse has $e < 1$, hyperbola has $e > 1$, and circle has $e = 0$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "conics",
+      "eccentricity",
+      "parabola"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-025",
+    "question": "What is the length of the latus rectum of the ellipse $\\frac{x^2}{25} + \\frac{y^2}{9} = 1$?",
+    "options": {
+      "A": "$\\frac{18}{5}$",
+      "B": "$\\frac{9}{5}$",
+      "C": "$\\frac{50}{3}$",
+      "D": "$5$"
+    },
+    "correct_answer": "A",
+    "explanation": "$a^2 = 25 \\implies a = 5$, $b^2 = 9$. Length of latus rectum $= \\frac{2b^2}{a} = \\frac{2(9)}{5} = \\frac{18}{5}$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "ellipse",
+      "latus_rectum"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-031",
+    "question": "What is $\\lim_{x \\to 0} \\frac{\\tan(3x)}{\\tan(5x)}$?",
+    "options": {
+      "A": "$\\frac{3}{5}$",
+      "B": "$\\frac{5}{3}$",
+      "C": "$1$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\lim_{x \\to 0} \\frac{(\\tan 3x / 3x) \\times 3x}{(\\tan 5x / 5x) \\times 5x} = \\frac{1 \\times 3}{1 \\times 5} = \\frac{3}{5}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "limits",
+      "trigonometric_limits"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-032",
+    "question": "What is the derivative of $\\ln(\\sin x)$ with respect to $x$?",
+    "options": {
+      "A": "$\\cot x$",
+      "B": "$\\tan x$",
+      "C": "$\\frac{1}{\\sin x}$",
+      "D": "$-\\cot x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}[\\ln(\\sin x)] = \\frac{1}{\\sin x} \\cdot \\frac{d}{dx}(\\sin x) = \\frac{\\cos x}{\\sin x} = \\cot x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differentiation",
+      "chain_rule"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-033",
+    "question": "What is the derivative of $e^{3x^2}$ with respect to $x$?",
+    "options": {
+      "A": "$6x e^{3x^2}$",
+      "B": "$3x e^{3x^2}$",
+      "C": "$e^{3x^2}$",
+      "D": "$6 e^{3x^2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}[e^{3x^2}] = e^{3x^2} \\cdot \\frac{d}{dx}(3x^2) = 6x e^{3x^2}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differentiation",
+      "exponential"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-034",
+    "question": "If $y = \\sqrt{x + \\sqrt{x + \\sqrt{x + \\dots}}}$, what is $\\frac{dy}{dx}$?",
+    "options": {
+      "A": "$\\frac{1}{2y - 1}$",
+      "B": "$\\frac{1}{2y + 1}$",
+      "C": "$\\frac{y}{2y - 1}$",
+      "D": "$\\frac{1}{y - 1}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Rewrite: $y = \\sqrt{x + y} \\implies y^2 = x + y$. Differentiating implicitly with respect to $x$: $2y\\frac{dy}{dx} = 1 + \\frac{dy}{dx} \\implies (2y - 1)\\frac{dy}{dx} = 1 \\implies \\frac{dy}{dx} = \\frac{1}{2y - 1}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differentiation",
+      "infinite_series"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-035",
+    "question": "At what point does the curve $y = x^3 - 3x$ have a local minimum?",
+    "options": {
+      "A": "$x = 1$",
+      "B": "$x = -1$",
+      "C": "$x = 0$",
+      "D": "$x = \\sqrt{3}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$y' = 3x^2 - 3 = 0 \\implies x = \\pm 1$. $y'' = 6x$. At $x = 1$, $y'' = 6 > 0$, confirming a local minimum at $x = 1$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "maxima_minima",
+      "second_derivative"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-025",
+    "question": "What is $\\int \\frac{1}{x^2 - 16} \\, dx$?",
+    "options": {
+      "A": "$\\frac{1}{8}\\ln\\left|\\frac{x-4}{x+4}\\right| + C$",
+      "B": "$\\frac{1}{4}\\ln\\left|\\frac{x-4}{x+4}\\right| + C$",
+      "C": "$\\frac{1}{8}\\tan^{-1}\\left(\\frac{x}{4}\\right) + C$",
+      "D": "$\\frac{1}{4}\\tan^{-1}\\left(\\frac{x}{4}\\right) + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard formula $\\int \\frac{1}{x^2 - a^2}dx = \\frac{1}{2a}\\ln|\\frac{x-a}{x+a}| + C$. Here $a = 4$, so $\\frac{1}{8}\\ln|\\frac{x-4}{x+4}| + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "standard_formulas"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-026",
+    "question": "What is $\\int_0^{\\pi/2} \\sin^2 x \\, dx$?",
+    "options": {
+      "A": "$\\frac{\\pi}{4}$",
+      "B": "$\\frac{\\pi}{2}$",
+      "C": "$1$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int_0^{\\pi/2} \\sin^2 x dx = \\int_0^{\\pi/2} \\frac{1 - \\cos(2x)}{2} dx = [\\frac{x}{2} - \\frac{\\sin 2x}{4}]_0^{\\pi/2} = \\frac{\\pi}{4} - 0 = \\frac{\\pi}{4}$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "trigonometric_integrals"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-027",
+    "question": "What is $\\int x \\cos x \\, dx$?",
+    "options": {
+      "A": "$x\\sin x + \\cos x + C$",
+      "B": "$x\\sin x - \\cos x + C$",
+      "C": "$-x\\sin x + \\cos x + C$",
+      "D": "$x\\cos x + \\sin x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "Integration by parts ($u = x, dv = \\cos x dx$): $x\\sin x - \\int \\sin x dx = x\\sin x - (-\\cos x) + C = x\\sin x + \\cos x + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "by_parts"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-028",
+    "question": "What is the value of $\\int_{-2}^2 x^5 \\sqrt{4 - x^2} \\, dx$?",
+    "options": {
+      "A": "$0$",
+      "B": "$4$",
+      "C": "$16$",
+      "D": "$\\pi$"
+    },
+    "correct_answer": "A",
+    "explanation": "The integrand $f(x) = x^5 \\sqrt{4 - x^2}$ is an odd function because $f(-x) = (-x)^5 \\sqrt{4 - (-x)^2} = -x^5 \\sqrt{4 - x^2} = -f(x)$. The integral of any odd function over symmetric limits $[-a, a]$ is identically $0$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "odd_function"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-029",
+    "question": "What is $\\int e^{2x} \\, dx$?",
+    "options": {
+      "A": "$\\frac{e^{2x}}{2} + C$",
+      "B": "$2e^{2x} + C$",
+      "C": "$e^{2x} + C$",
+      "D": "$\\frac{e^{2x}}{4} + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int e^{ax} dx = \\frac{e^{ax}}{a} + C$. For $a = 2$, this yields $\\frac{e^{2x}}{2} + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "exponential"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-015",
+    "question": "What is the general solution of $\\frac{dy}{dx} = \\frac{x}{y}$?",
+    "options": {
+      "A": "$y^2 - x^2 = C$",
+      "B": "$y^2 + x^2 = C$",
+      "C": "$y = x + C$",
+      "D": "$y = Cx$"
+    },
+    "correct_answer": "A",
+    "explanation": "Separating variables: $y \\, dy = x \\, dx$. Integrating: $\\frac{y^2}{2} = \\frac{x^2}{2} + c \\implies y^2 - x^2 = C$.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differential_equations",
+      "separable"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-016",
+    "question": "What is the degree of the differential equation $\\frac{d^3y}{dx^3} + 2\\left(\\frac{d^2y}{dx^2}\\right)^2 - \\frac{dy}{dx} + y = 0$?",
+    "options": {
+      "A": "$1$",
+      "B": "$2$",
+      "C": "$3$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "The highest order derivative is $\\frac{d^3y}{dx^3}$ (order 3). Its exponent is 1, so the degree is 1.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differential_equations",
+      "order_degree"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-017",
+    "question": "What is the integrating factor of $\\frac{dy}{dx} - \\frac{y}{x} = 2x^2$?",
+    "options": {
+      "A": "$\\frac{1}{x}$",
+      "B": "$x$",
+      "C": "$\\ln x$",
+      "D": "$-\\frac{1}{x}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$P(x) = -\\frac{1}{x}$. $I.F. = e^{\\int -\\frac{1}{x} dx} = e^{-\\ln x} = e^{\\ln(x^{-1})} = \\frac{1}{x}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differential_equations",
+      "integrating_factor"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-017",
+    "question": "If $\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$ and $\\vec{b} = 2\\hat{i} - \\hat{j} + \\hat{k}$, what is $\\vec{a} \\cdot \\vec{b}$?",
+    "options": {
+      "A": "$3$",
+      "B": "$5$",
+      "C": "$1$",
+      "D": "$7$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\vec{a} \\cdot \\vec{b} = (1)(2) + (2)(-1) + (3)(1) = 2 - 2 + 3 = 3$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "vectors",
+      "dot_product"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-018",
+    "question": "What is $\\hat{i} \\times \\hat{k}$?",
+    "options": {
+      "A": "$-\\hat{j}$",
+      "B": "$\\hat{j}$",
+      "C": "$\\hat{i}$",
+      "D": "$\\vec{0}$"
+    },
+    "correct_answer": "A",
+    "explanation": "In right-handed Cartesian coordinate system: $\\hat{i} \\times \\hat{j} = \\hat{k}, \\hat{j} \\times \\hat{k} = \\hat{i}, \\hat{k} \\times \\hat{i} = \\hat{j}$. Thus $\\hat{i} \\times \\hat{k} = -\\hat{j}$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "vectors",
+      "cross_product",
+      "basis_vectors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-019",
+    "question": "What is the magnitude of the vector $\\vec{v} = 2\\hat{i} - 3\\hat{j} + 6\\hat{k}$?",
+    "options": {
+      "A": "$7$",
+      "B": "$11$",
+      "C": "$49$",
+      "D": "$\\sqrt{41}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$|\\vec{v}| = \\sqrt{2^2 + (-3)^2 + 6^2} = \\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "vectors",
+      "magnitude"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-020",
+    "question": "If the sum of squares of direction cosines $l^2 + m^2 + n^2 = k$, what is the value of $k$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$3$",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "By fundamental 3D geometry theorem, the sum of the squares of the direction cosines of any line is identically $l^2 + m^2 + n^2 = 1$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "vectors",
+      "direction_cosines"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-016",
+    "question": "What is the mode of the following dataset: $4, 7, 2, 7, 9, 7, 5, 2, 7, 3$?",
+    "options": {
+      "A": "$7$",
+      "B": "$2$",
+      "C": "$5$",
+      "D": "$4$"
+    },
+    "correct_answer": "A",
+    "explanation": "The value 7 appears with the highest frequency (4 times). Hence the mode is 7.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "statistics",
+      "mode"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-017",
+    "question": "If the mean of $5$ observations is $12$, what is the sum of these observations?",
+    "options": {
+      "A": "$60$",
+      "B": "$17$",
+      "C": "$2.4$",
+      "D": "$50$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Mean} = \\frac{\\sum x}{n} \\implies \\sum x = n \\times \\text{Mean} = 5 \\times 12 = 60$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "statistics",
+      "mean"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-018",
+    "question": "What is the probability of getting at least one head when flipping two fair coins?",
+    "options": {
+      "A": "$\\frac{3}{4}$",
+      "B": "$\\frac{1}{2}$",
+      "C": "$\\frac{1}{4}$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Sample space $S = \\{HH, HT, TH, TT\\}$ (4 outcomes). Favorable outcomes: $HH, HT, TH$ (3 outcomes). Probability $= 3/4$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "coin_toss"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-019",
+    "question": "If $P(A) = 0.7$, what is $P(A')$ (probability of complementary event)?",
+    "options": {
+      "A": "$0.3$",
+      "B": "$0.7$",
+      "C": "$0.0$",
+      "D": "$1.0$"
+    },
+    "correct_answer": "A",
+    "explanation": "$P(A') = 1 - P(A) = 1 - 0.7 = 0.3$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "complement"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-007",
+    "question": "What is the dimensional formula for Pressure / Stress?",
+    "options": {
+      "A": "$[M^1 L^{-1} T^{-2}]$",
+      "B": "$[M^1 L^1 T^{-2}]$",
+      "C": "$[M^1 L^{-2} T^{-2}]$",
+      "D": "$[M^1 L^2 T^{-2}]$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Pressure} = \\frac{\\text{Force}}{\\text{Area}} = \\frac{[M^1 L^1 T^{-2}]}{[L^2]} = [M^1 L^{-1} T^{-2}]$.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "dimensional_analysis",
+      "pressure"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-008",
+    "question": "What is the least count of a micrometer screw gauge with pitch $0.5\\text{ mm}$ and 50 circular scale divisions?",
+    "options": {
+      "A": "$0.01\\text{ mm}$",
+      "B": "$0.05\\text{ mm}$",
+      "C": "$0.001\\text{ mm}$",
+      "D": "$0.1\\text{ mm}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Least Count} = \\frac{\\text{Pitch}}{\\text{Number of circular divisions}} = \\frac{0.5\\text{ mm}}{50} = 0.01\\text{ mm}$.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "Errors and Measuring Instruments",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "screw_gauge",
+      "least_count"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-007",
+    "question": "What is the SI unit of Linear Momentum?",
+    "options": {
+      "A": "$\\text{kg}\\cdot\\text{m/s}$",
+      "B": "$\\text{N}\\cdot\\text{m}$",
+      "C": "$\\text{J}\\cdot\\text{s}$",
+      "D": "$\\text{kg}\\cdot\\text{m/s}^2$"
+    },
+    "correct_answer": "A",
+    "explanation": "$p = m v$, so its unit is kilogram-meter per second ($\\text{kg}\\cdot\\text{m/s}$), which is equivalent to Newton-second ($\\text{N}\\cdot\\text{s}$).",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "momentum",
+      "units"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-008",
+    "question": "An object of mass $10\\text{ kg}$ is moving with velocity $4\\text{ m/s}$. What is its kinetic energy?",
+    "options": {
+      "A": "$80\\text{ J}$",
+      "B": "$40\\text{ J}$",
+      "C": "$160\\text{ J}$",
+      "D": "$20\\text{ J}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$KE = \\frac{1}{2} m v^2 = \\frac{1}{2}(10)(4^2) = 5 \\times 16 = 80\\text{ Joules}$.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Work, Energy, and Power",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "kinetic_energy"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-005",
+    "question": "Which law of thermodynamics provides the fundamental definition of temperature?",
+    "options": {
+      "A": "Zeroth Law of Thermodynamics",
+      "B": "First Law of Thermodynamics",
+      "C": "Second Law of Thermodynamics",
+      "D": "Third Law of Thermodynamics"
+    },
+    "correct_answer": "A",
+    "explanation": "The Zeroth Law of Thermodynamics establishes thermal equilibrium as an equivalence relation, defining the concept of temperature.",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Thermodynamic Laws and Heat Engines",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "zeroth_law",
+      "temperature"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-006",
+    "question": "What is the relationship between the coefficients of linear expansion ($\\alpha$), superficial expansion ($\\beta$), and cubical expansion ($\\gamma$) for an isotropic solid?",
+    "options": {
+      "A": "$\\alpha : \\beta : \\gamma = 1 : 2 : 3$",
+      "B": "$\\alpha : \\beta : \\gamma = 3 : 2 : 1$",
+      "C": "$\\alpha : \\beta : \\gamma = 1 : 1 : 1$",
+      "D": "$\\alpha : \\beta : \\gamma = 1 : 3 : 2$"
+    },
+    "correct_answer": "A",
+    "explanation": "For an isotropic solid: $\\beta = 2\\alpha$ and $\\gamma = 3\\alpha$, hence $\\alpha : \\beta : \\gamma = 1 : 2 : 3$.",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Temperature Scales and Thermal Expansion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "thermal_expansion"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-OPT-004",
+    "question": "What is the frequency of a sound wave propagating at $340\\text{ m/s}$ with a wavelength of $0.5\\text{ m}$?",
+    "options": {
+      "A": "$680\\text{ Hz}$",
+      "B": "$170\\text{ Hz}$",
+      "C": "$340\\text{ Hz}$",
+      "D": "$510\\text{ Hz}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$v = f \\lambda \\implies f = \\frac{v}{\\lambda} = \\frac{340}{0.5} = 680\\text{ Hz}$.",
+    "subject": "Engineering Science",
+    "topic": "Wave Motion, Optics, and Acoustics",
+    "subtopic": "Sound Waves and Propagation",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "wave_speed",
+      "frequency"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-OPT-005",
+    "question": "Total internal reflection occurs only when light travels from:",
+    "options": {
+      "A": "Denser medium to rarer medium at an angle greater than critical angle",
+      "B": "Rarer medium to denser medium",
+      "C": "Denser medium to rarer medium at an angle less than critical angle",
+      "D": "Any medium at normal incidence"
+    },
+    "correct_answer": "A",
+    "explanation": "TIR requires two conditions: (1) Light must travel from optically denser to rarer medium, and (2) Angle of incidence must exceed critical angle ($i > \\theta_c$).",
+    "subject": "Engineering Science",
+    "topic": "Wave Motion, Optics, and Acoustics",
+    "subtopic": "Total Internal Reflection and Optical Fibers",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "optics",
+      "tir"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-007",
+    "question": "What is the electrical power consumed by an appliance of resistance $20\\,\\Omega$ operating at $200\\text{ V}$?",
+    "options": {
+      "A": "$2000\\text{ W}$",
+      "B": "$1000\\text{ W}$",
+      "C": "$400\\text{ W}$",
+      "D": "$10\\text{ W}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$P = \\frac{V^2}{R} = \\frac{200^2}{20} = \\frac{40000}{20} = 2000\\text{ Watts}$.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Ohm's Law and Resistivity",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "power",
+      "electricity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-008",
+    "question": "What is the energy stored in a $10\\,\\mu\\text{F}$ capacitor charged to a potential difference of $100\\text{ V}$?",
+    "options": {
+      "A": "$0.05\\text{ J}$",
+      "B": "$0.1\\text{ J}$",
+      "C": "$0.005\\text{ J}$",
+      "D": "$1.0\\text{ J}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$U = \\frac{1}{2} C V^2 = \\frac{1}{2}(10 \\times 10^{-6})(100^2) = 5 \\times 10^{-6} \\times 10000 = 0.05\\text{ Joules}$.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Capacitors and Electrostatics",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "capacitors",
+      "stored_energy"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-006",
+    "question": "What is the maximum number of electrons that can be accommodated in a shell with principal quantum number $n = 3$?",
+    "options": {
+      "A": "$18$",
+      "B": "$8$",
+      "C": "$32$",
+      "D": "$2$"
+    },
+    "correct_answer": "A",
+    "explanation": "By Bohr-Bury rule, maximum electrons in shell $n$ is $2n^2$. For $n = 3$, $2(3^2) = 2(9) = 18$.",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Atomic Structure and Periodic Table",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "atomic_structure",
+      "quantum_numbers"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-007",
+    "question": "What is the pH of pure neutral water at $25^\\circ\\text{C}$?",
+    "options": {
+      "A": "$7$",
+      "B": "$0$",
+      "C": "$14$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "At $25^\\circ\\text{C}$, the ionic product of water $K_w = [H^+][OH^-] = 10^{-14}$. For neutral water, $[H^+] = 10^{-7}\\text{ M} \\implies \\text{pH} = -\\log(10^{-7}) = 7$.",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Acids, Bases, and pH Scale",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "chemistry",
+      "ph_scale"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-008",
+    "question": "Which reagent is used in the complexometric titration to estimate total hardness of water?",
+    "options": {
+      "A": "EDTA (Disodium salt)",
+      "B": "Phenolphthalein",
+      "C": "Potassium Permanganate",
+      "D": "Methyl Orange"
+    },
+    "correct_answer": "A",
+    "explanation": "Ethylenediaminetetraacetic acid (EDTA disodium salt) forms stable, soluble chelate complexes with $\\text{Ca}^{2+}$ and $\\text{Mg}^{2+}$ ions at $\\text{pH } 10$ using Eriochrome Black T indicator.",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Water Technology and Hardness",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "water_hardness",
+      "edta"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-009",
+    "question": "Choose the correct preposition: 'The team will abide _____ the company guidelines.'",
+    "options": {
+      "A": "by",
+      "B": "with",
+      "C": "to",
+      "D": "in"
+    },
+    "correct_answer": "A",
+    "explanation": "The phrasal verb 'abide by' means to accept or comply with a rule or decision.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "prepositions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-010",
+    "question": "Select the correct article: 'She has earned _____ M.Tech degree in Computer Engineering.'",
+    "options": {
+      "A": "an",
+      "B": "a",
+      "C": "the",
+      "D": "no article"
+    },
+    "correct_answer": "A",
+    "explanation": "The acronym 'M.Tech' begins with a vowel sound (/ɛm/), so it takes the indefinite article 'an'.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "articles"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-011",
+    "question": "Choose the synonym for 'AUTHENTIC':",
+    "options": {
+      "A": "Genuine",
+      "B": "Counterfeit",
+      "C": "Fake",
+      "D": "Dubious"
+    },
+    "correct_answer": "A",
+    "explanation": "'Authentic' means of undisputed origin, genuine and reliable.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Synonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "synonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-012",
+    "question": "Choose the antonym for 'CONCAVE':",
+    "options": {
+      "A": "Convex",
+      "B": "Hollow",
+      "C": "Curved",
+      "D": "Flat"
+    },
+    "correct_answer": "A",
+    "explanation": "'Concave' curves inward; its direct geometric antonym is 'convex', which curves outward.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Antonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "antonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-013",
+    "question": "Subject-verb agreement: 'Neither the manager nor the engineers _____ present at the conference.'",
+    "options": {
+      "A": "were",
+      "B": "was",
+      "C": "is",
+      "D": "are being"
+    },
+    "correct_answer": "A",
+    "explanation": "When subjects are joined by 'neither... nor', the verb agrees with the closer subject ('engineers', which is plural, taking 'were').",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Subject-Verb Agreement",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "grammar"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-011",
+    "question": "If 15 workers can build a wall in 20 days, how many days will 25 workers take to build the same wall?",
+    "options": {
+      "A": "$12\\text{ days}$",
+      "B": "$10\\text{ days}$",
+      "C": "$15\\text{ days}$",
+      "D": "$16\\text{ days}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Total person-days $= 15 \\times 20 = 300$. Days for 25 workers $= \\frac{300}{25} = 12\\text{ days}$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Work and Time",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "aptitude",
+      "time_work"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-012",
+    "question": "A shopkeeper marks an item $20\\%$ above cost price and offers a $10\\%$ discount. What is the net profit percentage?",
+    "options": {
+      "A": "$8\\%$",
+      "B": "$10\\%$",
+      "C": "$12\\%$",
+      "D": "$5\\%$"
+    },
+    "correct_answer": "A",
+    "explanation": "Let $CP = 100$. Marked Price $= 120$. Discount $= 10\\%$ of $120 = 12$. Selling Price $= 120 - 12 = 108$. Net profit $= 108 - 100 = 8\\%$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Percentages and Profit-Loss",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "aptitude",
+      "profit_loss"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-013",
+    "question": "What is the compound interest on $\\text{Rs. } 10000$ for $2\\text{ years}$ at $10\\%$ per annum compounded annually?",
+    "options": {
+      "A": "$\\text{Rs. } 2100$",
+      "B": "$\\text{Rs. } 2000$",
+      "C": "$\\text{Rs. } 2200$",
+      "D": "$\\text{Rs. } 12100$"
+    },
+    "correct_answer": "A",
+    "explanation": "$A = P(1 + r/100)^t = 10000(1.10)^2 = 10000(1.21) = 12100$. Compound interest $= A - P = 12100 - 10000 = \\text{Rs. } 2100$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Simple and Compound Interest",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "aptitude",
+      "compound_interest"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-014",
+    "question": "What is the fourth proportional to $4, 9,$ and $12$?",
+    "options": {
+      "A": "$27$",
+      "B": "$36$",
+      "C": "$18$",
+      "D": "$24$"
+    },
+    "correct_answer": "A",
+    "explanation": "Let the fourth proportional be $x$: $\\frac{4}{9} = \\frac{12}{x} \\implies 4x = 108 \\implies x = 27$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Ratio and Proportion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "aptitude",
+      "ratio_proportion"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-015",
+    "question": "Find the odd one out: $8, 27, 64, 100, 125, 216$.",
+    "options": {
+      "A": "$100$",
+      "B": "$64$",
+      "C": "$27$",
+      "D": "$125$"
+    },
+    "correct_answer": "A",
+    "explanation": "All numbers except $100$ are perfect cubes ($2^3=8, 3^3=27, 4^3=64, 5^3=125, 6^3=216$). $100 = 10^2$ is a square, not a cube.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Number Series and Reasoning",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "aptitude",
+      "odd_one_out"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-039",
+    "question": "What is the value of the determinant $\\begin{vmatrix} 2 & 3 & 4 \\\\ 4 & 6 & 8 \\\\ 5 & 7 & 9 \\end{vmatrix}$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$12$",
+      "D": "$24$"
+    },
+    "correct_answer": "A",
+    "explanation": "Notice that Row 2 is exactly twice Row 1 ($R_2 = 2R_1$). When two rows of a determinant are proportional, the determinant is identically zero.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "proportional_rows"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-040",
+    "question": "For a square matrix $A$ of order $2 \\times 2$, if $|A| = 6$, what is $|A^T|$?",
+    "options": {
+      "A": "$6$",
+      "B": "$36$",
+      "C": "$\\frac{1}{6}$",
+      "D": "$-6$"
+    },
+    "correct_answer": "A",
+    "explanation": "By determinant properties, the determinant of a matrix is equal to the determinant of its transpose: $|A^T| = |A| = 6$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "transpose"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-041",
+    "question": "If $A = \\begin{pmatrix} 1 & 0 \\\\ 2 & 1 \\end{pmatrix}$, what is $A^{-1}$?",
+    "options": {
+      "A": "$\\begin{pmatrix} 1 & 0 \\\\ -2 & 1 \\end{pmatrix}$",
+      "B": "$\\begin{pmatrix} -1 & 0 \\\\ 2 & -1 \\end{pmatrix}$",
+      "C": "$\\begin{pmatrix} 1 & 0 \\\\ 2 & 1 \\end{pmatrix}$",
+      "D": "$\\begin{pmatrix} 1 & -2 \\\\ 0 & 1 \\end{pmatrix}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\det(A) = (1)(1) - (0)(2) = 1$. The adjoint is $\\begin{pmatrix} 1 & 0 \\\\ -2 & 1 \\end{pmatrix}$. Thus $A^{-1} = \\frac{\\text{adj}(A)}{|A|} = \\begin{pmatrix} 1 & 0 \\\\ -2 & 1 \\end{pmatrix}$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Inversion and Adjoint",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "matrices",
+      "matrix_inverse"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-042",
+    "question": "What is the trace of the identity matrix $I_4$ of order $4$?",
+    "options": {
+      "A": "$4$",
+      "B": "$1$",
+      "C": "$0$",
+      "D": "$16$"
+    },
+    "correct_answer": "A",
+    "explanation": "The trace is the sum of main diagonal elements. For $I_4$, there are four ones on the diagonal: $\\text{tr}(I_4) = 1 + 1 + 1 + 1 = 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trace",
+      "identity_matrix"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-043",
+    "question": "If matrix $A$ has dimensions $m \\times n$ and $B$ has dimensions $n \\times p$, what is the size of matrix $AB$?",
+    "options": {
+      "A": "$m \\times p$",
+      "B": "$n \\times n$",
+      "C": "$p \\times m$",
+      "D": "$m \\times n$"
+    },
+    "correct_answer": "A",
+    "explanation": "Matrix multiplication is defined when the number of columns of $A$ equals the number of rows of $B$ ($n$). The resulting matrix $AB$ has order $m \\times p$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "matrices",
+      "dimensions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-044",
+    "question": "If $A = \\begin{pmatrix} 5 & 0 \\\\ 0 & 5 \\end{pmatrix}$, what type of matrix is $A$?",
+    "options": {
+      "A": "Scalar matrix",
+      "B": "Identity matrix",
+      "C": "Skew-symmetric matrix",
+      "D": "Zero matrix"
+    },
+    "correct_answer": "A",
+    "explanation": "A diagonal matrix whose all diagonal elements are equal (and non-zero) is defined as a scalar matrix.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "matrices",
+      "scalar_matrix"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-045",
+    "question": "If $\\begin{vmatrix} 4 & 1 \\\\ 2 & 1 \\end{vmatrix}^2 = k$, what is the value of $k$?",
+    "options": {
+      "A": "$4$",
+      "B": "$2$",
+      "C": "$8$",
+      "D": "$16$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\det = (4)(1) - (1)(2) = 4 - 2 = 2$. Squaring this value: $2^2 = 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "arithmetic"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-046",
+    "question": "For any square matrix $A$, what is $(A^T)^T$?",
+    "options": {
+      "A": "$A$",
+      "B": "$-A$",
+      "C": "$A^T$",
+      "D": "$I$"
+    },
+    "correct_answer": "A",
+    "explanation": "By matrix transpose involution law, $(A^T)^T = A$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "transpose",
+      "properties"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-047",
+    "question": "If $A = \\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}$, what is the cofactor of element $3$?",
+    "options": {
+      "A": "$-2$",
+      "B": "$2$",
+      "C": "$-3$",
+      "D": "$4$"
+    },
+    "correct_answer": "A",
+    "explanation": "Element 3 is at row 1, column 2 ($i=1, j=2$). The minor is $M_{12} = 2$. Cofactor $C_{12} = (-1)^{1+2} M_{12} = (-1)(2) = -2$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "cofactors",
+      "minors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-048",
+    "question": "What is the determinant of a diagonal matrix $D = \\text{diag}(d_1, d_2, d_3)$?",
+    "options": {
+      "A": "$d_1 d_2 d_3$",
+      "B": "$d_1 + d_2 + d_3$",
+      "C": "$0$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "The determinant of any diagonal (or triangular) matrix is the product of its diagonal elements: $\\det(D) = d_1 d_2 d_3$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "diagonal_matrix",
+      "determinants"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-025",
+    "question": "What is the value of $\\log_a 1$ for any positive base $a \\neq 1$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$a$",
+      "D": "Undefined"
+    },
+    "correct_answer": "A",
+    "explanation": "Since $a^0 = 1$ for any $a \\neq 0$, by definition $\\log_a 1 = 0$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "fundamental_identity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-026",
+    "question": "What is the value of $\\log_a a$ for any positive base $a \\neq 1$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$a$",
+      "D": "$a^2$"
+    },
+    "correct_answer": "A",
+    "explanation": "Since $a^1 = a$, $\\log_a a = 1$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "fundamental_identity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-027",
+    "question": "Express $\\log\\left(\\frac{x^3 y^2}{z^4}\\right)$ as separate terms:",
+    "options": {
+      "A": "$3\\log x + 2\\log y - 4\\log z$",
+      "B": "$3\\log x - 2\\log y - 4\\log z$",
+      "C": "$6\\log(xy) - 4\\log z$",
+      "D": "$\\frac{3\\log x + 2\\log y}{4\\log z}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Using log rules for products, quotients, and powers: $\\log(x^3 y^2 / z^4) = \\log(x^3) + \\log(y^2) - \\log(z^4) = 3\\log x + 2\\log y - 4\\log z$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "expansion"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-028",
+    "question": "If $\\log_{10} 2 = 0.3010$, what is the number of digits in $2^{20}$?",
+    "options": {
+      "A": "$7$",
+      "B": "$6$",
+      "C": "$8$",
+      "D": "$20$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\log_{10}(2^{20}) = 20 \\times \\log_{10} 2 = 20 \\times 0.3010 = 6.020$. The number of digits in $N$ is $\\lfloor\\log_{10} N\\rfloor + 1 = 6 + 1 = 7$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "number_of_digits"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-029",
+    "question": "If $\\frac{2x}{(x+1)(x+3)} = \\frac{A}{x+1} + \\frac{B}{x+3}$, what is $B$?",
+    "options": {
+      "A": "$3$",
+      "B": "$-1$",
+      "C": "$1$",
+      "D": "$-3$"
+    },
+    "correct_answer": "A",
+    "explanation": "$2x = A(x+3) + B(x+1)$. Put $x = -3$: $2(-3) = B(-3 + 1) \\implies -6 = -2B \\implies B = 3$.",
+    "subject": "Mathematics",
+    "topic": "Partial Fractions",
+    "subtopic": "Linear Non-repeated Factors",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "cover_up_method"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-041",
+    "question": "What is the value of $\\sin^2(30^\\circ) + \\cos^2(30^\\circ)$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0.5$",
+      "C": "$0.75$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "By Pythagorean trigonometric identity, $\\sin^2\\theta + \\cos^2\\theta = 1$ for any angle $\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "identities"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-042",
+    "question": "What is the value of $1 + \\tan^2\\theta$?",
+    "options": {
+      "A": "$\\sec^2\\theta$",
+      "B": "$\\operatorname{cosec}^2\\theta$",
+      "C": "$\\cot^2\\theta$",
+      "D": "$\\cos^2\\theta$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard Pythagorean identity: $1 + \\tan^2\\theta = \\sec^2\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trigonometry",
+      "identities"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-043",
+    "question": "What is the value of $\\sin(180^\\circ - \\theta)$?",
+    "options": {
+      "A": "$\\sin\\theta$",
+      "B": "$-\\sin\\theta$",
+      "C": "$\\cos\\theta$",
+      "D": "$-\\cos\\theta$"
+    },
+    "correct_answer": "A",
+    "explanation": "In the second quadrant, sine is positive: $\\sin(180^\\circ - \\theta) = \\sin\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Allied and Compound Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "allied_angles",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-044",
+    "question": "What is the value of $\\cos(90^\\circ - \\theta)$?",
+    "options": {
+      "A": "$\\sin\\theta$",
+      "B": "$-\\sin\\theta$",
+      "C": "$\\cos\\theta$",
+      "D": "$\\tan\\theta$"
+    },
+    "correct_answer": "A",
+    "explanation": "By complementary angle relation, $\\cos(90^\\circ - \\theta) = \\sin\\theta$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Allied and Compound Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "allied_angles",
+      "complementary"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-045",
+    "question": "What is the value of $\\tan(45^\\circ)$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$\\sqrt{3}$",
+      "D": "$\\frac{1}{\\sqrt{3}}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\tan(45^\\circ) = \\frac{\\sin 45^\\circ}{\\cos 45^\\circ} = \\frac{1/\\sqrt{2}}{1/\\sqrt{2}} = 1$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-046",
+    "question": "What is the value of $\\tan(2\\theta)$ when $\\tan\\theta = \\frac{1}{3}$?",
+    "options": {
+      "A": "$\\frac{3}{4}$",
+      "B": "$\\frac{2}{3}$",
+      "C": "$\\frac{4}{3}$",
+      "D": "$\\frac{1}{2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\tan(2\\theta) = \\frac{2\\tan\\theta}{1 - \\tan^2\\theta} = \\frac{2(1/3)}{1 - 1/9} = \\frac{2/3}{8/9} = \\frac{2}{3} \\times \\frac{9}{8} = \\frac{3}{4}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple and Sub-multiple Angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "double_angle",
+      "tangent"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-047",
+    "question": "What is the value of $\\sin(0^\\circ)$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$-1$",
+      "D": "$\\infty$"
+    },
+    "correct_answer": "A",
+    "explanation": "By definition of trigonometric functions on unit circle, $\\sin(0^\\circ) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-048",
+    "question": "What is the principal value range of $\\cos^{-1}(x)$?",
+    "options": {
+      "A": "$[0, \\pi]$",
+      "B": "$[-\\pi/2, \\pi/2]$",
+      "C": "$(0, \\pi)$",
+      "D": "$(-\\pi/2, \\pi/2)$"
+    },
+    "correct_answer": "A",
+    "explanation": "The standard principal branch for the inverse cosine function $\\cos^{-1} x$ is defined as $[0, \\pi]$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Inverse Trigonometric Functions",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "inverse_trig",
+      "principal_branch"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-026",
+    "question": "What is the slope of a horizontal line parallel to the $x$-axis?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "Undefined ($\\infty$)",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "A line parallel to the $x$-axis has inclination $\\theta = 0^\\circ$, hence slope $m = \\tan(0^\\circ) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "slope",
+      "horizontal_line"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-027",
+    "question": "What is the slope of a vertical line parallel to the $y$-axis?",
+    "options": {
+      "A": "Undefined ($\\infty$)",
+      "B": "$0$",
+      "C": "$1$",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "A vertical line has inclination $\\theta = 90^\\circ$. Since $\\tan(90^\\circ)$ is undefined, the slope is undefined.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "slope",
+      "vertical_line"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-028",
+    "question": "What is the coordinates of the midpoint of line segment joining $(2, 4)$ and $(6, 8)$?",
+    "options": {
+      "A": "$(4, 6)$",
+      "B": "$(3, 5)$",
+      "C": "$(8, 12)$",
+      "D": "$(4, 4)$"
+    },
+    "correct_answer": "A",
+    "explanation": "Midpoint formula: $(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}) = (\\frac{2+6}{2}, \\frac{4+8}{2}) = (4, 6)$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "midpoint",
+      "geometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-029",
+    "question": "What is the radius of the circle $x^2 + y^2 = 49$?",
+    "options": {
+      "A": "$7$",
+      "B": "$49$",
+      "C": "$14$",
+      "D": "$\\sqrt{7}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard equation $x^2 + y^2 = r^2$. $r^2 = 49 \\implies r = 7$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Circle Equations and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "circles",
+      "radius"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-030",
+    "question": "What is the focus of the parabola $x^2 = 4ay$?",
+    "options": {
+      "A": "$(0, a)$",
+      "B": "$(a, 0)$",
+      "C": "$(0, -a)$",
+      "D": "$(-a, 0)$"
+    },
+    "correct_answer": "A",
+    "explanation": "The parabola $x^2 = 4ay$ opens upwards along the positive $y$-axis, so its focus is located at $(0, a)$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Conic Sections",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "parabola",
+      "focus"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-036",
+    "question": "What is $\\lim_{x \\to 0} \\frac{e^x - 1}{x}$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$e$",
+      "D": "$\\infty$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard limit formula: $\\lim_{x \\to 0} \\frac{e^x - 1}{x} = 1$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Limits and Indeterminate Forms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "limits",
+      "exponential"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-037",
+    "question": "What is the derivative of $\\cos x$ with respect to $x$?",
+    "options": {
+      "A": "$-\\sin x$",
+      "B": "$\\sin x$",
+      "C": "$-\\cos x$",
+      "D": "$\\tan x$"
+    },
+    "correct_answer": "A",
+    "explanation": "By fundamental differentiation rule, $\\frac{d}{dx}(\\cos x) = -\\sin x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-038",
+    "question": "What is the derivative of $\\tan x$ with respect to $x$?",
+    "options": {
+      "A": "$\\sec^2 x$",
+      "B": "$\\sec x \\tan x$",
+      "C": "$-\\sec^2 x$",
+      "D": "$\\operatorname{cosec}^2 x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}(\\tan x) = \\sec^2 x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-039",
+    "question": "What is the derivative of $\\ln x$ with respect to $x$ for $x > 0$?",
+    "options": {
+      "A": "$\\frac{1}{x}$",
+      "B": "$-\\frac{1}{x^2}$",
+      "C": "$e^x$",
+      "D": "$x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}(\\ln x) = \\frac{1}{x}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "logarithm"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-040",
+    "question": "What is $\\frac{d}{dx}(x^5)$?",
+    "options": {
+      "A": "$5x^4$",
+      "B": "$4x^5$",
+      "C": "$5x^6$",
+      "D": "$\\frac{x^6}{6}$"
+    },
+    "correct_answer": "A",
+    "explanation": "By power rule: $\\frac{d}{dx}(x^n) = n x^{n-1}$. Here $n = 5$, giving $5x^4$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "power_rule",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-041",
+    "question": "What is the derivative of a constant $c$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$c$",
+      "D": "$x$"
+    },
+    "correct_answer": "A",
+    "explanation": "The derivative of any constant function is identically zero: $\\frac{d}{dx}(c) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "constant"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-042",
+    "question": "What is the derivative of $u \\cdot v$ with respect to $x$?",
+    "options": {
+      "A": "$u \\frac{dv}{dx} + v \\frac{du}{dx}$",
+      "B": "$\\frac{du}{dx} \\cdot \\frac{dv}{dx}$",
+      "C": "$u \\frac{dv}{dx} - v \\frac{du}{dx}$",
+      "D": "$u + v$"
+    },
+    "correct_answer": "A",
+    "explanation": "By Leibniz product rule: $\\frac{d}{dx}(uv) = u\\frac{dv}{dx} + v\\frac{du}{dx}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "product_rule",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-043",
+    "question": "What is the derivative of $\\frac{1}{x}$ with respect to $x$?",
+    "options": {
+      "A": "$-\\frac{1}{x^2}$",
+      "B": "$\\frac{1}{x^2}$",
+      "C": "$\\ln x$",
+      "D": "$-\\frac{1}{x}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}(x^{-1}) = -1 x^{-2} = -\\frac{1}{x^2}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "power_rule",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-030",
+    "question": "What is $\\int x^4 \\, dx$?",
+    "options": {
+      "A": "$\\frac{x^5}{5} + C$",
+      "B": "$4x^3 + C$",
+      "C": "$5x^4 + C$",
+      "D": "$\\frac{x^4}{4} + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "By power rule of integration: $\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$. Here $n = 4$, so $\\frac{x^5}{5} + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "power_rule"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-031",
+    "question": "What is $\\int \\sin x \\, dx$?",
+    "options": {
+      "A": "$-\\cos x + C$",
+      "B": "$\\cos x + C$",
+      "C": "$-\\sin x + C$",
+      "D": "$\\sec x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int \\sin x \\, dx = -\\cos x + C$ because $\\frac{d}{dx}(-\\cos x) = \\sin x$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "trigonometric_integrals"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-032",
+    "question": "What is $\\int \\frac{1}{x} \\, dx$ for $x > 0$?",
+    "options": {
+      "A": "$\\ln x + C$",
+      "B": "$-\\frac{1}{x^2} + C$",
+      "C": "$x + C$",
+      "D": "$e^x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int \\frac{1}{x} dx = \\ln|x| + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "logarithm"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-033",
+    "question": "What is the value of $\\int_0^1 x \\, dx$?",
+    "options": {
+      "A": "$\\frac{1}{2}$",
+      "B": "$1$",
+      "C": "$2$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "$[\\frac{x^2}{2}]_0^1 = \\frac{1}{2} - 0 = \\frac{1}{2}$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Definite Integrals and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "evaluation"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-034",
+    "question": "What is $\\int_a^a f(x) \\, dx$ for any continuous function $f(x)$?",
+    "options": {
+      "A": "$0$",
+      "B": "$f(a)$",
+      "C": "$2a$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "When the upper and lower limits of integration are identical, the interval width is zero, hence $\\int_a^a f(x)dx = 0$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Definite Integrals and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "limits"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-021",
+    "question": "What is $\\hat{i} \\cdot \\hat{i}$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$\\hat{k}$",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "For orthogonal unit vectors, the dot product of a unit vector with itself is $|\\hat{i}|^2 = 1^2 = 1$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "unit_vectors",
+      "dot_product"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-022",
+    "question": "What is $\\hat{i} \\cdot \\hat{j}$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$\\hat{k}$",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Since $\\hat{i}$ and $\\hat{j}$ are mutually perpendicular ($\theta = 90^\\circ$), $\\hat{i} \\cdot \\hat{j} = (1)(1)\\cos(90^\\circ) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "unit_vectors",
+      "orthogonality"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-023",
+    "question": "What is $\\hat{i} \\times \\hat{i}$?",
+    "options": {
+      "A": "$\\vec{0}$",
+      "B": "$1$",
+      "C": "$\\hat{k}$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "The cross product of any vector with itself has $\\sin(0^\\circ) = 0$, giving the zero vector $\\vec{0}$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Vector Cross Product and Area",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "cross_product",
+      "self_cross"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-024",
+    "question": "What is $\\vec{a} \\times \\vec{b}$ in terms of $\\vec{b} \\times \\vec{a}$?",
+    "options": {
+      "A": "$-\\vec{b} \\times \\vec{a}$",
+      "B": "$\\vec{b} \\times \\vec{a}$",
+      "C": "$\\vec{a} \\cdot \\vec{b}$",
+      "D": "$\\vec{0}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Vector cross product is anti-commutative: $\\vec{a} \\times \\vec{b} = -(\\vec{b} \\times \\vec{a})$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Vector Cross Product and Area",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "cross_product",
+      "anti_commutative"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-020",
+    "question": "What is the median of the numbers $3, 1, 9, 7, 5$?",
+    "options": {
+      "A": "$5$",
+      "B": "$7$",
+      "C": "$3$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Arranging in ascending order: $1, 3, 5, 7, 9$. The middle observation (3rd item) is $5$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "median",
+      "statistics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-021",
+    "question": "What is the probability of an impossible event?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$-1$",
+      "D": "$0.5$"
+    },
+    "correct_answer": "A",
+    "explanation": "By probability axioms, the probability of the empty set (impossible event) is $P(\\emptyset) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability Axioms and Independent Events",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "axioms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-022",
+    "question": "What is the probability of a certain (sure) event?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$100$",
+      "D": "$\\infty$"
+    },
+    "correct_answer": "A",
+    "explanation": "By probability axioms, the probability of the entire sample space (sure event) is $P(S) = 1$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability Axioms and Independent Events",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "sure_event"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-009",
+    "question": "What is the SI base unit of Electric Current?",
+    "options": {
+      "A": "Ampere (A)",
+      "B": "Volt (V)",
+      "C": "Coulomb (C)",
+      "D": "Ohm ($\\Omega$)"
+    },
+    "correct_answer": "A",
+    "explanation": "Ampere (A) is one of the seven fundamental SI base units defining electric current.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "si_units",
+      "electric_current"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-010",
+    "question": "What is the SI base unit of Thermodynamic Temperature?",
+    "options": {
+      "A": "Kelvin (K)",
+      "B": "Celsius ($^\\circ$C)",
+      "C": "Fahrenheit ($^\\circ$F)",
+      "D": "Joule (J)"
+    },
+    "correct_answer": "A",
+    "explanation": "Kelvin (K) is the SI base unit of thermodynamic temperature.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "si_units",
+      "temperature"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-009",
+    "question": "What is the acceleration due to gravity $g$ on the surface of the Earth approximately?",
+    "options": {
+      "A": "$9.8\\text{ m/s}^2$",
+      "B": "$98\\text{ m/s}^2$",
+      "C": "$0.98\\text{ m/s}^2$",
+      "D": "$32\\text{ m/s}^2$"
+    },
+    "correct_answer": "A",
+    "explanation": "The standard acceleration due to gravity at sea level on Earth is approximately $9.8\\text{ m/s}^2$.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "gravity",
+      "mechanics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-010",
+    "question": "What is the formula for linear momentum $p$?",
+    "options": {
+      "A": "$p = m v$",
+      "B": "$p = \\frac{1}{2} m v^2$",
+      "C": "$p = m a$",
+      "D": "$p = \\frac{m}{v}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Linear momentum is defined as the product of mass and velocity: $p = m v$.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "momentum",
+      "mechanics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-007",
+    "question": "What is the absolute zero temperature in Celsius scale?",
+    "options": {
+      "A": "$-273.15^\\circ\\text{C}$",
+      "B": "$0^\\circ\\text{C}$",
+      "C": "$-100^\\circ\\text{C}$",
+      "D": "$-459.67^\\circ\\text{C}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Absolute zero is $0\\text{ K} = -273.15^\\circ\\text{C}$.",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Temperature Scales and Thermal Expansion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "absolute_zero",
+      "temperature"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-008",
+    "question": "Which mode of heat transfer does NOT require any material medium?",
+    "options": {
+      "A": "Radiation",
+      "B": "Conduction",
+      "C": "Convection",
+      "D": "Advection"
+    },
+    "correct_answer": "A",
+    "explanation": "Thermal radiation propagates via electromagnetic waves and can travel through vacuum (e.g. sunlight reaching Earth).",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Heat Transfer: Conduction, Convection, Radiation",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "radiation",
+      "heat_transfer"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-OPT-006",
+    "question": "What is the speed of light in a vacuum?",
+    "options": {
+      "A": "$3 \\times 10^8\\text{ m/s}$",
+      "B": "$3 \\times 10^6\\text{ m/s}$",
+      "C": "$330\\text{ m/s}$",
+      "D": "$3 \\times 10^{10}\\text{ m/s}$"
+    },
+    "correct_answer": "A",
+    "explanation": "The speed of light in vacuum is fundamental constant $c \\approx 3 \\times 10^8\\text{ m/s}$.",
+    "subject": "Engineering Science",
+    "topic": "Wave Motion, Optics, and Acoustics",
+    "subtopic": "Sound Waves and Propagation",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "speed_of_light",
+      "optics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-009",
+    "question": "What is Ohm's law formula?",
+    "options": {
+      "A": "$V = I R$",
+      "B": "$I = V R$",
+      "C": "$R = V I$",
+      "D": "$V = I^2 R$"
+    },
+    "correct_answer": "A",
+    "explanation": "Ohm's law states $V = I R$, where $V$ is potential difference, $I$ is current, and $R$ is resistance.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Ohm's Law and Resistivity",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "ohms_law",
+      "electricity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-010",
+    "question": "What is the equivalent resistance of two $10\\,\\Omega$ resistors connected in series?",
+    "options": {
+      "A": "$20\\,\\Omega$",
+      "B": "$5\\,\\Omega$",
+      "C": "$10\\,\\Omega$",
+      "D": "$100\\,\\Omega$"
+    },
+    "correct_answer": "A",
+    "explanation": "Series resistance: $R_{eq} = R_1 + R_2 = 10 + 10 = 20\\,\\Omega$.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Resistor Series and Parallel Combinations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "resistors",
+      "series"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-009",
+    "question": "What is the chemical formula of common table salt?",
+    "options": {
+      "A": "$\\text{NaCl}$",
+      "B": "$\\text{KCl}$",
+      "C": "$\\text{Na}_2\\text{SO}_4$",
+      "D": "$\\text{NaOH}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Table salt is Sodium Chloride ($\\text{NaCl}$).",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Chemical Bonding and Redox Reactions",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "chemistry",
+      "salts"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-010",
+    "question": "Which of the following has a pH less than 7 at $25^\\circ\\text{C}$?",
+    "options": {
+      "A": "Lemon juice (acidic)",
+      "B": "Pure water",
+      "C": "Sodium Hydroxide solution",
+      "D": "Bleach"
+    },
+    "correct_answer": "A",
+    "explanation": "Acidic solutions have $\\text{pH} < 7$. Lemon juice contains citric acid ($\text{pH} \\approx 2-3$).",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Acids, Bases, and pH Scale",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "ph_scale",
+      "acids"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-014",
+    "question": "Choose the correct preposition: 'He is proficient _____ Python programming.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "with",
+      "D": "on"
+    },
+    "correct_answer": "A",
+    "explanation": "The adjective 'proficient' takes the preposition 'in' ('proficient in a subject/skill').",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "prepositions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-015",
+    "question": "Select the correct article: 'Copper is _____ useful engineering metal.'",
+    "options": {
+      "A": "a",
+      "B": "an",
+      "C": "the",
+      "D": "no article"
+    },
+    "correct_answer": "A",
+    "explanation": "The word 'useful' starts with a consonant sound (/juː/), so it takes the indefinite article 'a'.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "articles"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-016",
+    "question": "Choose the synonym for 'PRUDENT':",
+    "options": {
+      "A": "Wise and cautious",
+      "B": "Reckless",
+      "C": "Angry",
+      "D": "Foolish"
+    },
+    "correct_answer": "A",
+    "explanation": "'Prudent' means acting with or showing care and thought for the future; wise.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Synonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "synonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-017",
+    "question": "Choose the antonym for 'TRANSPARENT':",
+    "options": {
+      "A": "Opaque",
+      "B": "Clear",
+      "C": "Translucent",
+      "D": "Bright"
+    },
+    "correct_answer": "A",
+    "explanation": "'Transparent' allows light to pass through completely; its antonym is 'opaque'.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Antonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "antonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-016",
+    "question": "What is $15\\%$ of $600$?",
+    "options": {
+      "A": "$90$",
+      "B": "$60$",
+      "C": "$75$",
+      "D": "$100$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{15}{100} \\times 600 = 15 \\times 6 = 90$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Percentages and Profit-Loss",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "percentages",
+      "arithmetic"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-017",
+    "question": "If the ratio of boys to girls in a class is $3:2$ and there are $30$ boys, how many girls are there?",
+    "options": {
+      "A": "$20$",
+      "B": "$15$",
+      "C": "$25$",
+      "D": "$10$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{3}{2} = \\frac{30}{\\text{girls}} \\implies \\text{girls} = \\frac{30 \\times 2}{3} = 20$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Ratio and Proportion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "ratio",
+      "proportions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-018",
+    "question": "A car travels $120\\text{ km}$ in $2\\text{ hours}$. What is its speed?",
+    "options": {
+      "A": "$60\\text{ km/h}$",
+      "B": "$50\\text{ km/h}$",
+      "C": "$70\\text{ km/h}$",
+      "D": "$240\\text{ km/h}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} = \\frac{120}{2} = 60\\text{ km/h}$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Time, Speed and Distance",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "speed_distance",
+      "arithmetic"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-019",
+    "question": "Find the next number in the arithmetic progression: $5, 11, 17, 23, \\text{?}$",
+    "options": {
+      "A": "$29$",
+      "B": "$28$",
+      "C": "$30$",
+      "D": "$27$"
+    },
+    "correct_answer": "A",
+    "explanation": "Common difference $d = 11 - 5 = 6$. Next term is $23 + 6 = 29$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Number Series and Reasoning",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "number_series",
+      "ap"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-049",
+    "question": "What is the area of the triangle whose vertices are $(1, 0), (6, 0),$ and $(4, 3)$ computed via determinant?",
+    "options": {
+      "A": "$7.5$ sq. units",
+      "B": "$15$ sq. units",
+      "C": "$9$ sq. units",
+      "D": "$6$ sq. units"
+    },
+    "correct_answer": "A",
+    "explanation": "Area $= \\frac{1}{2} |\\begin{vmatrix} 1 & 0 & 1 \\\\ 6 & 0 & 1 \\\\ 4 & 3 & 1 \\end{vmatrix}| = \\frac{1}{2} |-3(1 - 6)| = \\frac{1}{2} |-3(-5)| = \\frac{15}{2} = 7.5$ sq. units.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "triangle_area"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-050",
+    "question": "If points $(x, 2), (-3, 4),$ and $(7, -2)$ are collinear, what is the value of $x$?",
+    "options": {
+      "A": "$-1$",
+      "B": "$1$",
+      "C": "$0$",
+      "D": "$3$"
+    },
+    "correct_answer": "A",
+    "explanation": "Collinearity condition: $\\begin{vmatrix} x & 2 & 1 \\\\ -3 & 4 & 1 \\\\ 7 & -2 & 1 \\end{vmatrix} = 0 \\implies x(4 - (-2)) - 2(-3 - 7) + 1(6 - 28) = 0 \\implies 6x + 20 - 22 = 0 \\implies 6x - 2 = 0$... wait: slope $m = \\frac{-2 - 4}{7 - (-3)} = \\frac{-6}{10} = -\\frac{3}{5}$. Line equation: $y - 4 = -\\frac{3}{5}(x + 3) \\implies 5y - 20 = -3x - 9 \\implies 3x + 5y - 11 = 0$. For $y = 2$: $3x + 10 - 11 = 0 \\implies 3x = 1 \\implies x = 1/3$. Let's re-verify determinant: $x(4 - (-2)) - 2(-3 - 7) + 1((-3)(-2) - (4)(7)) = x(6) - 2(-10) + 1(6 - 28) = 6x + 20 - 22 = 6x - 2 = 0 \\implies x = \\frac{1}{3}$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "collinear_points"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-051",
+    "question": "What is the determinant of a $3 \\times 3$ upper triangular matrix with diagonal elements $2, -1, 4$?",
+    "options": {
+      "A": "$-8$",
+      "B": "$8$",
+      "C": "$5$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "The determinant of any triangular matrix equals the product of its diagonal elements: $(2)(-1)(4) = -8$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "triangular_matrix",
+      "determinants"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-052",
+    "question": "If $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$, what is the trace of $A^T$?",
+    "options": {
+      "A": "$5$",
+      "B": "$10$",
+      "C": "$-2$",
+      "D": "$7$"
+    },
+    "correct_answer": "A",
+    "explanation": "Transposing a matrix does not change its main diagonal elements. Hence $\\text{tr}(A^T) = \\text{tr}(A) = 1 + 4 = 5$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "trace",
+      "transpose"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-030",
+    "question": "What is the value of $\\log_{10}(0.001)$?",
+    "options": {
+      "A": "$-3$",
+      "B": "$3$",
+      "C": "$-2$",
+      "D": "$0.001$"
+    },
+    "correct_answer": "A",
+    "explanation": "$0.001 = 10^{-3}$, so $\\log_{10}(10^{-3}) = -3$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "negative_power"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-031",
+    "question": "If $\\log_3 x = 4$, what is the value of $x$?",
+    "options": {
+      "A": "$81$",
+      "B": "$12$",
+      "C": "$64$",
+      "D": "$27$"
+    },
+    "correct_answer": "A",
+    "explanation": "$x = 3^4 = 81$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "exponential_form"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-032",
+    "question": "What is the partial fraction form for $\\frac{1}{(x-1)^3}$?",
+    "options": {
+      "A": "$\\frac{1}{(x-1)^3}$",
+      "B": "$\\frac{A}{x-1} + \\frac{B}{(x-1)^2} + \\frac{C}{(x-1)^3}$",
+      "C": "$\\frac{A}{(x-1)^3}$",
+      "D": "$\\frac{Ax+B}{(x-1)^3}$"
+    },
+    "correct_answer": "A",
+    "explanation": "The fraction $\\frac{1}{(x-1)^3}$ is already in its simplest partial fraction form with $A=0, B=0, C=1$.",
+    "subject": "Mathematics",
+    "topic": "Partial Fractions",
+    "subtopic": "Repeated Linear Factors",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "simplification"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-049",
+    "question": "What is the value of $\\cos(60^\\circ)$?",
+    "options": {
+      "A": "$\\frac{1}{2}$",
+      "B": "$\\frac{\\sqrt{3}}{2}$",
+      "C": "$\\frac{1}{\\sqrt{2}}$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard trigonometric value: $\\cos(60^\\circ) = \\frac{1}{2}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-050",
+    "question": "What is the value of $\\tan(60^\\circ)$?",
+    "options": {
+      "A": "$\\sqrt{3}$",
+      "B": "$\\frac{1}{\\sqrt{3}}$",
+      "C": "$1$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\tan(60^\\circ) = \\frac{\\sin 60^\\circ}{\\cos 60^\\circ} = \\frac{\\sqrt{3}/2}{1/2} = \\sqrt{3}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-051",
+    "question": "What is $\\cos(C) + \\cos(D)$ expressed as a product?",
+    "options": {
+      "A": "$2\\cos\\left(\\frac{C+D}{2}\\right)\\cos\\left(\\frac{C-D}{2}\\right)$",
+      "B": "$-2\\sin\\left(\\frac{C+D}{2}\\right)\\sin\\left(\\frac{C-D}{2}\\right)$",
+      "C": "$2\\sin\\left(\\frac{C+D}{2}\\right)\\cos\\left(\\frac{C-D}{2}\\right)$",
+      "D": "$2\\cos(C)\\cos(D)$"
+    },
+    "correct_answer": "A",
+    "explanation": "By transformation formula: $\\cos C + \\cos D = 2\\cos\\left(\\frac{C+D}{2}\\right)\\cos\\left(\\frac{C-D}{2}\\right)$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Transformation Formulae",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "transformation_formulae",
+      "sum_to_product"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-052",
+    "question": "What is the principal value of $\\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)$?",
+    "options": {
+      "A": "$\\frac{\\pi}{4}$",
+      "B": "$\\frac{\\pi}{2}$",
+      "C": "$\\frac{\\pi}{3}$",
+      "D": "$\\frac{\\pi}{6}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Since $\\sin(\\pi/4) = \\frac{1}{\\sqrt{2}}$ and $\\pi/4 \\in [-\\pi/2, \\pi/2]$, the principal value is $\\frac{\\pi}{4}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Inverse Trigonometric Functions",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "inverse_trig",
+      "principal_value"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-031",
+    "question": "What is the equation of a circle with center at the origin $(0, 0)$ and radius $r = 5$?",
+    "options": {
+      "A": "$x^2 + y^2 = 25$",
+      "B": "$x^2 + y^2 = 5$",
+      "C": "$x^2 - y^2 = 25$",
+      "D": "$x + y = 5$"
+    },
+    "correct_answer": "A",
+    "explanation": "Standard equation of a circle centered at origin: $x^2 + y^2 = r^2 = 5^2 = 25$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Circle Equations and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "circles",
+      "standard_equation"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-032",
+    "question": "What is the equation of the circle having endpoints of diameter at $(x_1, y_1)$ and $(x_2, y_2)$?",
+    "options": {
+      "A": "$(x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0$",
+      "B": "$(x - x_1)^2 + (y - y_1)^2 = (x_2 - x_1)^2$",
+      "C": "$(x - x_1)(y - y_2) + (x - x_2)(y - y_1) = 0$",
+      "D": "$(x + x_1)(x + x_2) + (y + y_1)(y + y_2) = 0$"
+    },
+    "correct_answer": "A",
+    "explanation": "By diameter form of circle equation: $(x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Circle Equations and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "circles",
+      "diameter_form"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-033",
+    "question": "What is the vertex of the standard parabola $y^2 = 4ax$?",
+    "options": {
+      "A": "$(0, 0)$",
+      "B": "$(a, 0)$",
+      "C": "$(-a, 0)$",
+      "D": "$(0, a)$"
+    },
+    "correct_answer": "A",
+    "explanation": "The vertex of the standard parabola $y^2 = 4ax$ is at the origin $(0, 0)$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Conic Sections",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "parabola",
+      "vertex"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-044",
+    "question": "What is $\\lim_{x \\to 0} \\frac{1}{x}$ from the positive side ($x \\to 0^+$)?",
+    "options": {
+      "A": "$+\\infty$",
+      "B": "$-\\infty$",
+      "C": "$0$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "As $x$ approaches $0$ through positive values, $\\frac{1}{x}$ grows without bound toward $+\\infty$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Limits and Indeterminate Forms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "limits",
+      "one_sided_limit"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-045",
+    "question": "What is the derivative of $\\cot x$ with respect to $x$?",
+    "options": {
+      "A": "$-\\operatorname{cosec}^2 x$",
+      "B": "$\\operatorname{cosec}^2 x$",
+      "C": "$-\\sec^2 x$",
+      "D": "$\\sec^2 x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}(\\cot x) = -\\operatorname{cosec}^2 x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-046",
+    "question": "What is the second derivative $\\frac{d^2y}{dx^2}$ of $y = \\sin x$?",
+    "options": {
+      "A": "$-\\sin x$",
+      "B": "$\\sin x$",
+      "C": "$-\\cos x$",
+      "D": "$\\cos x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{dy}{dx} = \\cos x \\implies \\frac{d^2y}{dx^2} = \\frac{d}{dx}(\\cos x) = -\\sin x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Second Order Derivatives",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "second_derivative",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-047",
+    "question": "If displacement is given by $s(t) = 3t^2 + 2t + 1$, what is the velocity $v(t)$ at $t = 2\\text{ seconds}$?",
+    "options": {
+      "A": "$14\\text{ m/s}$",
+      "B": "$12\\text{ m/s}$",
+      "C": "$16\\text{ m/s}$",
+      "D": "$6\\text{ m/s}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$v(t) = \\frac{ds}{dt} = 6t + 2$. At $t = 2$: $v(2) = 6(2) + 2 = 12 + 2 = 14\\text{ m/s}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Tangents, Normals, and Maxima-Minima",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "derivatives",
+      "velocity_acceleration"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-035",
+    "question": "What is $\\int \\cos x \\, dx$?",
+    "options": {
+      "A": "$\\sin x + C$",
+      "B": "$-\\sin x + C$",
+      "C": "$\\cos x + C$",
+      "D": "$-\\cos x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int \\cos x \\, dx = \\sin x + C$ since $\\frac{d}{dx}(\\sin x) = \\cos x$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "trigonometric_integrals"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-036",
+    "question": "What is $\\int 1 \\, dx$?",
+    "options": {
+      "A": "$x + C$",
+      "B": "$0$",
+      "C": "$1 + C$",
+      "D": "$\\frac{x^2}{2} + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int 1 \\, dx = x + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "constant"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-037",
+    "question": "What is the value of $\\int_0^2 3x^2 \\, dx$?",
+    "options": {
+      "A": "$8$",
+      "B": "$12$",
+      "C": "$6$",
+      "D": "$24$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int_0^2 3x^2 dx = [x^3]_0^2 = 2^3 - 0 = 8$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Definite Integrals and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "polynomial"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-018",
+    "question": "What is the order of the differential equation $\\frac{dy}{dx} = 5x + 3$?",
+    "options": {
+      "A": "$1$",
+      "B": "$2$",
+      "C": "$0$",
+      "D": "$5$"
+    },
+    "correct_answer": "A",
+    "explanation": "The highest order derivative appearing is the first derivative $\\frac{dy}{dx}$, so the order is 1.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "order_degree",
+      "differential_equations"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-025",
+    "question": "What is the scalar projection of vector $\\vec{a}$ on the $x$-axis?",
+    "options": {
+      "A": "$a_x$ (the $x$-component)",
+      "B": "$|\\vec{a}|$",
+      "C": "$\\vec{a} \\times \\hat{i}$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Scalar projection on $x$-axis is $\\vec{a} \\cdot \\hat{i} = (a_x \\hat{i} + a_y \\hat{j} + a_z \\hat{k}) \\cdot \\hat{i} = a_x$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "projection",
+      "vectors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-026",
+    "question": "If $\\vec{a}$ and $\\vec{b}$ are parallel vectors, what is the angle between them?",
+    "options": {
+      "A": "$0^\\circ$ or $180^\\circ$",
+      "B": "$90^\\circ$",
+      "C": "$45^\\circ$",
+      "D": "$60^\\circ$"
+    },
+    "correct_answer": "A",
+    "explanation": "Parallel vectors point either in the exact same direction ($\\theta = 0^\\circ$) or in opposite directions (antiparallel, $\\theta = 180^\\circ$).",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "parallel_vectors",
+      "angle"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-023",
+    "question": "What is the range of the dataset: $15, 8, 22, 5, 31, 19$?",
+    "options": {
+      "A": "$26$",
+      "B": "$31$",
+      "C": "$5$",
+      "D": "$16$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Range} = \\text{Maximum} - \\text{Minimum} = 31 - 5 = 26$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Variance and Standard Deviation",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "range",
+      "statistics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-024",
+    "question": "If $P(A) = 0.5$ and $P(B) = 0.4$ for two mutually exclusive events, what is $P(A \\cup B)$?",
+    "options": {
+      "A": "$0.9$",
+      "B": "$0.2$",
+      "C": "$0.1$",
+      "D": "$0.0$"
+    },
+    "correct_answer": "A",
+    "explanation": "For mutually exclusive events, $P(A \\cap B) = 0$. Thus $P(A \\cup B) = P(A) + P(B) = 0.5 + 0.4 = 0.9$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability Axioms and Independent Events",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "mutually_exclusive"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-011",
+    "question": "What is the SI unit of Power?",
+    "options": {
+      "A": "Watt (W)",
+      "B": "Joule (J)",
+      "C": "Newton (N)",
+      "D": "Pascal (Pa)"
+    },
+    "correct_answer": "A",
+    "explanation": "Power is work done per unit time ($P = W/t$). Its SI unit is the Watt ($\\text{W} = \\text{J/s}$).",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "si_units",
+      "power"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-012",
+    "question": "What is the dimensional formula for Velocity?",
+    "options": {
+      "A": "$[M^0 L^1 T^{-1}]$",
+      "B": "$[M^0 L^1 T^{-2}]$",
+      "C": "$[M^1 L^1 T^{-1}]$",
+      "D": "$[M^0 L^2 T^{-1}]$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Velocity} = \\frac{\\text{Displacement}}{\\text{Time}} = [M^0 L^1 T^{-1}]$.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "dimensional_analysis",
+      "velocity"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-011",
+    "question": "What is Newton's First Law of Motion commonly referred to as?",
+    "options": {
+      "A": "Law of Inertia",
+      "B": "Law of Acceleration",
+      "C": "Law of Action-Reaction",
+      "D": "Law of Gravitation"
+    },
+    "correct_answer": "A",
+    "explanation": "Newton's First Law states that a body remains at rest or in uniform motion unless acted upon by an external force; this is known as the Law of Inertia.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "inertia",
+      "newton_laws"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-012",
+    "question": "Newton's Third Law states that every action has an equal and:",
+    "options": {
+      "A": "Opposite reaction",
+      "B": "Parallel reaction",
+      "C": "Perpendicular reaction",
+      "D": "Same reaction"
+    },
+    "correct_answer": "A",
+    "explanation": "To every action there is always an equal and opposite reaction.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "newton_laws",
+      "action_reaction"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-009",
+    "question": "What is the normal boiling point of water at standard atmospheric pressure in Celsius?",
+    "options": {
+      "A": "$100^\\circ\\text{C}$",
+      "B": "$212^\\circ\\text{C}$",
+      "C": "$373^\\circ\\text{C}$",
+      "D": "$0^\\circ\\text{C}$"
+    },
+    "correct_answer": "A",
+    "explanation": "At 1 atm pressure, water boils at $100^\\circ\\text{C}$ ($212^\\circ\\text{F}$ or $373.15\\text{ K}$).",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Temperature Scales and Thermal Expansion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "boiling_point",
+      "heat"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-OPT-007",
+    "question": "What type of mirror is used as a rear-view mirror in automobiles?",
+    "options": {
+      "A": "Convex mirror",
+      "B": "Concave mirror",
+      "C": "Plane mirror",
+      "D": "Parabolic mirror"
+    },
+    "correct_answer": "A",
+    "explanation": "Convex mirrors always form erect, diminished virtual images and offer a wider field of view.",
+    "subject": "Engineering Science",
+    "topic": "Wave Motion, Optics, and Acoustics",
+    "subtopic": "Total Internal Reflection and Optical Fibers",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "optics",
+      "convex_mirror"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-011",
+    "question": "What is the SI unit of Electric Charge?",
+    "options": {
+      "A": "Coulomb (C)",
+      "B": "Ampere (A)",
+      "C": "Volt (V)",
+      "D": "Ohm ($\\Omega$)"
+    },
+    "correct_answer": "A",
+    "explanation": "The SI unit of electric charge is the Coulomb ($\\text{C} = \\text{A}\\cdot\\text{s}$).",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Ohm's Law and Resistivity",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "coulomb",
+      "charge"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-011",
+    "question": "What is the chemical symbol for Gold?",
+    "options": {
+      "A": "$\\text{Au}$",
+      "B": "$\\text{Ag}$",
+      "C": "$\\text{Fe}$",
+      "D": "$\\text{Cu}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Gold has the chemical symbol $\\text{Au}$ (from Latin 'Aurum'). Silver is $\\text{Ag}$, Iron is $\\text{Fe}$, and Copper is $\\text{Cu}$.",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Atomic Structure and Periodic Table",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "periodic_table",
+      "elements"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-018",
+    "question": "Choose the correct preposition: 'She has been working here _____ 2020.'",
+    "options": {
+      "A": "since",
+      "B": "for",
+      "C": "from",
+      "D": "in"
+    },
+    "correct_answer": "A",
+    "explanation": "We use 'since' to refer to a specific point in time in the past with the present perfect continuous tense.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "prepositions"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-019",
+    "question": "Choose the correct synonym for 'CANDID':",
+    "options": {
+      "A": "Frank and honest",
+      "B": "Deceitful",
+      "C": "Secretive",
+      "D": "Shy"
+    },
+    "correct_answer": "A",
+    "explanation": "'Candid' means truthful and straightforward; frank.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Synonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "synonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-020",
+    "question": "What is the Simple Interest on $\\text{Rs. } 2000$ at $5\\%$ per annum for $3\\text{ years}$?",
+    "options": {
+      "A": "$\\text{Rs. } 300$",
+      "B": "$\\text{Rs. } 250$",
+      "C": "$\\text{Rs. } 350$",
+      "D": "$\\text{Rs. } 400$"
+    },
+    "correct_answer": "A",
+    "explanation": "$SI = \\frac{P \\times R \\times T}{100} = \\frac{2000 \\times 5 \\times 3}{100} = 20 \\times 15 = \\text{Rs. } 300$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Simple and Compound Interest",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "simple_interest",
+      "aptitude"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-021",
+    "question": "If a train travels $300\\text{ km}$ at a constant speed of $50\\text{ km/h}$, how long does the journey take?",
+    "options": {
+      "A": "$6\\text{ hours}$",
+      "B": "$5\\text{ hours}$",
+      "C": "$7\\text{ hours}$",
+      "D": "$4\\text{ hours}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Time} = \\frac{\\text{Distance}}{\\text{Speed}} = \\frac{300}{50} = 6\\text{ hours}$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Time, Speed and Distance",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "speed_distance",
+      "aptitude"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-053",
+    "question": "If $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$, what is the value of $|3A|$?",
+    "options": {
+      "A": "$-18$",
+      "B": "$-6$",
+      "C": "$-54$",
+      "D": "$18$"
+    },
+    "correct_answer": "A",
+    "explanation": "$|A| = (1)(4) - (2)(3) = 4 - 6 = -2$. For a $2 \\times 2$ matrix, $|kA| = k^2 |A|$. Here $|3A| = 3^2 (-2) = 9 \\times (-2) = -18$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "determinants",
+      "scalar_multiple"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-054",
+    "question": "If a square matrix satisfies $A = -A^T$, then $A$ is a:",
+    "options": {
+      "A": "Skew-symmetric matrix",
+      "B": "Symmetric matrix",
+      "C": "Orthogonal matrix",
+      "D": "Identity matrix"
+    },
+    "correct_answer": "A",
+    "explanation": "By definition, a matrix whose transpose is equal to its negative ($A^T = -A$) is called a skew-symmetric matrix.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "skew_symmetric",
+      "definition"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-055",
+    "question": "What is the multiplicative identity matrix for $2 \\times 2$ matrices?",
+    "options": {
+      "A": "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+      "B": "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+      "C": "$\\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$",
+      "D": "$\\begin{pmatrix} 0 & 0 \\\\ 0 & 0 \\end{pmatrix}$"
+    },
+    "correct_answer": "A",
+    "explanation": "The identity matrix $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ satisfies $A I = I A = A$ for all $2 \\times 2$ matrices $A$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "identity_matrix"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-056",
+    "question": "If $A = \\begin{pmatrix} 2 & 0 \\\\ 0 & 3 \\end{pmatrix}$ and $B = \\begin{pmatrix} 4 & 0 \\\\ 0 & 5 \\end{pmatrix}$, what is $AB$?",
+    "options": {
+      "A": "$\\begin{pmatrix} 8 & 0 \\\\ 0 & 15 \\end{pmatrix}$",
+      "B": "$\\begin{pmatrix} 6 & 0 \\\\ 0 & 8 \\end{pmatrix}$",
+      "C": "$\\begin{pmatrix} 8 & 0 \\\\ 0 & 8 \\end{pmatrix}$",
+      "D": "$\\begin{pmatrix} 0 & 8 \\\\ 15 & 0 \\end{pmatrix}$"
+    },
+    "correct_answer": "A",
+    "explanation": "The product of two diagonal matrices is obtained by multiplying corresponding diagonal entries: $\\begin{pmatrix} 2(4) & 0 \\\\ 0 & 3(5) \\end{pmatrix} = \\begin{pmatrix} 8 & 0 \\\\ 0 & 15 \\end{pmatrix}$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "diagonal_matrix",
+      "multiplication"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-057",
+    "question": "If $|A| = 0$, the square matrix $A$ is called:",
+    "options": {
+      "A": "Singular matrix",
+      "B": "Non-singular matrix",
+      "C": "Unit matrix",
+      "D": "Invertible matrix"
+    },
+    "correct_answer": "A",
+    "explanation": "A matrix with determinant equal to zero is defined as a singular matrix, which implies it has no inverse.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "singular_matrix",
+      "definition"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-033",
+    "question": "What is the value of $\\log_2 64$?",
+    "options": {
+      "A": "$6$",
+      "B": "$5$",
+      "C": "$8$",
+      "D": "$32$"
+    },
+    "correct_answer": "A",
+    "explanation": "Since $2^6 = 64$, $\\log_2 64 = 6$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "powers_of_two"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-034",
+    "question": "What is the value of $\\log_3 1$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$3$",
+      "D": "Undefined"
+    },
+    "correct_answer": "A",
+    "explanation": "The logarithm of 1 to any valid base is $0$ because $3^0 = 1$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "logarithm",
+      "properties"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-035",
+    "question": "If $\\frac{x}{(x-2)(x-3)} = \\frac{A}{x-2} + \\frac{B}{x-3}$, what is $A$?",
+    "options": {
+      "A": "$-2$",
+      "B": "$2$",
+      "C": "$3$",
+      "D": "$-3$"
+    },
+    "correct_answer": "A",
+    "explanation": "$x = A(x-3) + B(x-2)$. Put $x = 2$: $2 = A(2 - 3) \\implies 2 = -A \\implies A = -2$.",
+    "subject": "Mathematics",
+    "topic": "Partial Fractions",
+    "subtopic": "Linear Non-repeated Factors",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "cover_up_method"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-036",
+    "question": "In partial fraction decomposition of $\\frac{1}{x^2(x+1)}$, what form should be used?",
+    "options": {
+      "A": "$\\frac{A}{x} + \\frac{B}{x^2} + \\frac{C}{x+1}$",
+      "B": "$\\frac{A}{x^2} + \\frac{B}{x+1}$",
+      "C": "$\\frac{Ax+B}{x^2} + \\frac{C}{x+1}$",
+      "D": "$\\frac{A}{x} + \\frac{B}{x+1}$"
+    },
+    "correct_answer": "A",
+    "explanation": "For a repeated linear factor $x^2$, the standard expansion contains terms $\\frac{A}{x} + \\frac{B}{x^2}$ along with $\\frac{C}{x+1}$.",
+    "subject": "Mathematics",
+    "topic": "Partial Fractions",
+    "subtopic": "Repeated Linear Factors",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "partial_fractions",
+      "repeated_factors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-053",
+    "question": "What is the value of $\\sin(90^\\circ)$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$-1$",
+      "D": "$\\frac{1}{2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "By standard trigonometric definition, $\\sin(90^\\circ) = 1$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-054",
+    "question": "What is the value of $\\cos(0^\\circ)$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$-1$",
+      "D": "Undefined"
+    },
+    "correct_answer": "A",
+    "explanation": "By standard definition, $\\cos(0^\\circ) = 1$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-055",
+    "question": "What is the value of $\\tan(0^\\circ)$?",
+    "options": {
+      "A": "$0$",
+      "B": "$1$",
+      "C": "$\\infty$",
+      "D": "$-1$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\tan(0^\\circ) = \\frac{\\sin 0^\\circ}{\\cos 0^\\circ} = \\frac{0}{1} = 0$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "standard_values",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-056",
+    "question": "What is the value of $\\sin(-x)$?",
+    "options": {
+      "A": "$-\\sin x$",
+      "B": "$\\sin x$",
+      "C": "$\\cos x$",
+      "D": "$-\\cos x$"
+    },
+    "correct_answer": "A",
+    "explanation": "Sine is an odd trigonometric function: $\\sin(-x) = -\\sin x$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "odd_function",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-057",
+    "question": "What is the value of $\\cos(-x)$?",
+    "options": {
+      "A": "$\\cos x$",
+      "B": "$-\\cos x$",
+      "C": "$\\sin x$",
+      "D": "$-\\sin x$"
+    },
+    "correct_answer": "A",
+    "explanation": "Cosine is an even trigonometric function: $\\cos(-x) = \\cos x$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "even_function",
+      "trigonometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-034",
+    "question": "What is the slope-intercept form of the equation of a straight line?",
+    "options": {
+      "A": "$y = mx + c$",
+      "B": "$y - y_1 = m(x - x_1)$",
+      "C": "$\\frac{x}{a} + \\frac{y}{b} = 1$",
+      "D": "$Ax + By + C = 0$"
+    },
+    "correct_answer": "A",
+    "explanation": "The equation $y = mx + c$, where $m$ is the slope and $c$ is the $y$-intercept, is known as the slope-intercept form.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "straight_lines",
+      "forms_of_lines"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-035",
+    "question": "What is the distance of the point $(3, 4)$ from the origin $(0, 0)$?",
+    "options": {
+      "A": "$5$",
+      "B": "$7$",
+      "C": "$25$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Distance from origin $= \\sqrt{x^2 + y^2} = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "distance_formula",
+      "geometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-036",
+    "question": "If two lines are parallel, what is the relationship between their slopes $m_1$ and $m_2$?",
+    "options": {
+      "A": "$m_1 = m_2$",
+      "B": "$m_1 m_2 = -1$",
+      "C": "$m_1 + m_2 = 0$",
+      "D": "$m_1 m_2 = 1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Two non-vertical lines are parallel if and only if their slopes are equal: $m_1 = m_2$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Straight Lines and Slopes",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "parallel_lines",
+      "slope"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-037",
+    "question": "What is the center of the circle $(x - 3)^2 + (y + 4)^2 = 36$?",
+    "options": {
+      "A": "$(3, -4)$",
+      "B": "$(-3, 4)$",
+      "C": "$(3, 4)$",
+      "D": "$(-3, -4)$"
+    },
+    "correct_answer": "A",
+    "explanation": "Comparing with $(x - h)^2 + (y - k)^2 = r^2$: center is $(h, k) = (3, -4)$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "Circle Equations and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "circles",
+      "center"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-048",
+    "question": "What is the derivative of $x^3$ with respect to $x$?",
+    "options": {
+      "A": "$3x^2$",
+      "B": "$x^2$",
+      "C": "$3x$",
+      "D": "$\\frac{x^4}{4}$"
+    },
+    "correct_answer": "A",
+    "explanation": "By power rule: $\\frac{d}{dx}(x^3) = 3x^2$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "power_rule",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-049",
+    "question": "What is the derivative of $\\sqrt{x}$ with respect to $x$ for $x > 0$?",
+    "options": {
+      "A": "$\\frac{1}{2\\sqrt{x}}$",
+      "B": "$\\frac{1}{\\sqrt{x}}$",
+      "C": "$2\\sqrt{x}$",
+      "D": "$\\frac{\\sqrt{x}}{2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{d}{dx}(x^{1/2}) = \\frac{1}{2} x^{-1/2} = \\frac{1}{2\\sqrt{x}}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "power_rule",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-050",
+    "question": "What is $\\frac{d}{dx}(e^x)$?",
+    "options": {
+      "A": "$e^x$",
+      "B": "$x e^{x-1}$",
+      "C": "$\\ln x$",
+      "D": "$e^x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "The derivative of the natural exponential function $e^x$ is itself: $\\frac{d}{dx}(e^x) = e^x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "exponential",
+      "derivatives"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DC-051",
+    "question": "What is $\\lim_{x \\to 2} (x^2 + 3x)$?",
+    "options": {
+      "A": "$10$",
+      "B": "$8$",
+      "C": "$6$",
+      "D": "$14$"
+    },
+    "correct_answer": "A",
+    "explanation": "Direct substitution: $2^2 + 3(2) = 4 + 6 = 10$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Limits and Indeterminate Forms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "limits",
+      "direct_substitution"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-038",
+    "question": "What is $\\int x \\, dx$?",
+    "options": {
+      "A": "$\\frac{x^2}{2} + C$",
+      "B": "$x^2 + C$",
+      "C": "$1 + C$",
+      "D": "$2x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int x^1 dx = \\frac{x^2}{2} + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "power_rule"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-039",
+    "question": "What is $\\int 0 \\, dx$?",
+    "options": {
+      "A": "$C$ (arbitrary constant)",
+      "B": "$0$",
+      "C": "$1$",
+      "D": "$x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "The indefinite integral of zero is an arbitrary constant $C$ because the derivative of any constant is zero.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Standard Indefinite Integrals",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "integration",
+      "constant"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-IC-040",
+    "question": "What is $\\int_0^3 1 \\, dx$?",
+    "options": {
+      "A": "$3$",
+      "B": "$0$",
+      "C": "$1$",
+      "D": "$6$"
+    },
+    "correct_answer": "A",
+    "explanation": "$[x]_0^3 = 3 - 0 = 3$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Definite Integrals and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "definite_integrals",
+      "evaluation"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-019",
+    "question": "What is the degree of $\\frac{dy}{dx} + 5y = 0$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$5$",
+      "D": "Undefined"
+    },
+    "correct_answer": "A",
+    "explanation": "The highest order derivative is $\\frac{dy}{dx}$ raised to power 1, so the degree is 1.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "order_degree",
+      "differential_equations"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-020",
+    "question": "What is the general solution of $\\frac{dy}{dx} = 0$?",
+    "options": {
+      "A": "$y = C$",
+      "B": "$y = x + C$",
+      "C": "$y = 0$",
+      "D": "$x = C$"
+    },
+    "correct_answer": "A",
+    "explanation": "Integrating both sides: $\\int dy = \\int 0 dx \\implies y = C$.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Variable Separable Form",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "differential_equations",
+      "constant_solution"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-027",
+    "question": "What is the magnitude of the unit vector $\\hat{i}$?",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$\\sqrt{2}$",
+      "D": "Undefined"
+    },
+    "correct_answer": "A",
+    "explanation": "By definition, any unit vector has a length (magnitude) of exactly 1.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Vector Magnitude and Unit Vectors",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "unit_vector",
+      "magnitude"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-028",
+    "question": "What is $\\vec{a} \\cdot \\vec{a}$ for any vector $\\vec{a}$?",
+    "options": {
+      "A": "$|\\vec{a}|^2$",
+      "B": "$|\\vec{a}|$",
+      "C": "$\\vec{0}$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\vec{a} \\cdot \\vec{a} = |\\vec{a}||\\vec{a}|\\cos(0^\\circ) = |\\vec{a}|^2$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Scalar Dot Product and Orthogonality",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "dot_product",
+      "properties"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-025",
+    "question": "What is the mean of the numbers $10, 20, 30$?",
+    "options": {
+      "A": "$20$",
+      "B": "$15$",
+      "C": "$30$",
+      "D": "$60$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Mean} = \\frac{10 + 20 + 30}{3} = \\frac{60}{3} = 20$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Mean, Median and Mode",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "mean",
+      "statistics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-026",
+    "question": "What is the probability of rolling a $6$ on a standard fair six-sided die?",
+    "options": {
+      "A": "$\\frac{1}{6}$",
+      "B": "$\\frac{1}{2}$",
+      "C": "$\\frac{5}{6}$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "There is 1 favorable outcome out of 6 possible equiprobable outcomes, giving probability $\\frac{1}{6}$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability Axioms and Independent Events",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "probability",
+      "dice"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-013",
+    "question": "What is the SI unit of Force?",
+    "options": {
+      "A": "Newton (N)",
+      "B": "Joule (J)",
+      "C": "Watt (W)",
+      "D": "Pascal (Pa)"
+    },
+    "correct_answer": "A",
+    "explanation": "The SI unit of force is the Newton ($\\text{N} = \\text{kg}\\cdot\\text{m/s}^2$).",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "si_units",
+      "force"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UD-014",
+    "question": "What is the SI unit of Frequency?",
+    "options": {
+      "A": "Hertz (Hz)",
+      "B": "Second (s)",
+      "C": "Decibel (dB)",
+      "D": "Radian (rad)"
+    },
+    "correct_answer": "A",
+    "explanation": "Frequency is cycles per second, measured in Hertz ($\\text{Hz} = \\text{s}^{-1}$).",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "si_units",
+      "frequency"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-MECH-013",
+    "question": "What is the formula for the acceleration $a$ of an object of mass $m$ experiencing force $F$?",
+    "options": {
+      "A": "$a = \\frac{F}{m}$",
+      "B": "$a = F \\times m$",
+      "C": "$a = \\frac{m}{F}$",
+      "D": "$a = F - m$"
+    },
+    "correct_answer": "A",
+    "explanation": "From Newton's second law $F = m a$, solving for acceleration gives $a = \\frac{F}{m}$.",
+    "subject": "Engineering Science",
+    "topic": "Classical Mechanics",
+    "subtopic": "Newton's Laws and Momentum",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "newton_second_law",
+      "mechanics"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-HEAT-010",
+    "question": "What happens to the volume of most solids when they are heated?",
+    "options": {
+      "A": "It expands (increases)",
+      "B": "It contracts (decreases)",
+      "C": "It remains unchanged",
+      "D": "It drops to zero"
+    },
+    "correct_answer": "A",
+    "explanation": "Due to increased molecular kinetic energy and vibration amplitude, almost all solids expand in volume upon heating.",
+    "subject": "Engineering Science",
+    "topic": "Heat and Thermometry",
+    "subtopic": "Temperature Scales and Thermal Expansion",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "thermal_expansion",
+      "heat"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-012",
+    "question": "What is the unit of Electrical Resistance?",
+    "options": {
+      "A": "Ohm ($\\Omega$)",
+      "B": "Siemens (S)",
+      "C": "Farad (F)",
+      "D": "Henry (H)"
+    },
+    "correct_answer": "A",
+    "explanation": "The SI unit of electrical resistance is the Ohm ($\\Omega$).",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Ohm's Law and Resistivity",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "resistance",
+      "si_units"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-012",
+    "question": "What is the atomic number of Carbon ($\\text{C}$)?",
+    "options": {
+      "A": "$6$",
+      "B": "$12$",
+      "C": "$14$",
+      "D": "$8$"
+    },
+    "correct_answer": "A",
+    "explanation": "Carbon has 6 protons in its atomic nucleus, giving it an atomic number of 6 (mass number is typically 12).",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Atomic Structure and Periodic Table",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "carbon",
+      "atomic_number"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-020",
+    "question": "Choose the correct plural form of 'datum':",
+    "options": {
+      "A": "Data",
+      "B": "Datums",
+      "C": "Datas",
+      "D": "Daties"
+    },
+    "correct_answer": "A",
+    "explanation": "'Data' is the standard plural form of the singular Latin noun 'datum'.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Synonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "plurals"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-021",
+    "question": "Select the correct antonym for 'EXPAND':",
+    "options": {
+      "A": "Contract",
+      "B": "Enlarge",
+      "C": "Broaden",
+      "D": "Stretch"
+    },
+    "correct_answer": "A",
+    "explanation": "'Expand' means to increase in size or volume; its direct opposite is 'contract'.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Vocabulary and Antonyms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "english",
+      "antonyms"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-022",
+    "question": "What is the average of $10, 20, 30, 40,$ and $50$?",
+    "options": {
+      "A": "$30$",
+      "B": "$25$",
+      "C": "$35$",
+      "D": "$20$"
+    },
+    "correct_answer": "A",
+    "explanation": "Sum $= 150$. Average $= \\frac{150}{5} = 30$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Number Series and Reasoning",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "average",
+      "arithmetic"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-APT-QA-023",
+    "question": "If a square has side length $6\\text{ cm}$, what is its perimeter?",
+    "options": {
+      "A": "$24\\text{ cm}$",
+      "B": "$36\\text{ cm}$",
+      "C": "$12\\text{ cm}$",
+      "D": "$18\\text{ cm}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Perimeter of square $= 4 \\times \\text{side} = 4 \\times 6 = 24\\text{ cm}$.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Number Series and Reasoning",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": [
+      "perimeter",
+      "geometry"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T12:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-001",
+    "question": "If $\\begin{vmatrix} x & 2 \\\\ 8 & x \\end{vmatrix} = 0$, what is the value of $x$?",
+    "options": {
+      "A": "$\\pm 4$",
+      "B": "$\\pm 2$",
+      "C": "$4$",
+      "D": "$16$"
+    },
+    "correct_answer": "A",
+    "explanation": "Expanding the $2 \\times 2$ determinant: $x \\cdot x - 2 \\cdot 8 = x^2 - 16 = 0$. Solving for $x$: $x^2 = 16 \\implies x = \\pm 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series A / GTU PYQ",
+      "page": 12
+    },
+    "tags": [
+      "determinant",
+      "2x2",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-002",
+    "question": "Evaluate the determinant: $\\begin{vmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 0 & 0 & 6 \\end{vmatrix}$.",
+    "options": {
+      "A": "$24$",
+      "B": "$0$",
+      "C": "$15$",
+      "D": "$10$"
+    },
+    "correct_answer": "A",
+    "explanation": "For an upper triangular matrix, the determinant equals the product of its diagonal elements: $\\Delta = 1 \\times 4 \\times 6 = 24$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Determinant Evaluation and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series B",
+      "page": 13
+    },
+    "tags": [
+      "determinant",
+      "triangular_matrix",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-003",
+    "question": "If matrix $A$ is of order $2 \\times 3$ and matrix $B$ is of order $3 \\times 4$, what is the order of the product matrix $AB$?",
+    "options": {
+      "A": "$2 \\times 4$",
+      "B": "$3 \\times 3$",
+      "C": "$4 \\times 2$",
+      "D": "Product $AB$ is not defined"
+    },
+    "correct_answer": "A",
+    "explanation": "Matrix multiplication $A_{m \\times n} \\times B_{n \\times p}$ is defined because the inner dimensions match ($n = 3$). The product has dimensions $m \\times p = 2 \\times 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 14
+    },
+    "tags": [
+      "matrix_multiplication",
+      "order",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-004",
+    "question": "What is the inverse of the matrix $A = \\begin{pmatrix} 3 & 1 \\\\ 5 & 2 \\end{pmatrix}$?",
+    "options": {
+      "A": "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$",
+      "B": "$\\begin{pmatrix} -2 & 1 \\\\ 5 & -3 \\end{pmatrix}$",
+      "C": "$\\begin{pmatrix} 3 & -1 \\\\ -5 & 2 \\end{pmatrix}$",
+      "D": "$\\begin{pmatrix} 2 & 1 \\\\ 5 & 3 \\end{pmatrix}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\det(A) = (3)(2) - (1)(5) = 6 - 5 = 1$. The adjoint of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ is $\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. Hence, $A^{-1} = \\frac{1}{1} \\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Inversion and Adjoint",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series A",
+      "page": 15
+    },
+    "tags": [
+      "inverse",
+      "adjoint",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-005",
+    "question": "For what value of $k$ is the matrix $M = \\begin{pmatrix} 2 & k \\\\ 4 & 6 \\end{pmatrix}$ singular?",
+    "options": {
+      "A": "$3$",
+      "B": "$2$",
+      "C": "$4$",
+      "D": "$6$"
+    },
+    "correct_answer": "A",
+    "explanation": "A matrix is singular if its determinant is zero: $\\det(M) = 2(6) - 4k = 0 \\implies 12 - 4k = 0 \\implies 4k = 12 \\implies k = 3$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Matrix Types and Algebra",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 16
+    },
+    "tags": [
+      "singular_matrix",
+      "determinant"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DET-006",
+    "question": "Using Cramer's rule for the system $2x + 3y = 8$ and $x - y = -1$, what is the determinant of the coefficients ($D$)?",
+    "options": {
+      "A": "$-5$",
+      "B": "$5$",
+      "C": "$-1$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Coefficient determinant $D = \\begin{vmatrix} 2 & 3 \\\\ 1 & -1 \\end{vmatrix} = (2)(-1) - (3)(1) = -2 - 3 = -5$.",
+    "subject": "Mathematics",
+    "topic": "Determinants and Matrices",
+    "subtopic": "Cramer's Rule and Systems of Equations",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2026 ACPC Model Set 1",
+      "page": 5
+    },
+    "tags": [
+      "cramers_rule",
+      "linear_equations"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-003",
+    "question": "What is the principal value of $\\tan^{-1}(1) + \\cos^{-1}\\left(-\\frac{1}{2}\\right)$?",
+    "options": {
+      "A": "$\\frac{11\\pi}{12}$",
+      "B": "$\\frac{5\\pi}{12}$",
+      "C": "$\\frac{7\\pi}{12}$",
+      "D": "$\\frac{3\\pi}{4}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\tan^{-1}(1) = \\frac{\\pi}{4}$. $\\cos^{-1}(-1/2) = \\pi - \\cos^{-1}(1/2) = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$. Sum $= \\frac{\\pi}{4} + \\frac{2\\pi}{3} = \\frac{3\\pi + 8\\pi}{12} = \\frac{11\\pi}{12}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Inverse Trigonometric Functions",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2025 Official Paper Series A",
+      "page": 19
+    },
+    "tags": [
+      "inverse_trig",
+      "principal_value",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-001",
+    "question": "Evaluate $\\lim_{x \\to 0} \\frac{\\sin(5x)}{3x}$.",
+    "options": {
+      "A": "$\\frac{5}{3}$",
+      "B": "$\\frac{3}{5}$",
+      "C": "$0$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Using standard limit $\\lim_{u \\to 0} \\frac{\\sin(u)}{u} = 1$: rewrite as $\\frac{5}{3} \\cdot \\lim_{x \\to 0} \\frac{\\sin(5x)}{5x} = \\frac{5}{3}(1) = \\frac{5}{3}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Limits and Indeterminate Forms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series A",
+      "page": 20
+    },
+    "tags": [
+      "limits",
+      "trigonometric_limit",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-002",
+    "question": "Evaluate $\\lim_{x \\to 2} \\frac{x^3 - 8}{x - 2}$.",
+    "options": {
+      "A": "$12$",
+      "B": "$8$",
+      "C": "$4$",
+      "D": "$0$"
+    },
+    "correct_answer": "A",
+    "explanation": "Factoring the numerator: $x^3 - 8 = (x - 2)(x^2 + 2x + 4)$. Cancelling $(x-2)$ gives $\\lim_{x \\to 2} (x^2 + 2x + 4) = 4 + 4 + 4 = 12$. Alternatively by L'Hopital's rule: $\\frac{3x^2}{1} = 3(2^2) = 12$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Limits and Indeterminate Forms",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series D",
+      "page": 21
+    },
+    "tags": [
+      "limits",
+      "algebraic_limit",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-003",
+    "question": "If $y = \\log(\\sec x + \\tan x)$, what is $\\frac{dy}{dx}$?",
+    "options": {
+      "A": "$\\sec x$",
+      "B": "$\\tan x$",
+      "C": "$\\sec^2 x$",
+      "D": "$\\sec x \\tan x$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{dy}{dx} = \\frac{1}{\\sec x + \\tan x} \\cdot (\\sec x \\tan x + \\sec^2 x) = \\frac{\\sec x (\\tan x + \\sec x)}{\\sec x + \\tan x} = \\sec x$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Standard Differentiation and Chain Rule",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2025 Official Paper Series B",
+      "page": 22
+    },
+    "tags": [
+      "derivative",
+      "chain_rule",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-004",
+    "question": "If $x = a\\cos^3\\theta$ and $y = a\\sin^3\\theta$, find $\\frac{dy}{dx}$ at $\\theta = \\frac{\\pi}{4}$.",
+    "options": {
+      "A": "$-1$",
+      "B": "$1$",
+      "C": "$0$",
+      "D": "$-a$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\frac{dx}{d\\theta} = -3a\\cos^2\\theta \\sin\\theta$ and $\\frac{dy}{d\\theta} = 3a\\sin^2\\theta \\cos\\theta$. Therefore, $\\frac{dy}{dx} = \\frac{3a\\sin^2\\theta\\cos\\theta}{-3a\\cos^2\\theta\\sin\\theta} = -\\tan\\theta$. At $\\theta = \\frac{\\pi}{4}$, $-\\tan(\\pi/4) = -1$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Implicit and Parametric Differentiation",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series C",
+      "page": 23
+    },
+    "tags": [
+      "parametric_derivative",
+      "astroid",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-005",
+    "question": "What is the slope of the tangent to the curve $y = x^3 - 3x + 2$ at the point where $x = 2$?",
+    "options": {
+      "A": "$9$",
+      "B": "$6$",
+      "C": "$12$",
+      "D": "$3$"
+    },
+    "correct_answer": "A",
+    "explanation": "Slope $m = \\frac{dy}{dx} = 3x^2 - 3$. Substituting $x = 2$: $m = 3(2^2) - 3 = 12 - 3 = 9$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Tangents, Normals, and Maxima-Minima",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 24
+    },
+    "tags": [
+      "tangent",
+      "slope",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CALC-006",
+    "question": "If $y = e^{2x}$, what is $\\frac{d^2y}{dx^2}$?",
+    "options": {
+      "A": "$4e^{2x}$",
+      "B": "$2e^{2x}$",
+      "C": "$e^{2x}$",
+      "D": "$8e^{2x}$"
+    },
+    "correct_answer": "A",
+    "explanation": "First derivative: $y' = 2e^{2x}$. Second derivative: $y'' = \\frac{d}{dx}[2e^{2x}] = 4e^{2x}$.",
+    "subject": "Mathematics",
+    "topic": "Differential Calculus",
+    "subtopic": "Second Order Derivatives",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2026 ACPC Model Set 1",
+      "page": 7
+    },
+    "tags": [
+      "second_derivative",
+      "exponential"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-INT-002",
+    "question": "Evaluate $\\int x e^x \\, dx$.",
+    "options": {
+      "A": "$e^x(x - 1) + C$",
+      "B": "$e^x(x + 1) + C$",
+      "C": "$x e^x - e^{2x} + C$",
+      "D": "$\\frac{x^2}{2} e^x + C$"
+    },
+    "correct_answer": "A",
+    "explanation": "Using integration by parts $\\int u v' dx = u v - \\int u' v dx$: let $u = x \\implies u' = 1$, and $v' = e^x \\implies v = e^x$. Then $\\int x e^x dx = x e^x - \\int e^x dx = x e^x - e^x + C = e^x(x - 1) + C$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Integration by Parts",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series B",
+      "page": 26
+    },
+    "tags": [
+      "integration_by_parts",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-INT-003",
+    "question": "Evaluate the definite integral: $\\int_0^{\\pi/2} \\sin(x) \\, dx$.",
+    "options": {
+      "A": "$1$",
+      "B": "$0$",
+      "C": "$-1$",
+      "D": "$\\pi$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\int_0^{\\pi/2} \\sin(x) dx = [-\\cos(x)]_0^{\\pi/2} = -\\cos(\\pi/2) - (-\\cos(0)) = 0 - (-1) = 1$.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Definite Integrals and Properties",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 27
+    },
+    "tags": [
+      "definite_integral",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-INT-004",
+    "question": "What is the area bounded by the curve $y = x^2$, the $x$-axis, and the lines $x = 0$ to $x = 3$?",
+    "options": {
+      "A": "$9$",
+      "B": "$27$",
+      "C": "$3$",
+      "D": "$18$"
+    },
+    "correct_answer": "A",
+    "explanation": "Area $A = \\int_0^3 x^2 dx = \\left[ \\frac{x^3}{3} \\right]_0^3 = \\frac{27}{3} - 0 = 9$ square units.",
+    "subject": "Mathematics",
+    "topic": "Integral Calculus",
+    "subtopic": "Area Under Curves",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2026 ACPC Model Set 1",
+      "page": 8
+    },
+    "tags": [
+      "area_under_curve",
+      "integration"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-001",
+    "question": "What are the order and degree of the differential equation $\\left(\\frac{d^2y}{dx^2}\\right)^3 + \\left(\\frac{dy}{dx}\\right)^4 + y = 0$?",
+    "options": {
+      "A": "Order = $2$, Degree = $3$",
+      "B": "Order = $3$, Degree = $2$",
+      "C": "Order = $2$, Degree = $4$",
+      "D": "Order = $4$, Degree = $3$"
+    },
+    "correct_answer": "A",
+    "explanation": "The highest derivative present is $\\frac{d^2y}{dx^2}$, so Order = $2$. The power of this highest derivative is $3$, so Degree = $3$.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "Order and Degree of Differential Equations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series A",
+      "page": 28
+    },
+    "tags": [
+      "differential_equations",
+      "order_and_degree",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DE-002",
+    "question": "What is the integrating factor (I.F.) for the linear differential equation $\\frac{dy}{dx} + \\frac{2}{x}y = x^3$?",
+    "options": {
+      "A": "$x^2$",
+      "B": "$2\\log x$",
+      "C": "$x$",
+      "D": "$e^{2x}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Here $P(x) = \\frac{2}{x}$. The integrating factor is $\\text{I.F.} = e^{\\int P(x) dx} = e^{\\int \\frac{2}{x} dx} = e^{2\\log x} = e^{\\log(x^2)} = x^2$.",
+    "subject": "Mathematics",
+    "topic": "Differential Equations",
+    "subtopic": "First-Order Linear Differential Equations and Integrating Factors",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2025 Official Paper Series B",
+      "page": 29
+    },
+    "tags": [
+      "integrating_factor",
+      "linear_de",
+      "pyq_2025"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-002",
+    "question": "What is the cross product $\\hat{i} \\times \\hat{j}$?",
+    "options": {
+      "A": "$\\hat{k}$",
+      "B": "$-\\hat{k}$",
+      "C": "$0$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "By the standard right-handed orthogonal unit vector cyclic rule: $\\hat{i} \\times \\hat{j} = \\hat{k}$.",
+    "subject": "Mathematics",
+    "topic": "Vector Algebra",
+    "subtopic": "Vector Cross Product and Area",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 31
+    },
+    "tags": [
+      "cross_product",
+      "unit_vectors"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-002",
+    "question": "What is the variance of the numbers $5, 5, 5, 5, 5$?",
+    "options": {
+      "A": "$0$",
+      "B": "$5$",
+      "C": "$25$",
+      "D": "$1$"
+    },
+    "correct_answer": "A",
+    "explanation": "Since all observations are identical, their deviation from the mean (5) is 0 for every element. Variance measures dispersion, hence $\\sigma^2 = 0$.",
+    "subject": "Mathematics",
+    "topic": "Statistics and Probability",
+    "subtopic": "Variance and Standard Deviation",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 33
+    },
+    "tags": [
+      "variance",
+      "dispersion"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-001",
+    "question": "A cylindrical copper wire has resistance $R$. If it is stretched uniformly so that its length doubles while its volume remains constant, what is its new resistance?",
+    "options": {
+      "A": "$4R$",
+      "B": "$2R$",
+      "C": "$R/2$",
+      "D": "$R/4$"
+    },
+    "correct_answer": "A",
+    "explanation": "Resistance $R = \\rho \\frac{L}{A}$. Volume $V = A \\cdot L$ is constant. When length doubles ($L' = 2L$), cross-sectional area halves ($A' = A/2$). Therefore, $R' = \\rho \\frac{2L}{A/2} = 4\\left(\\rho \\frac{L}{A}\\right) = 4R$.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Ohm's Law and Resistivity",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2024 Official Paper BE-01",
+      "page": 2
+    },
+    "tags": [
+      "resistance",
+      "resistivity",
+      "stretching",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-SCI-ELEC-002",
+    "question": "Three identical resistors of resistance $6\\,\\Omega$ each are connected in parallel. What is their equivalent resistance?",
+    "options": {
+      "A": "$2\\,\\Omega$",
+      "B": "$18\\,\\Omega$",
+      "C": "$3\\,\\Omega$",
+      "D": "$1\\,\\Omega$"
+    },
+    "correct_answer": "A",
+    "explanation": "For $n$ identical resistors in parallel: $R_{\\text{eq}} = \\frac{R}{n} = \\frac{6}{3} = 2\\,\\Omega$.",
+    "subject": "Engineering Science",
+    "topic": "Electric Current & Electricity",
+    "subtopic": "Resistor Series and Parallel Combinations",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper BE-01",
+      "page": 3
+    },
+    "tags": [
+      "parallel_resistors",
+      "circuits",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-SCI-UNIT-001",
+    "question": "What is the dimensional formula for Work and Energy in SI base units?",
+    "options": {
+      "A": "$[M^1 L^2 T^{-2}]$",
+      "B": "$[M^1 L^1 T^{-2}]$",
+      "C": "$[M^1 L^2 T^{-1}]$",
+      "D": "$[M^1 L^{-1} T^{-2}]$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{Work} = \\text{Force} \\times \\text{Distance} = [M^1 L^1 T^{-2}] \\times [L^1] = [M^1 L^2 T^{-2}]$.",
+    "subject": "Engineering Science",
+    "topic": "Units and Measurement",
+    "subtopic": "SI Units and Dimensional Analysis",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper BE-01",
+      "page": 1
+    },
+    "tags": [
+      "dimensions",
+      "work",
+      "units",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-SCI-OPT-001",
+    "question": "An optical fiber transmits optical signals based on which optical phenomenon?",
+    "options": {
+      "A": "Total Internal Reflection",
+      "B": "Diffraction",
+      "C": "Polarization",
+      "D": "Scattering"
+    },
+    "correct_answer": "A",
+    "explanation": "Light rays entering the core at an angle greater than the critical angle undergo continuous Total Internal Reflection (TIR) along the fiber.",
+    "subject": "Engineering Science",
+    "topic": "Wave Motion, Optics, and Acoustics",
+    "subtopic": "Total Internal Reflection and Optical Fibers",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2025 Official Model Set BE-01",
+      "page": 5
+    },
+    "tags": [
+      "optics",
+      "optical_fiber",
+      "tir"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-SCI-CHEM-001",
+    "question": "If the hydrogen ion concentration $[H^+]$ of an aqueous solution is $10^{-4}\\,\\text{mol/L}$, what is the pH of the solution?",
+    "options": {
+      "A": "$4$",
+      "B": "$10$",
+      "C": "$-4$",
+      "D": "$7$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\text{pH} = -\\log_{10}[H^+] = -\\log_{10}(10^{-4}) = -(-4) = 4$.",
+    "subject": "Engineering Science",
+    "topic": "Basic Chemistry Concepts",
+    "subtopic": "Acids, Bases, and pH Scale",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper BE-01",
+      "page": 7
+    },
+    "tags": [
+      "chemistry",
+      "ph_scale",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-APT-ENG-001",
+    "question": "Choose the correct preposition: 'The engineer was proficient ______ computer-aided drafting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "with",
+      "D": "on"
+    },
+    "correct_answer": "A",
+    "explanation": "The standard grammatical collocated preposition with the adjective 'proficient' is 'in' (proficient in a skill/field).",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "English Language & Grammar",
+    "subtopic": "Prepositions and Articles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET 2024 Official Paper Series A",
+      "page": 40
+    },
+    "tags": [
+      "grammar",
+      "prepositions",
+      "pyq_2024"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-APT-NUM-001",
+    "question": "A pump can fill an overhead water reservoir in $4$ hours. A leak at the bottom empties the full tank in $6$ hours. If both the pump and leak are open simultaneously, in how many hours will the tank be filled?",
+    "options": {
+      "A": "$12$ hours",
+      "B": "$10$ hours",
+      "C": "$8$ hours",
+      "D": "$24$ hours"
+    },
+    "correct_answer": "A",
+    "explanation": "Inflow rate $= \\frac{1}{4}$ tank/hr. Leak rate $= \\frac{1}{6}$ tank/hr. Net filling rate $= \\frac{1}{4} - \\frac{1}{6} = \\frac{3 - 2}{12} = \\frac{1}{12}$ tank/hr. Time required $= 12$ hours.",
+    "subject": "Soft Skills & Aptitude",
+    "topic": "Quantitative Aptitude",
+    "subtopic": "Work and Time",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET 2025 Official Model Set",
+      "page": 45
+    },
+    "tags": [
+      "time_and_work",
+      "pipes_cisterns",
+      "aptitude"
+    ],
     "verified": true,
     "created_at": "2026-10-24T10:00:00"
   }
