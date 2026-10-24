@@ -1,0 +1,83 @@
+[
+  {
+    "id": "DEMO-SAMPLE-MATH-001",
+    "question": "What is the derivative of sin(2x) with respect to x?",
+    "options": {
+      "A": "2 * cos(2x)",
+      "B": "-2 * cos(2x)",
+      "C": "cos(2x)",
+      "D": "2 * sin(2x)"
+    },
+    "correct_answer": "A",
+    "explanation": "Using the chain rule: d/dx[sin(u)] = cos(u) * du/dx. Here u = 2x, du/dx = 2, so the derivative is 2*cos(2x).",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "subtopic": "Derivatives",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Sample Demonstration Bank",
+      "page": 1
+    },
+    "tags": [
+      "calculus",
+      "chain_rule",
+      "sample_data"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T05:02:44.270854"
+  },
+  {
+    "id": "DEMO-SAMPLE-MATH-002",
+    "question": "If matrix A is of order 2x3 and matrix B is of order 3x2, what is the order of product matrix AB?",
+    "options": {
+      "A": "3x3",
+      "B": "2x2",
+      "C": "2x3",
+      "D": "Product is not defined"
+    },
+    "correct_answer": "B",
+    "explanation": "For matrix multiplication A(m x n) and B(n x p), the resulting matrix has dimensions m x p. Here m=2 and p=2, so AB is a 2x2 matrix.",
+    "subject": "Mathematics",
+    "topic": "Matrices and Determinants",
+    "subtopic": "Matrix Multiplication",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Sample Demonstration Bank",
+      "page": 2
+    },
+    "tags": [
+      "matrices",
+      "linear_algebra",
+      "sample_data"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T05:02:44.281160"
+  },
+  {
+    "id": "DEMO-SAMPLE-ENG-001",
+    "question": "According to Ohm's Law, the current flowing through a conductor is directly proportional to the voltage across it, provided which condition remains constant?",
+    "options": {
+      "A": "Electric charge",
+      "B": "Temperature and physical dimensions",
+      "C": "Magnetic flux",
+      "D": "Capacitance"
+    },
+    "correct_answer": "B",
+    "explanation": "Ohm's Law states I = V/R, which holds true provided temperature, pressure, and other physical conditions remain constant.",
+    "subject": "Engineering Science",
+    "topic": "Basic Electrical",
+    "subtopic": "Ohm's Law",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Sample Demonstration Bank",
+      "page": 5
+    },
+    "tags": [
+      "electrical",
+      "ohms_law",
+      "sample_data"
+    ],
+    "verified": true,
+    "created_at": "2026-10-24T05:02:44.281160"
+  }
+]

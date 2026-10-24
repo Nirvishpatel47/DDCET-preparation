@@ -1,0 +1,256 @@
+[
+  {
+    "id": "DDCET-MATH-DM-001",
+    "question": "If $\\begin{vmatrix} x & 2 \\\\ 8 & x \\end{vmatrix} = 0$, what is the value of $x$?",
+    "options": {
+      "A": "$\\pm 2$",
+      "B": "$\\pm 4$",
+      "C": "$4$",
+      "D": "$16$"
+    },
+    "correct_answer": "B",
+    "explanation": "Expanding the determinant: $x^2 - 16 = 0 \\implies x^2 = 16 \\implies x = \\pm 4$.",
+    "subject": "Mathematics",
+    "topic": "Determinant and Matrices",
+    "subtopic": "Determinant and its value up to 3rd order",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 1
+    },
+    "tags": ["determinants", "second_order"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DM-002",
+    "question": "For a $2 \\times 2$ matrix $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$, what is the inverse $A^{-1}$?",
+    "options": {
+      "A": "$\\frac{1}{5} \\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix}$",
+      "B": "$\\frac{1}{5} \\begin{pmatrix} 4 & 3 \\\\ 1 & 2 \\end{pmatrix}$",
+      "C": "$\\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix}$",
+      "D": "$\\frac{1}{11} \\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix}$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\det(A) = (2)(4) - (3)(1) = 5$. Adjoint of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ is $\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$. Thus, $A^{-1} = \\frac{1}{5} \\begin{pmatrix} 4 & -3 \\\\ -1 & 2 \\end{pmatrix}$.",
+    "subject": "Mathematics",
+    "topic": "Determinant and Matrices",
+    "subtopic": "Adjoint and Inverse of a matrix of order 2x2",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 2
+    },
+    "tags": ["matrices", "inverse_matrix"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-001",
+    "question": "What is the principal period of the function $f(x) = \\sin(4x)$?",
+    "options": {
+      "A": "$2\\pi$",
+      "B": "$\\pi$",
+      "C": "$\\frac{\\pi}{2}$",
+      "D": "$\\frac{\\pi}{4}$"
+    },
+    "correct_answer": "C",
+    "explanation": "The fundamental period of $\\sin(kx)$ is $\\frac{2\\pi}{|k|}$. For $k = 4$, the period is $\\frac{2\\pi}{4} = \\frac{\\pi}{2}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Periods of Trigonometric functions",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 5
+    },
+    "tags": ["trigonometry", "periodicity"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-TRIG-002",
+    "question": "What is the value of $\\frac{2\\tan(15^\\circ)}{1 - \\tan^2(15^\\circ)}$?",
+    "options": {
+      "A": "$\\frac{1}{\\sqrt{3}}$",
+      "B": "$\\sqrt{3}$",
+      "C": "$1$",
+      "D": "$\\frac{1}{2}$"
+    },
+    "correct_answer": "A",
+    "explanation": "Using $\\tan(2\\theta) = \\frac{2\\tan\\theta}{1 - \\tan^2\\theta}$, the expression equals $\\tan(30^\\circ) = \\frac{1}{\\sqrt{3}}$.",
+    "subject": "Mathematics",
+    "topic": "Trigonometry",
+    "subtopic": "Multiple-Submultiples angles",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 6
+    },
+    "tags": ["trigonometry", "multiple_angles"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-VEC-001",
+    "question": "If $\\vec{a} = 2\\hat{i} + 3\\hat{j} - \\hat{k}$ and $\\vec{b} = \\hat{i} - 2\\hat{j} + k\\hat{k}$ are perpendicular to each other, what is the value of $k$?",
+    "options": {
+      "A": "$-4$",
+      "B": "$4$",
+      "C": "$-2$",
+      "D": "$2$"
+    },
+    "correct_answer": "A",
+    "explanation": "Perpendicular vectors satisfy $\\vec{a} \\cdot \\vec{b} = 0$: $(2)(1) + (3)(-2) + (-1)(k) = 0 \\implies 2 - 6 - k = 0 \\implies k = -4$.",
+    "subject": "Mathematics",
+    "topic": "Vectors",
+    "subtopic": "Scalar product (Dot product)",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 9
+    },
+    "tags": ["vectors", "dot_product", "orthogonality"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-CG-001",
+    "question": "What is the radius of the circle given by the equation $x^2 + y^2 - 4x + 6y - 12 = 0$?",
+    "options": {
+      "A": "$3$",
+      "B": "$4$",
+      "C": "$5$",
+      "D": "$25$"
+    },
+    "correct_answer": "C",
+    "explanation": "Comparing with $x^2 + y^2 + 2gx + 2fy + c = 0$: $g = -2$, $f = 3$, $c = -12$. Radius $r = \\sqrt{g^2 + f^2 - c} = \\sqrt{4 + 9 - (-12)} = \\sqrt{25} = 5$.",
+    "subject": "Mathematics",
+    "topic": "Coordinate Geometry",
+    "subtopic": "To find centre and radius from general equation of a circle",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 11
+    },
+    "tags": ["coordinate_geometry", "circle"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LIM-001",
+    "question": "Evaluate $\\lim_{x \\to 0} \\frac{\\sin(5x)}{\\tan(2x)}$.",
+    "options": {
+      "A": "$\\frac{2}{5}$",
+      "B": "$1$",
+      "C": "$\\frac{5}{2}$",
+      "D": "$0$"
+    },
+    "correct_answer": "C",
+    "explanation": "Using standard limits $\\lim_{x \\to 0}\\frac{\\sin(ax)}{ax}=1$ and $\\lim_{x \\to 0}\\frac{\\tan(bx)}{bx}=1$: $\\frac{5}{2} \\times \\frac{\\sin(5x)/5x}{\\tan(2x)/2x} = \\frac{5}{2}$.",
+    "subject": "Mathematics",
+    "topic": "Function & Limit",
+    "subtopic": "Standard formulae of Limit and related simple examples",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 14
+    },
+    "tags": ["limits", "trigonometric_limits"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-DIFF-001",
+    "question": "If $y = x^x$, what is $\\frac{dy}{dx}$?",
+    "options": {
+      "A": "$x^x \\ln(x)$",
+      "B": "$x \\cdot x^{x-1}$",
+      "C": "$x^x (1 + \\ln x)$",
+      "D": "$x^x (1 - \\ln x)$",
+      "E": null
+    },
+    "correct_answer": "C",
+    "explanation": "Take $\\ln y = x\\ln x$. Differentiating gives $\\frac{1}{y}\\frac{dy}{dx} = \\ln x + 1$. Thus, $\\frac{dy}{dx} = x^x(1 + \\ln x)$.",
+    "subject": "Mathematics",
+    "topic": "Differentiation and its Applications",
+    "subtopic": "Logarithmic Differentiation",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 16
+    },
+    "tags": ["differentiation", "logarithmic_differentiation"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-INT-001",
+    "question": "What is the value of $\\int_0^1 x e^x \\, dx$?",
+    "options": {
+      "A": "$1$",
+      "B": "$e - 1$",
+      "C": "$e$",
+      "D": "$2$"
+    },
+    "correct_answer": "A",
+    "explanation": "Integrating by parts: $\\int x e^x dx = x e^x - e^x$. Evaluated from $0$ to $1$: $[(1e^1 - e^1) - (0 - e^0)] = 0 - (-1) = 1$.",
+    "subject": "Mathematics",
+    "topic": "Integration",
+    "subtopic": "Method of substitution & Integration by parts (simple examples)",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 19
+    },
+    "tags": ["integration", "by_parts", "definite_integral"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-LOG-001",
+    "question": "If $\\log_{10}(x - 1) + \\log_{10}(x + 2) = 1$, what is the value of $x$?",
+    "options": {
+      "A": "$3$",
+      "B": "$-4$",
+      "C": "$4$",
+      "D": "$2$"
+    },
+    "correct_answer": "A",
+    "explanation": "$\\log_{10}[(x - 1)(x + 2)] = 1 \\implies x^2 + x - 2 = 10 \\implies x^2 + x - 12 = 0$. Factors $(x + 4)(x - 3) = 0$. Since $x > 1$, $x = 3$.",
+    "subject": "Mathematics",
+    "topic": "Logarithm",
+    "subtopic": "Laws of Logarithm and related Simple examples",
+    "difficulty": "medium",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 22
+    },
+    "tags": ["logarithm", "equations"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  },
+  {
+    "id": "DDCET-MATH-STAT-001",
+    "question": "What is the median of the data set: $12, 5, 22, 30, 7, 36, 14, 42, 15, 53, 25$?",
+    "options": {
+      "A": "$15$",
+      "B": "$22$",
+      "C": "$25$",
+      "D": "$14$"
+    },
+    "correct_answer": "B",
+    "explanation": "Sort the 11 observations: $5, 7, 12, 14, 15, 22, 25, 30, 36, 42, 53$. The median is the $\\frac{11+1}{2} = 6^{\\text{th}}$ item, which is $22$.",
+    "subject": "Mathematics",
+    "topic": "Statistics",
+    "subtopic": "Mean, Median and Mode for ungrouped data",
+    "difficulty": "easy",
+    "source": {
+      "name": "DDCET Official Question Bank / PYQ",
+      "page": 25
+    },
+    "tags": ["statistics", "median", "ungrouped_data"],
+    "verified": true,
+    "created_at": "2026-10-24T10:00:00"
+  }
+]
