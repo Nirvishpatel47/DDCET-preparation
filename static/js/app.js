@@ -32,71 +32,100 @@ const App = {
         if (!text) return '';
         let str = String(text);
 
-        // 1. Protect & Extract Display Math: $$...$$ or \[...\]
-        const displayMath = [];
-        str = str.replace(/\$\$([\s\S]*?)\$\$/g, (match, math) => {
-            displayMath.push(math);
-            return `__MATH_DISP_${displayMath.length - 1}__`;
-        });
-        str = str.replace(/\\\[([\s\S]*?)\\\]/g, (match, math) => {
-            displayMath.push(math);
-            return `__MATH_DISP_${displayMath.length - 1}__`;
-        });
+        // Regex to tokenize math vs text:
+        // 1. Display math: $$...$$ or \[...\]
+        // 2. Inline math: $...$ or \(...\)
+        const mathRegex = /(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|(?<!\\)\$((?:\\\$|[^\$])+?)\$|\\\([\s\S]*?\\\))/g;
 
-        // 2. Protect & Extract Inline Math: $...$ or \(...\)
-        const inlineMath = [];
-        str = str.replace(/(?<!\\)\$((?:[^\$]|\\\$)+?)\$/g, (match, math) => {
-            inlineMath.push(math);
-            return `__MATH_INL_${inlineMath.length - 1}__`;
-        });
-        str = str.replace(/\\\(([\s\S]*?)\\\)/g, (match, math) => {
-            inlineMath.push(math);
-            return `__MATH_INL_${inlineMath.length - 1}__`;
-        });
+        let lastIndex = 0;
+        let htmlResult = '';
+        let match;
 
-        // 3. Render Markdown
-        let html = '';
-        if (typeof marked !== 'undefined' && marked.parse) {
-            html = marked.parse(str, { breaks: true, gfm: true });
-        } else {
-            html = str
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/`([^`]+)`/g, '<code>$1</code>')
-                .replace(/\n/g, '<br>');
+        while ((match = mathRegex.exec(str)) !== null) {
+            const matchIndex = match.index;
+            const fullMatch = match[0];
+
+            // Render preceding non-math text using Markdown
+            if (matchIndex > lastIndex) {
+                const textChunk = str.substring(lastIndex, matchIndex);
+                htmlResult += this.renderMarkdownOnly(textChunk);
+            }
+
+            // Extract pure math formula
+            let isDisplay = false;
+            let mathCode = '';
+
+            if (fullMatch.startsWith('$$') && fullMatch.endsWith('$$')) {
+                isDisplay = true;
+                mathCode = fullMatch.slice(2, -2).trim();
+            } else if (fullMatch.startsWith('\\[') && fullMatch.endsWith('\\]')) {
+                isDisplay = true;
+                mathCode = fullMatch.slice(2, -2).trim();
+            } else if (fullMatch.startsWith('\\(') && fullMatch.endsWith('\\)')) {
+                isDisplay = false;
+                mathCode = fullMatch.slice(2, -2).trim();
+            } else if (fullMatch.startsWith('$') && fullMatch.endsWith('$')) {
+                isDisplay = false;
+                mathCode = fullMatch.slice(1, -1).trim();
+            }
+
+            // Restore escaped dollar signs within math
+            mathCode = mathCode.replace(/\\\$/g, '$');
+
+            // Render directly with KaTeX without going through markdown parser
+            if (typeof katex !== 'undefined') {
+                try {
+                    htmlResult += katex.renderToString(mathCode, {
+                        displayMode: isDisplay,
+                        throwOnError: false,
+                        output: 'htmlAndMathml'
+                    });
+                } catch (e) {
+                    htmlResult += isDisplay
+                        ? `<div class="katex-display">${this.escapeHtml(mathCode)}</div>`
+                        : `<span class="math-inline">${this.escapeHtml(mathCode)}</span>`;
+                }
+            } else {
+                htmlResult += isDisplay
+                    ? `<div class="katex-display">${this.escapeHtml(mathCode)}</div>`
+                    : `<span class="math-inline">${this.escapeHtml(mathCode)}</span>`;
+            }
+
+            lastIndex = matchIndex + fullMatch.length;
         }
 
-        // 4. Restore & Render Display Math via KaTeX
-        displayMath.forEach((math, idx) => {
-            let rendered = '';
-            if (typeof katex !== 'undefined') {
-                try {
-                    rendered = katex.renderToString(math.trim(), { displayMode: true, throwOnError: false });
-                } catch (e) {
-                    rendered = `<div class="katex-display">${math}</div>`;
-                }
-            } else {
-                rendered = `<div class="katex-display">${math}</div>`;
-            }
-            html = html.replace(new RegExp(`__MATH_DISP_${idx}__`, 'g'), rendered);
-        });
+        // Render remaining text after last math token
+        if (lastIndex < str.length) {
+            const remainingText = str.substring(lastIndex);
+            htmlResult += this.renderMarkdownOnly(remainingText);
+        }
 
-        // 5. Restore & Render Inline Math via KaTeX
-        inlineMath.forEach((math, idx) => {
-            let rendered = '';
-            if (typeof katex !== 'undefined') {
-                try {
-                    rendered = katex.renderToString(math.trim(), { displayMode: false, throwOnError: false });
-                } catch (e) {
-                    rendered = `<span class="math-inline">${math}</span>`;
-                }
-            } else {
-                rendered = `<span class="math-inline">${math}</span>`;
-            }
-            html = html.replace(new RegExp(`__MATH_INL_${idx}__`, 'g'), rendered);
-        });
+        return htmlResult;
+    },
 
-        return html;
+    renderMarkdownOnly: function (text) {
+        if (!text) return '';
+        if (typeof marked !== 'undefined' && marked.parseInline) {
+            // If text contains block elements (headings, double newlines, lists)
+            if (text.includes('\n\n') || /^\s*(?:#{1,6}|[-*]\s|\d+\.\s)/m.test(text)) {
+                return marked.parse(text, { breaks: true, gfm: true });
+            }
+            return marked.parseInline(text, { breaks: true, gfm: true });
+        }
+        return this.escapeHtml(text)
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/\n/g, '<br>');
+    },
+
+    escapeHtml: function (str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
     },
 
     bindEvents: function () {

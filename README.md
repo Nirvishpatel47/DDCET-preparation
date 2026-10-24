@@ -235,4 +235,5 @@ python tests/benchmark_scale.py
 - All user data and attempt histories remain strictly on your local machine.
 - Backups are stored in `f:\Prep\backups\`. It is recommended to periodically copy backup files to external storage.
 #   D D C E T - p r e p a r a t i o n  
+ #   D D C E T - p r e p a r a t i o n  
  
