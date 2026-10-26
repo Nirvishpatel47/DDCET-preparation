@@ -389,9 +389,14 @@ def test_marking_scheme_and_mock_exam():
     assert sess["questions"][0]["correct_answer"] is None
     assert sess["questions"][0]["explanation"] is None
 
+    with get_db() as conn:
+        q1_corr = conn.execute("SELECT shuffled_correct FROM session_questions WHERE session_id = ? AND question_id = 'MARK-1'", (sess_id,)).fetchone()[0]
+        q2_corr = conn.execute("SELECT shuffled_correct FROM session_questions WHERE session_id = ? AND question_id = 'MARK-2'", (sess_id,)).fetchone()[0]
+    q2_wrong = [k for k in ["A", "B", "C", "D"] if k != q2_corr][0]
+
     # Answer Q1 correctly, Q2 incorrectly, Q3 unanswered
-    record_question_answer(sess_id, "MARK-1", selected_option="A", time_spent_seconds=20)
-    record_question_answer(sess_id, "MARK-2", selected_option="B", time_spent_seconds=25)
+    record_question_answer(sess_id, "MARK-1", selected_option=q1_corr, time_spent_seconds=20)
+    record_question_answer(sess_id, "MARK-2", selected_option=q2_wrong, time_spent_seconds=25)
     # Q3 left unanswered
 
     summary = complete_session(sess_id, time_taken_seconds=45)

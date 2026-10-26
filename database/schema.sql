@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS questions (
     tags_json TEXT DEFAULT '[]',
     verified INTEGER NOT NULL DEFAULT 0 CHECK(verified IN (0, 1)),
     text_hash TEXT NOT NULL,
+    question_text_hash TEXT DEFAULT '',
     created_at TEXT NOT NULL
 );
 
@@ -87,6 +88,8 @@ CREATE TABLE IF NOT EXISTS session_questions (
     time_spent_seconds INTEGER DEFAULT 0,
     confidence TEXT CHECK(confidence IS NULL OR confidence IN ('low', 'medium', 'high')),
     mistake_category TEXT CHECK(mistake_category IS NULL OR mistake_category IN ('concept', 'formula', 'calculation', 'misread', 'guess', 'time', 'other')),
+    shuffled_options TEXT,
+    shuffled_correct TEXT,
     UNIQUE(session_id, order_index)
 );
 
@@ -129,6 +132,7 @@ CREATE INDEX IF NOT EXISTS idx_questions_subtopic ON questions(subtopic_id);
 CREATE INDEX IF NOT EXISTS idx_questions_difficulty ON questions(difficulty);
 CREATE INDEX IF NOT EXISTS idx_questions_verified ON questions(verified);
 CREATE INDEX IF NOT EXISTS idx_questions_text_hash ON questions(text_hash);
+CREATE INDEX IF NOT EXISTS idx_questions_q_text_hash ON questions(question_text_hash);
 CREATE INDEX IF NOT EXISTS idx_attempts_question ON attempts(question_id, attempted_at);
 CREATE INDEX IF NOT EXISTS idx_attempts_date ON attempts(attempted_at);
 CREATE INDEX IF NOT EXISTS idx_revision_due ON revision_schedules(next_due_date);

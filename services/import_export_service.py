@@ -16,7 +16,7 @@ except ImportError:
 from database.db import get_db, BASE_DIR
 from models.schemas import QuestionModel, ImportResult
 from services.validation_service import validate_and_prepare_question, get_or_create_hierarchy
-from services.duplicate_service import compute_question_hash
+from services.duplicate_service import compute_question_hash, compute_question_text_hash
 from services.markdown_parser import parse_markdown_questions
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "import_templates")
@@ -324,12 +324,13 @@ def process_import(
     raw_records = parse_raw_file(file_bytes, filename)
     batch_id = str(uuid.uuid4())
 
-    valid_models: List[Tuple[QuestionModel, str]] = [] # (model, text_hash)
+    valid_models: List[Tuple[QuestionModel, str, str]] = [] # (model, text_hash, q_text_hash)
     rejected_records: List[Dict[str, Any]] = []
     exact_duplicate_records: List[Dict[str, Any]] = []
     probable_duplicates: List[Dict[str, Any]] = []
 
     seen_in_batch_hashes = set()
+    seen_in_batch_q_hashes = set()
     seen_in_batch_ids = set()
 
     with get_db() as conn:
@@ -356,7 +357,7 @@ def process_import(
                         "row": row_num,
                         "id": raw.get("id"),
                         "question": raw.get("question"),
-                        "match_existing_id": exact_dup["id"],
+                        "match_existing_id": exact_dup.get("existing_id") or exact_dup.get("id"),
                         "reason": error_msg,
                         "data": raw
                     })
@@ -370,6 +371,8 @@ def process_import(
                 continue
 
             text_hash = compute_question_hash(model.question, model.options)
+            q_text_hash = compute_question_text_hash(model.question)
+
             if text_hash in seen_in_batch_hashes:
                 exact_duplicate_records.append({
                     "row": row_num,
@@ -379,7 +382,19 @@ def process_import(
                     "data": raw
                 })
                 continue
+
+            if q_text_hash in seen_in_batch_q_hashes:
+                exact_duplicate_records.append({
+                    "row": row_num,
+                    "id": model.id,
+                    "question": model.question,
+                    "reason": "Question text already appears earlier within this same import file.",
+                    "data": raw
+                })
+                continue
+
             seen_in_batch_hashes.add(text_hash)
+            seen_in_batch_q_hashes.add(q_text_hash)
 
             if prob_dups:
                 probable_duplicates.append({
@@ -389,12 +404,12 @@ def process_import(
                     "candidates": prob_dups
                 })
 
-            valid_models.append((model, text_hash))
+            valid_models.append((model, text_hash, q_text_hash))
 
         # If not preview, commit to database
         if not preview_only:
             now_iso = datetime.utcnow().isoformat()
-            for model, thash in valid_models:
+            for model, thash, qthash in valid_models:
                 sub_id, top_id, subtop_id = get_or_create_hierarchy(
                     conn, model.subject, model.topic, model.subtopic
                 )
@@ -407,8 +422,8 @@ def process_import(
                     INSERT INTO questions (
                         id, question_text, option_a, option_b, option_c, option_d,
                         correct_answer, explanation, subject_id, topic_id, subtopic_id,
-                        difficulty, source_json, tags_json, verified, text_hash, created_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        difficulty, source_json, tags_json, verified, text_hash, question_text_hash, created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         model.id,
@@ -427,6 +442,7 @@ def process_import(
                         tags_json,
                         verified_int,
                         thash,
+                        qthash,
                         model.created_at
                     )
                 )

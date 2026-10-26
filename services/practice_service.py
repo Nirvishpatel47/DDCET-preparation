@@ -1,5 +1,6 @@
 import uuid
 import json
+import random
 from datetime import datetime, date
 from typing import Dict, Any, List, Optional
 import sqlite3
@@ -14,6 +15,7 @@ def create_practice_session(
     subject_id: Optional[int] = None,
     topic_id: Optional[int] = None,
     subtopic_id: Optional[int] = None,
+    difficulty: Optional[str] = None,
     time_limit_minutes: Optional[int] = None
 ) -> Dict[str, Any]:
     """
@@ -50,18 +52,38 @@ def create_practice_session(
 
         selected_question_ids: List[str] = []
 
-        if session_type == "revision_only":
+        if session_type == "incorrect_only":
+            # Select exclusively from previously attempted questions that were incorrect
+            diff_clause = "AND q.difficulty = ?" if difficulty else ""
+            params = [difficulty, target_size] if difficulty else [target_size]
+            inc_rows = conn.execute(
+                f"""
+                SELECT DISTINCT a.question_id
+                FROM attempts a
+                JOIN questions q ON a.question_id = q.id
+                WHERE a.is_correct = 0 AND q.verified = 1 {diff_clause}
+                ORDER BY a.attempted_at DESC
+                LIMIT ?
+                """,
+                params
+            ).fetchall()
+            for r in inc_rows:
+                selected_question_ids.append(r["question_id"])
+
+        elif session_type == "revision_only":
             # Priority: questions with next_due_date <= today, or previously incorrect questions
+            diff_clause = "AND q.difficulty = ?" if difficulty else ""
+            rev_params = [today_str, difficulty, target_size] if difficulty else [today_str, target_size]
             rev_rows = conn.execute(
-                """
+                f"""
                 SELECT q.id
                 FROM revision_schedules rs
                 JOIN questions q ON rs.question_id = q.id
-                WHERE rs.next_due_date <= ? AND q.verified = 1
+                WHERE rs.next_due_date <= ? AND q.verified = 1 {diff_clause}
                 ORDER BY rs.consecutive_incorrect DESC, rs.next_due_date ASC
                 LIMIT ?
                 """,
-                (today_str, target_size)
+                rev_params
             ).fetchall()
             for r in rev_rows:
                 selected_question_ids.append(r["id"])
@@ -69,17 +91,22 @@ def create_practice_session(
             # If not enough overdue, fill with previously attempted questions that were incorrect
             if len(selected_question_ids) < target_size:
                 needed = target_size - len(selected_question_ids)
+                fill_params = [*selected_question_ids, difficulty, needed] if difficulty else [*selected_question_ids, needed]
+                diff_filter = "AND q.difficulty = ?" if difficulty else ""
                 fill_rows = conn.execute(
                     """
                     SELECT DISTINCT a.question_id
                     FROM attempts a
                     JOIN questions q ON a.question_id = q.id
-                    WHERE a.is_correct = 0 AND q.verified = 1
+                    WHERE a.is_correct = 0 AND q.verified = 1 {}
                     AND a.question_id NOT IN ({})
                     ORDER BY a.attempted_at DESC
                     LIMIT ?
-                    """.format(",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
-                    [*selected_question_ids, needed] if selected_question_ids else [needed]
+                    """.format(
+                        diff_filter,
+                        ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"
+                    ),
+                    fill_params if selected_question_ids else ([difficulty, needed] if difficulty else [needed])
                 ).fetchall()
                 for r in fill_rows:
                     selected_question_ids.append(r["question_id"])
@@ -91,6 +118,7 @@ def create_practice_session(
             if not weakest_topics and priorities:
                 weakest_topics = priorities[:3]
             
+            diff_clause = "AND q.difficulty = ?" if difficulty else ""
             for p in weakest_topics:
                 if len(selected_question_ids) >= target_size:
                     break
@@ -98,15 +126,23 @@ def create_practice_session(
                 per_topic_cap = max(3, target_size // max(1, len(weakest_topics)))
                 take = min(needed, per_topic_cap)
 
+                q_params = [*selected_question_ids, p["topic_id"]] if selected_question_ids else [p["topic_id"]]
+                if difficulty:
+                    q_params.append(difficulty)
+                q_params.append(take)
+
                 rows = conn.execute(
                     """
                     SELECT q.id FROM questions q
-                    WHERE q.topic_id = ? AND q.verified = 1
+                    WHERE q.topic_id = ? AND q.verified = 1 {}
                     AND q.id NOT IN ({})
                     ORDER BY RANDOM()
                     LIMIT ?
-                    """.format(",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
-                    [*selected_question_ids, p["topic_id"], take] if selected_question_ids else [p["topic_id"], take]
+                    """.format(
+                        diff_clause,
+                        ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"
+                    ),
+                    [p["topic_id"], *([difficulty] if difficulty else []), *([*selected_question_ids] if selected_question_ids else []), take] if not selected_question_ids else [*selected_question_ids, p["topic_id"], *([difficulty] if difficulty else []), take]
                 ).fetchall()
                 for r in rows:
                     selected_question_ids.append(r["id"])
@@ -124,6 +160,9 @@ def create_practice_session(
             if subtopic_id:
                 where_clauses.append("q.subtopic_id = ?")
                 params.append(subtopic_id)
+            if difficulty:
+                where_clauses.append("q.difficulty = ?")
+                params.append(difficulty)
 
             where_str = " AND ".join(where_clauses)
             rows = conn.execute(
@@ -137,16 +176,18 @@ def create_practice_session(
             # Daily Mixed practice or Full Mock:
             # Step 1: Include due revision items first (up to 25% of session)
             rev_cap = max(2, int(target_size * 0.25))
+            diff_clause = "AND q.difficulty = ?" if difficulty else ""
+            rev_params = [today_str, difficulty, rev_cap] if difficulty else [today_str, rev_cap]
             rev_rows = conn.execute(
-                """
+                f"""
                 SELECT q.id
                 FROM revision_schedules rs
                 JOIN questions q ON rs.question_id = q.id
-                WHERE rs.next_due_date <= ? AND q.verified = 1
+                WHERE rs.next_due_date <= ? AND q.verified = 1 {diff_clause}
                 ORDER BY rs.next_due_date ASC
                 LIMIT ?
                 """,
-                (today_str, rev_cap)
+                rev_params
             ).fetchall()
             for r in rev_rows:
                 selected_question_ids.append(r["id"])
@@ -162,17 +203,20 @@ def create_practice_session(
                 needed = target_size - len(selected_question_ids)
                 quota = min(needed, max_per_topic)
 
+                diff_cond = "AND q.difficulty = ?" if difficulty else ""
+                diff_args = [difficulty] if difficulty else []
+
                 # Prioritize unseen verified questions in this high-priority topic
                 rows = conn.execute(
                     """
                     SELECT q.id FROM questions q
-                    WHERE q.topic_id = ? AND q.verified = 1
+                    WHERE q.topic_id = ? AND q.verified = 1 {}
                     AND q.id NOT IN (SELECT question_id FROM attempts)
                     AND q.id NOT IN ({})
                     ORDER BY RANDOM()
                     LIMIT ?
-                    """.format(",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
-                    [*selected_question_ids, p["topic_id"], quota] if selected_question_ids else [p["topic_id"], quota]
+                    """.format(diff_cond, ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
+                    [p["topic_id"], *diff_args, *selected_question_ids, quota] if selected_question_ids else [p["topic_id"], *diff_args, quota]
                 ).fetchall()
                 for r in rows:
                     selected_question_ids.append(r["id"])
@@ -183,18 +227,36 @@ def create_practice_session(
                     rows_more = conn.execute(
                         """
                         SELECT q.id FROM questions q
-                        WHERE q.topic_id = ? AND q.verified = 1
+                        WHERE q.topic_id = ? AND q.verified = 1 {}
                         AND q.id NOT IN ({})
                         ORDER BY RANDOM()
                         LIMIT ?
-                        """.format(",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
-                        [*selected_question_ids, p["topic_id"], more_needed] if selected_question_ids else [p["topic_id"], more_needed]
+                        """.format(diff_cond, ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"),
+                        [p["topic_id"], *diff_args, *selected_question_ids, more_needed] if selected_question_ids else [p["topic_id"], *diff_args, more_needed]
                     ).fetchall()
                     for r in rows_more:
                         selected_question_ids.append(r["id"])
 
-        # Fallback if target_size not met (e.g. small bank or unverified bank)
+        # Fallback if target_size not met (e.g. small bank or unverified bank or specific difficulty)
         if len(selected_question_ids) < target_size:
+            needed = target_size - len(selected_question_ids)
+            not_in_clause = ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"
+            diff_cond = "AND q.difficulty = ?" if difficulty else ""
+            diff_args = [difficulty] if difficulty else []
+            fallback_rows = conn.execute(
+                f"""
+                SELECT q.id FROM questions q
+                WHERE q.id NOT IN ({not_in_clause}) {diff_cond}
+                ORDER BY q.verified DESC, RANDOM()
+                LIMIT ?
+                """,
+                [*selected_question_ids, *diff_args, needed] if selected_question_ids else [*diff_args, needed]
+            ).fetchall()
+            for r in fallback_rows:
+                selected_question_ids.append(r["id"])
+
+        # Final fallback without difficulty if still not enough
+        if len(selected_question_ids) < target_size and difficulty:
             needed = target_size - len(selected_question_ids)
             not_in_clause = ",".join(["?"] * len(selected_question_ids)) if selected_question_ids else "''"
             fallback_rows = conn.execute(
@@ -227,15 +289,52 @@ def create_practice_session(
             )
         )
 
-        # Insert session questions in order
+        # Fetch question option details to perform option randomization
+        q_map = {}
+        if selected_question_ids:
+            placeholders = ",".join(["?"] * len(selected_question_ids))
+            q_data = conn.execute(
+                f"SELECT id, option_a, option_b, option_c, option_d, correct_answer FROM questions WHERE id IN ({placeholders})",
+                selected_question_ids
+            ).fetchall()
+            for row in q_data:
+                q_map[row["id"]] = row
+
+        # Insert session questions in order with randomized option presentation
+        letters = ["A", "B", "C", "D"]
         for idx, qid in enumerate(selected_question_ids):
+            q_info = q_map.get(qid)
+            shuffled_opts_json = None
+            shuffled_correct = None
+            if q_info:
+                orig_opts = {
+                    "A": q_info["option_a"],
+                    "B": q_info["option_b"],
+                    "C": q_info["option_c"],
+                    "D": q_info["option_d"]
+                }
+                orig_ans = q_info["correct_answer"]
+                corr_val = orig_opts.get(orig_ans)
+
+                # Randomly permute the 4 option texts
+                opt_texts = list(orig_opts.values())
+                random.shuffle(opt_texts)
+
+                shuffled_opts = {letters[i]: opt_texts[i] for i in range(4)}
+                for let, val in shuffled_opts.items():
+                    if val == corr_val:
+                        shuffled_correct = let
+                        break
+                shuffled_opts_json = json.dumps(shuffled_opts)
+
             conn.execute(
                 """
                 INSERT INTO session_questions (
-                    session_id, question_id, order_index, is_marked_for_review, is_answered
-                ) VALUES (?, ?, ?, 0, 0)
+                    session_id, question_id, order_index, is_marked_for_review, is_answered,
+                    shuffled_options, shuffled_correct
+                ) VALUES (?, ?, ?, 0, 0, ?, ?)
                 """,
-                (session_id, qid, idx + 1)
+                (session_id, qid, idx + 1, shuffled_opts_json, shuffled_correct)
             )
 
     return get_session_state(session_id)
@@ -258,6 +357,7 @@ def get_session_state(session_id: str) -> Dict[str, Any]:
                 sq.order_index, sq.selected_option, sq.is_marked_for_review,
                 sq.is_answered, sq.is_correct, sq.time_spent_seconds,
                 sq.confidence, sq.mistake_category,
+                sq.shuffled_options, sq.shuffled_correct,
                 q.id as question_id, q.question_text, q.option_a, q.option_b, q.option_c, q.option_d,
                 q.correct_answer, q.explanation, q.difficulty, q.verified,
                 s.name as subject_name, t.name as topic_name, st.name as subtopic_name
@@ -276,17 +376,24 @@ def get_session_state(session_id: str) -> Dict[str, Any]:
     for r in q_rows:
         # In full mock exams, NEVER reveal correct_answer or explanation until completed!
         hide_answers = is_mock and not is_completed
-        questions.append({
-            "order_index": r["order_index"],
-            "question_id": r["question_id"],
-            "question": r["question_text"],
-            "options": {
+        if r["shuffled_options"] and r["shuffled_correct"]:
+            opts = json.loads(r["shuffled_options"])
+            ans = r["shuffled_correct"]
+        else:
+            opts = {
                 "A": r["option_a"],
                 "B": r["option_b"],
                 "C": r["option_c"],
                 "D": r["option_d"]
-            },
-            "correct_answer": None if hide_answers else r["correct_answer"],
+            }
+            ans = r["correct_answer"]
+
+        questions.append({
+            "order_index": r["order_index"],
+            "question_id": r["question_id"],
+            "question": r["question_text"],
+            "options": opts,
+            "correct_answer": None if hide_answers else ans,
             "explanation": None if hide_answers else r["explanation"],
             "difficulty": r["difficulty"],
             "verified": bool(r["verified"]),
@@ -335,11 +442,20 @@ def record_question_answer(
     Calculates correctness and updates spaced repetition schedule.
     """
     with get_db() as conn:
-        q_row = conn.execute("SELECT correct_answer FROM questions WHERE id = ?", (question_id,)).fetchone()
-        if not q_row:
-            raise ValueError(f"Question '{question_id}' not found.")
+        sq_row = conn.execute(
+            """
+            SELECT sq.shuffled_correct, q.correct_answer
+            FROM session_questions sq
+            JOIN questions q ON sq.question_id = q.id
+            WHERE sq.session_id = ? AND sq.question_id = ?
+            """,
+            (session_id, question_id)
+        ).fetchone()
+
+        if not sq_row:
+            raise ValueError(f"Question '{question_id}' in session '{session_id}' not found.")
         
-        correct_ans = q_row["correct_answer"]
+        correct_ans = sq_row["shuffled_correct"] or sq_row["correct_answer"]
         is_answered = 1 if selected_option is not None and selected_option in ["A", "B", "C", "D"] else 0
         is_correct = 1 if (is_answered and selected_option == correct_ans) else (0 if is_answered else None)
 
@@ -411,7 +527,7 @@ def complete_session(session_id: str, time_taken_seconds: int) -> Dict[str, Any]
         # Get all session questions
         sq_rows = conn.execute(
             """
-            SELECT sq.*, q.correct_answer, q.difficulty, q.subject_id, q.topic_id
+            SELECT sq.*, q.correct_answer as orig_correct_answer, q.difficulty, q.subject_id, q.topic_id
             FROM session_questions sq
             JOIN questions q ON sq.question_id = q.id
             WHERE sq.session_id = ?
@@ -427,7 +543,7 @@ def complete_session(session_id: str, time_taken_seconds: int) -> Dict[str, Any]
 
         for r in sq_rows:
             sel = r["selected_option"]
-            ans = r["correct_answer"]
+            ans = r["shuffled_correct"] or r["orig_correct_answer"]
             time_spent = r["time_spent_seconds"] or 0
             conf = r["confidence"]
             mistake = r["mistake_category"]
@@ -561,6 +677,7 @@ def get_session_summary(session_id: str) -> Dict[str, Any]:
         "accuracy_pct": session["accuracy_pct"],
         "time_taken_seconds": session["time_taken_seconds"],
         "average_time_per_question": round(session["time_taken_seconds"] / max(1, session["total_questions"]), 1),
+        "is_completed": bool(session["is_completed"]),
         "completed_at": session["completed_at"],
         "subject_breakdown": [dict(r) for r in subject_stats],
         "difficulty_breakdown": [dict(r) for r in diff_stats],

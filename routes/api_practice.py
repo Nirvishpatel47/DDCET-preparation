@@ -20,6 +20,7 @@ def start_session(req: SessionStartRequest):
             subject_id=req.subject_id,
             topic_id=req.topic_id,
             subtopic_id=req.subtopic_id,
+            difficulty=req.difficulty,
             time_limit_minutes=req.time_limit_minutes
         )
         return session_data

@@ -161,6 +161,12 @@
                         <select id="practice-topic-select">
                             <option value="">All Topics</option>
                         </select>
+                        <select id="practice-difficulty-select">
+                            <option value="">All Difficulties</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
                     </div>
                     <div class="mode-action">
                         <label>Size:
@@ -185,6 +191,21 @@
                             </select>
                         </label>
                         <button class="btn btn-warning" onclick="App.startSession('weak_topic', 'mode-weak-size')">Target Weak Spots</button>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <h3>🔄 Incorrect Mistakes Drill</h3>
+                    <p>Re-attempt questions you previously answered incorrectly to solidify understanding.</p>
+                    <div class="mode-action">
+                        <label>Size:
+                            <select id="mode-incorrect-size">
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </label>
+                        <button class="btn btn-danger" onclick="App.startSession('incorrect_only', 'mode-incorrect-size')">Drill Mistakes</button>
                     </div>
                 </div>
 
@@ -377,6 +398,7 @@
                     <p>Inspect, filter, import, and export verified DDCET questions locally.</p>
                 </div>
                 <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="App.openAddQuestionModal()">➕ Add Question</button>
                     <button class="btn btn-outline" onclick="App.openImportModal()">📥 Import Questions</button>
                     <button class="btn btn-outline" onclick="App.exportBank('md')">Export Markdown (.md)</button>
                     <button class="btn btn-outline" onclick="App.exportBank('json')">Export JSON</button>
@@ -575,6 +597,13 @@
                         <!-- Rendered dynamically -->
                     </div>
 
+                    <!-- Check Answer Action Button Bar (Enabled only when option selected) -->
+                    <div class="check-action-bar" id="q-check-bar">
+                        <button class="btn btn-primary btn-check-answer" id="btn-check-answer" onclick="App.checkCurrentAnswer()" disabled>
+                            ✓ Check Answer
+                        </button>
+                    </div>
+
                     <!-- Non-exam Instant Feedback Area (Explanation & Mistake Logging) -->
                     <div id="q-feedback-area" class="feedback-box hidden">
                         <div id="q-feedback-status" class="feedback-status"></div>
@@ -612,7 +641,7 @@
                     <div class="session-footer">
                         <button class="btn btn-outline" id="btn-prev-q" onclick="App.prevQuestion()">← Previous</button>
                         <button class="btn btn-outline" id="btn-review-q" onclick="App.toggleReviewMark()">🔖 Mark for Review (M)</button>
-                        <div class="keyboard-hint">Keys: [A-D] Select | [1-4] Select | [Enter/N] Next | [M] Review</div>
+                        <div class="keyboard-hint">Keys: [A-D] Select | [Enter] Check / Next | [M] Review</div>
                         <button class="btn btn-primary" id="btn-next-q" onclick="App.nextQuestion()">Next Question →</button>
                     </div>
                 </div>
@@ -745,6 +774,107 @@
                 <div>
                     <button class="btn btn-outline" onclick="App.closeImportModal()">Cancel</button>
                     <button class="btn btn-primary" id="btn-commit-import" disabled onclick="App.commitImport()">Commit Valid Questions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD QUESTION MODAL WITH INSTANT DUPLICATE PREVENTION -->
+    <div id="add-question-modal" class="modal-overlay hidden">
+        <div class="modal-box card large">
+            <div class="modal-header">
+                <h2>➕ Add Question (with Duplicate Prevention)</h2>
+                <button class="close-btn" onclick="App.closeAddQuestionModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-question-form" onsubmit="event.preventDefault(); App.submitNewQuestion();">
+                    <div class="form-row" style="display:flex; gap:1rem; margin-bottom:1rem;">
+                        <div style="flex:1;">
+                            <label for="add-q-subject"><strong>Subject *</strong></label>
+                            <input type="text" id="add-q-subject" class="input-field" placeholder="e.g. Mathematics" required style="width:100%;">
+                        </div>
+                        <div style="flex:1;">
+                            <label for="add-q-topic"><strong>Topic *</strong></label>
+                            <input type="text" id="add-q-topic" class="input-field" placeholder="e.g. Matrices and Determinants" required style="width:100%;">
+                        </div>
+                        <div style="flex:1;">
+                            <label for="add-q-subtopic"><strong>Subtopic *</strong></label>
+                            <input type="text" id="add-q-subtopic" class="input-field" placeholder="e.g. Eigenvalues" required style="width:100%;">
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="display:flex; gap:1rem; margin-bottom:1rem;">
+                        <div style="flex:1;">
+                            <label for="add-q-id"><strong>Question ID</strong> (optional, auto-generated if blank)</label>
+                            <input type="text" id="add-q-id" class="input-field" placeholder="e.g. DDCET-MATH-EIG-001" oninput="App.onQuestionInputChange()" style="width:100%;">
+                        </div>
+                        <div style="flex:1;">
+                            <label for="add-q-difficulty"><strong>Difficulty *</strong></label>
+                            <select id="add-q-difficulty" class="input-field" style="width:100%;">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div style="flex:1; display:flex; align-items:flex-end; padding-bottom:0.5rem;">
+                            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                                <input type="checkbox" id="add-q-verified" checked>
+                                <strong>Verified Question</strong>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:1rem;">
+                        <label for="add-q-text"><strong>Question Text *</strong> (Supports Markdown and LaTeX $...$)</label>
+                        <textarea id="add-q-text" class="input-field" rows="3" placeholder="Enter question text here..." required oninput="App.onQuestionInputChange()" style="width:100%; font-family:inherit;"></textarea>
+                    </div>
+
+                    <!-- Live Duplicate Detection Banner -->
+                    <div id="add-q-duplicate-status" class="hidden" style="margin-bottom:1rem; padding:0.75rem 1rem; border-radius:6px; font-size:0.9rem;"></div>
+
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                        <div>
+                            <label for="add-q-opt-a"><strong>Option A *</strong></label>
+                            <input type="text" id="add-q-opt-a" class="input-field" placeholder="Option A" required oninput="App.onQuestionInputChange()" style="width:100%;">
+                        </div>
+                        <div>
+                            <label for="add-q-opt-b"><strong>Option B *</strong></label>
+                            <input type="text" id="add-q-opt-b" class="input-field" placeholder="Option B" required oninput="App.onQuestionInputChange()" style="width:100%;">
+                        </div>
+                        <div>
+                            <label for="add-q-opt-c"><strong>Option C *</strong></label>
+                            <input type="text" id="add-q-opt-c" class="input-field" placeholder="Option C" required oninput="App.onQuestionInputChange()" style="width:100%;">
+                        </div>
+                        <div>
+                            <label for="add-q-opt-d"><strong>Option D *</strong></label>
+                            <input type="text" id="add-q-opt-d" class="input-field" placeholder="Option D" required oninput="App.onQuestionInputChange()" style="width:100%;">
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="display:flex; gap:1rem; margin-bottom:1rem;">
+                        <div style="flex:1;">
+                            <label for="add-q-correct"><strong>Correct Answer *</strong></label>
+                            <select id="add-q-correct" class="input-field" style="width:100%;">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <div style="flex:3;">
+                            <label for="add-q-explanation"><strong>Explanation *</strong></label>
+                            <input type="text" id="add-q-explanation" class="input-field" placeholder="Concise mathematical / conceptual explanation" required style="width:100%;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex-between">
+                <div>
+                    <button type="button" class="btn btn-outline" onclick="App.checkNewQuestionDuplicateManual()">⚡ Test Duplicate Check</button>
+                </div>
+                <div style="display:flex; gap:0.5rem;">
+                    <button type="button" class="btn btn-outline" onclick="App.closeAddQuestionModal()">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="btn-save-new-question" onclick="App.submitNewQuestion()">Save Question</button>
                 </div>
             </div>
         </div>

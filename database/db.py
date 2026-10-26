@@ -58,6 +58,13 @@ def get_db():
 def init_db():
     """Initializes schema and seed default settings if not exists."""
     with get_db() as conn:
+        # Check if pre-existing questions table needs question_text_hash column before script runs indexes
+        tables = [r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()]
+        if "questions" in tables:
+            q_cols = [r["name"] for r in conn.execute("PRAGMA table_info(questions)").fetchall()]
+            if "question_text_hash" not in q_cols:
+                conn.execute("ALTER TABLE questions ADD COLUMN question_text_hash TEXT;")
+
         with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
             conn.executescript(f.read())
 
@@ -66,6 +73,33 @@ def init_db():
         if not row:
             conn.execute("INSERT INTO schema_version (version, applied_at) VALUES (?, ?)", 
                          (1, datetime.utcnow().isoformat()))
+
+        # Ensure session_questions has shuffled_options and shuffled_correct columns
+        sq_cols = [r["name"] for r in conn.execute("PRAGMA table_info(session_questions)").fetchall()]
+        if "shuffled_options" not in sq_cols:
+            conn.execute("ALTER TABLE session_questions ADD COLUMN shuffled_options TEXT;")
+        if "shuffled_correct" not in sq_cols:
+            conn.execute("ALTER TABLE session_questions ADD COLUMN shuffled_correct TEXT;")
+
+        # Ensure questions has question_text_hash column and index
+        q_cols = [r["name"] for r in conn.execute("PRAGMA table_info(questions)").fetchall()]
+        if "question_text_hash" not in q_cols:
+            conn.execute("ALTER TABLE questions ADD COLUMN question_text_hash TEXT;")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_questions_q_text_hash ON questions(question_text_hash);")
+
+        # Backfill any missing question_text_hash
+        from services.duplicate_service import compute_question_hash, compute_question_text_hash
+        missing_rows = conn.execute(
+            "SELECT id, question_text, option_a, option_b, option_c, option_d FROM questions WHERE question_text_hash IS NULL OR question_text_hash = ''"
+        ).fetchall()
+        for mr in missing_rows:
+            q_hash = compute_question_text_hash(mr["question_text"])
+            opts = {"A": mr["option_a"], "B": mr["option_b"], "C": mr["option_c"], "D": mr["option_d"]}
+            t_hash = compute_question_hash(mr["question_text"], opts)
+            conn.execute(
+                "UPDATE questions SET question_text_hash = ?, text_hash = ? WHERE id = ?",
+                (q_hash, t_hash, mr["id"])
+            )
 
         # Populate default settings if missing
         for key, val in DEFAULT_SETTINGS.items():

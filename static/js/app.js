@@ -161,8 +161,20 @@ const App = {
             } else if (['1', '2', '3', '4'].includes(key)) {
                 const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
                 this.selectOption(map[key]);
-            } else if (key === 'ENTER' || key === 'N') {
-                this.nextQuestion();
+            } else if (key === 'ENTER') {
+                const s = this.state.activeSession;
+                const q = s.questions[this.state.currentQuestionIndex];
+                if (s.session_type !== 'full_mock' && q.selected_option && !q.is_checked) {
+                    this.checkCurrentAnswer();
+                } else if (s.session_type === 'full_mock' || q.is_checked) {
+                    this.nextQuestion();
+                }
+            } else if (key === 'N' || e.key === 'ArrowRight') {
+                const s = this.state.activeSession;
+                const q = s.questions[this.state.currentQuestionIndex];
+                if (s.session_type === 'full_mock' || q.is_checked) {
+                    this.nextQuestion();
+                }
             } else if (key === 'P' || e.key === 'ArrowLeft') {
                 this.prevQuestion();
             } else if (key === 'M') {
@@ -592,6 +604,149 @@ const App = {
     },
 
     // -------------------------------------------------------------
+    // Single Question Creation & Duplicate Prevention
+    // -------------------------------------------------------------
+    openAddQuestionModal: function () {
+        document.getElementById('add-question-form').reset();
+        const dupBanner = document.getElementById('add-q-duplicate-status');
+        dupBanner.className = 'hidden';
+        dupBanner.textContent = '';
+        document.getElementById('btn-save-new-question').disabled = false;
+        document.getElementById('add-question-modal').classList.remove('hidden');
+    },
+
+    closeAddQuestionModal: function () {
+        document.getElementById('add-question-modal').classList.add('hidden');
+    },
+
+    _dupDebounceTimer: null,
+    onQuestionInputChange: function () {
+        clearTimeout(this._dupDebounceTimer);
+        this._dupDebounceTimer = setTimeout(() => {
+            this.checkNewQuestionDuplicateManual(true);
+        }, 350);
+    },
+
+    checkNewQuestionDuplicateManual: function (silentIfEmpty = false) {
+        const qText = document.getElementById('add-q-text').value.trim();
+        const qId = document.getElementById('add-q-id').value.trim();
+        const optA = document.getElementById('add-q-opt-a').value.trim();
+        const optB = document.getElementById('add-q-opt-b').value.trim();
+        const optC = document.getElementById('add-q-opt-c').value.trim();
+        const optD = document.getElementById('add-q-opt-d').value.trim();
+
+        const banner = document.getElementById('add-q-duplicate-status');
+        const saveBtn = document.getElementById('btn-save-new-question');
+
+        if (!qText && !qId) {
+            banner.className = 'hidden';
+            saveBtn.disabled = false;
+            return;
+        }
+
+        const payload = {
+            id: qId || null,
+            question: qText,
+            options: (optA && optB && optC && optD) ? { A: optA, B: optB, C: optC, D: optD } : null
+        };
+
+        fetch('/api/questions/check-duplicate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(res => res.json())
+            .then(data => {
+                banner.classList.remove('hidden');
+                if (data.is_duplicate) {
+                    banner.style.background = '#fef2f2';
+                    banner.style.color = '#dc2626';
+                    banner.style.border = '1px solid #fecaca';
+                    banner.innerHTML = `⚠️ <strong>Duplicate Detected:</strong> ${data.reason} <br><span style="font-size:0.82rem; color:#991b1b;">Existing Match ID: <code>${data.existing_id}</code> &mdash; "${data.existing_text.substring(0, 80)}..."</span><br><strong>This question will NOT be added to prevent duplication.</strong>`;
+                    saveBtn.disabled = true;
+                } else {
+                    banner.style.background = '#f0fdf4';
+                    banner.style.color = '#166534';
+                    banner.style.border = '1px solid #bbf7d0';
+                    banner.innerHTML = `✓ <strong>Unique Question:</strong> No duplicate found in database. Safe to add.`;
+                    saveBtn.disabled = false;
+                }
+            })
+            .catch(err => {
+                console.error("Duplicate check error:", err);
+            });
+    },
+
+    submitNewQuestion: function () {
+        const qSubject = document.getElementById('add-q-subject').value.trim();
+        const qTopic = document.getElementById('add-q-topic').value.trim();
+        const qSubtopic = document.getElementById('add-q-subtopic').value.trim();
+        const qId = document.getElementById('add-q-id').value.trim();
+        const qDifficulty = document.getElementById('add-q-difficulty').value;
+        const qVerified = document.getElementById('add-q-verified').checked;
+        const qText = document.getElementById('add-q-text').value.trim();
+        const optA = document.getElementById('add-q-opt-a').value.trim();
+        const optB = document.getElementById('add-q-opt-b').value.trim();
+        const optC = document.getElementById('add-q-opt-c').value.trim();
+        const optD = document.getElementById('add-q-opt-d').value.trim();
+        const correct = document.getElementById('add-q-correct').value;
+        const explanation = document.getElementById('add-q-explanation').value.trim();
+
+        if (!qSubject || !qTopic || !qSubtopic || !qText || !optA || !optB || !optC || !optD) {
+            alert("Please fill in all required question fields.");
+            return;
+        }
+
+        const payload = {
+            id: qId || `DDCET-${qSubject.substring(0, 3).toUpperCase()}-${Date.now().toString().slice(-6)}`,
+            question: qText,
+            options: { A: optA, B: optB, C: optC, D: optD },
+            correct_answer: correct,
+            explanation: explanation,
+            subject: qSubject,
+            topic: qTopic,
+            subtopic: qSubtopic,
+            difficulty: qDifficulty,
+            verified: qVerified,
+            source: { name: "Manual Entry" },
+            tags: [qSubject.toLowerCase(), qTopic.toLowerCase()]
+        };
+
+        const saveBtn = document.getElementById('btn-save-new-question');
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving...';
+
+        fetch('/api/questions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(async res => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save Question';
+                const json = await res.json();
+                if (!res.ok) {
+                    if (res.status === 409) {
+                        alert(`❌ DUPLICATE REJECTED:\n${json.detail.message}\nQuestion was NOT added to the database.`);
+                    } else {
+                        alert(`Validation Error: ${JSON.stringify(json.detail || json)}`);
+                    }
+                    return;
+                }
+                alert(`✓ Question successfully added (ID: ${json.question.id})!`);
+                this.closeAddQuestionModal();
+                this.loadHierarchy();
+                this.loadQuestionBank(1);
+                this.loadTodayDashboard();
+            })
+            .catch(err => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save Question';
+                alert("Error adding question: " + err);
+            });
+    },
+
+    // -------------------------------------------------------------
     // Import & Inspection System
     // -------------------------------------------------------------
     openImportModal: function () {
@@ -752,18 +907,21 @@ const App = {
     startTopicPractice: function () {
         const subId = document.getElementById('practice-subject-select').value;
         const topId = document.getElementById('practice-topic-select').value;
+        const diffEl = document.getElementById('practice-difficulty-select');
+        const diff = diffEl ? diffEl.value : null;
         const size = parseInt(document.getElementById('mode-topic-size').value);
 
-        if (!subId && !topId) {
-            alert("Please select a subject or topic to begin topic drill.");
+        if (!subId && !topId && !diff) {
+            alert("Please select a subject, topic, or difficulty to begin topic drill.");
             return;
         }
 
         const payload = {
-            session_type: topId ? 'topic' : 'subject',
+            session_type: topId ? 'topic' : (subId ? 'subject' : 'daily_mixed'),
             size: size,
             subject_id: subId ? parseInt(subId) : null,
-            topic_id: topId ? parseInt(topId) : null
+            topic_id: topId ? parseInt(topId) : null,
+            difficulty: diff || null
         };
         this.launchSessionRequest(payload);
     },
@@ -790,6 +948,10 @@ const App = {
                 return res.json();
             })
             .then(sessionData => {
+                // Initialize checked state on questions: false unless already answered
+                sessionData.questions.forEach(q => {
+                    q.is_checked = Boolean(q.is_answered);
+                });
                 this.state.activeSession = sessionData;
                 this.state.currentQuestionIndex = 0;
                 this.state.isPaused = false;
@@ -863,6 +1025,7 @@ const App = {
         const s = this.state.activeSession;
         const idx = this.state.currentQuestionIndex;
         const q = s.questions[idx];
+        const isMock = s.session_type === 'full_mock';
 
         // Header info & progress
         document.getElementById('session-progress-text').textContent = `Question ${idx + 1} of ${s.questions.length}`;
@@ -884,15 +1047,15 @@ const App = {
         // Render Options A, B, C, D (Rendered with KaTeX Math & Markdown)
         const optContainer = document.getElementById('q-options');
         const keys = ['A', 'B', 'C', 'D'];
-        const isMock = s.session_type === 'full_mock';
 
         optContainer.innerHTML = keys.map(k => {
             const isSelected = q.selected_option === k;
             let optClass = 'option-card';
             if (isSelected) optClass += ' selected';
 
-            // Show immediate feedback if NOT mock exam and answered
-            if (!isMock && q.is_answered) {
+            // Show feedback colors ONLY if NOT mock exam AND checked
+            if (!isMock && q.is_checked) {
+                optClass += ' locked';
                 if (k === q.correct_answer) {
                     optClass += ' correct';
                 } else if (isSelected && !q.is_correct) {
@@ -909,19 +1072,37 @@ const App = {
             `;
         }).join('');
 
+        // Handle Check Answer Button
+        const checkBar = document.getElementById('q-check-bar');
+        const btnCheck = document.getElementById('btn-check-answer');
+        if (checkBar && btnCheck) {
+            if (isMock) {
+                checkBar.classList.add('hidden');
+            } else {
+                checkBar.classList.remove('hidden');
+                if (q.is_checked) {
+                    btnCheck.disabled = true;
+                    btnCheck.classList.add('hidden');
+                } else {
+                    btnCheck.classList.remove('hidden');
+                    btnCheck.disabled = !q.selected_option;
+                }
+            }
+        }
+
         // Review mark button state
         const btnReview = document.getElementById('btn-review-q');
         btnReview.classList.toggle('btn-warning', q.is_marked_for_review);
 
-        // Feedback / Explanation area (Non-mock practice only)
+        // Feedback / Explanation area (Non-mock practice only, ONLY when checked)
         const feedbackBox = document.getElementById('q-feedback-area');
-        if (!isMock && q.is_answered) {
+        if (!isMock && q.is_checked) {
             feedbackBox.classList.remove('hidden');
             const statusEl = document.getElementById('q-feedback-status');
             if (q.is_correct) {
-                statusEl.innerHTML = '<span class="text-success">✓ Correct Answer!</span>';
+                statusEl.innerHTML = '<span class="status-indicator status-correct">✓ Correct Answer! Well done.</span>';
             } else {
-                statusEl.innerHTML = `<span class="text-danger">✗ Incorrect. Correct answer is Option ${q.correct_answer}.</span>`;
+                statusEl.innerHTML = `<span class="status-indicator status-incorrect">✗ Incorrect. Correct answer is Option ${q.correct_answer}.</span>`;
             }
 
             document.getElementById('q-explanation-text').innerHTML = this.renderContent(q.explanation || 'No explanation provided.');
@@ -951,9 +1132,16 @@ const App = {
         document.getElementById('btn-prev-q').disabled = idx === 0;
         const btnNext = document.getElementById('btn-next-q');
         if (idx === s.questions.length - 1) {
-            btnNext.textContent = s.session_type === 'full_mock' ? 'Submit Exam' : 'Finish Session';
+            btnNext.textContent = isMock ? 'Submit Exam' : 'Finish Session';
         } else {
             btnNext.textContent = 'Next Question →';
+        }
+
+        // In practice mode, Next Question is disabled until checked!
+        if (!isMock) {
+            btnNext.disabled = !q.is_checked;
+        } else {
+            btnNext.disabled = false;
         }
     },
 
@@ -961,50 +1149,79 @@ const App = {
         const s = this.state.activeSession;
         const idx = this.state.currentQuestionIndex;
         const q = s.questions[idx];
-
-        // In Practice mode, prevent changing after answering if already confirmed, or allow toggling
-        q.selected_option = optionKey;
-        q.is_answered = true;
-
         const isMock = s.session_type === 'full_mock';
-        if (!isMock) {
-            q.is_correct = (optionKey === q.correct_answer);
+
+        // In Practice mode, prevent changing after answering if already checked
+        if (!isMock && q.is_checked) {
+            return;
         }
 
-        // Send auto-save to backend
+        q.selected_option = optionKey;
+
+        if (isMock) {
+            q.is_answered = true;
+            this.saveQuestionAnswer(q);
+        }
+
+        // Render selection without revealing correctness
+        this.renderCurrentQuestion();
+        this.renderPalette();
+    },
+
+    checkCurrentAnswer: function () {
+        const s = this.state.activeSession;
+        const idx = this.state.currentQuestionIndex;
+        const q = s.questions[idx];
+
+        if (!q.selected_option || q.is_checked) return;
+
+        q.is_checked = true;
+        q.is_answered = true;
+        q.is_correct = (q.selected_option === q.correct_answer);
+
+        // Auto-save to backend
+        this.saveQuestionAnswer(q);
+
+        // Re-render: locks options, shows feedback & explanation, enables Next Question
+        this.renderCurrentQuestion();
+        this.renderPalette();
+    },
+
+    saveQuestionAnswer: function (q) {
+        const s = this.state.activeSession;
         fetch('/api/practice/answer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 session_id: s.session_id,
                 question_id: q.question_id,
-                selected_option: optionKey,
+                selected_option: q.selected_option,
                 time_spent_seconds: 5,
                 is_marked_for_review: q.is_marked_for_review,
                 confidence: q.confidence || 'medium',
                 mistake_category: q.mistake_category
             })
         }).catch(err => console.error("Auto-save error:", err));
-
-        this.renderCurrentQuestion();
-        this.renderPalette();
     },
 
     tagMistake: function (category) {
         const q = this.state.activeSession.questions[this.state.currentQuestionIndex];
         q.mistake_category = category;
-        this.selectOption(q.selected_option);
+        this.saveQuestionAnswer(q);
+        this.renderCurrentQuestion();
     },
 
     setConfidence: function (conf) {
         const q = this.state.activeSession.questions[this.state.currentQuestionIndex];
         q.confidence = conf;
-        this.selectOption(q.selected_option);
+        this.saveQuestionAnswer(q);
+        this.renderCurrentQuestion();
     },
 
     toggleReviewMark: function () {
         const q = this.state.activeSession.questions[this.state.currentQuestionIndex];
         q.is_marked_for_review = !q.is_marked_for_review;
+        this.saveQuestionAnswer(q);
         this.renderCurrentQuestion();
         this.renderPalette();
     },
@@ -1040,6 +1257,7 @@ const App = {
         const s = this.state.activeSession;
         const grid = document.getElementById('session-palette-grid');
         if (!grid) return;
+        const isMock = s.session_type === 'full_mock';
 
         grid.innerHTML = s.questions.map((q, idx) => {
             let cls = 'palette-btn';
@@ -1047,8 +1265,10 @@ const App = {
                 cls += ' current';
             } else if (q.is_marked_for_review) {
                 cls += ' reviewed';
-            } else if (q.is_answered) {
+            } else if (q.is_checked || (isMock && q.is_answered)) {
                 cls += ' answered';
+            } else if (q.selected_option) {
+                cls += ' selected-unconfirmed';
             }
             return `<button class="${cls}" onclick="App.jumpToQuestion(${idx})">${idx + 1}</button>`;
         }).join('');

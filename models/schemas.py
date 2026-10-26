@@ -90,11 +90,12 @@ class ImportResult(BaseModel):
 
 
 class SessionStartRequest(BaseModel):
-    session_type: str = "daily_mixed" # 'daily_mixed', 'subject', 'topic', 'subtopic', 'weak_topic', 'revision_only', 'timed', 'full_mock'
+    session_type: str = "daily_mixed" # 'daily_mixed', 'subject', 'topic', 'subtopic', 'weak_topic', 'revision_only', 'incorrect_only', 'timed', 'full_mock'
     size: int = 20
     subject_id: Optional[int] = None
     topic_id: Optional[int] = None
     subtopic_id: Optional[int] = None
+    difficulty: Optional[str] = None # 'easy', 'medium', 'hard' or None
     time_limit_minutes: Optional[int] = None
 
 

@@ -2,7 +2,7 @@ import json
 from typing import Dict, Any, Tuple, Optional, List
 import sqlite3
 from models.schemas import QuestionModel, QuestionSource
-from services.duplicate_service import compute_question_hash, check_exact_duplicate, find_probable_duplicates
+from services.duplicate_service import compute_question_hash, check_exact_duplicate, check_duplicate_fast, find_probable_duplicates
 
 
 def get_or_create_hierarchy(
@@ -108,27 +108,13 @@ def validate_and_prepare_question(
         # Pydantic validation
         model = QuestionModel(**raw_data)
 
-        # Check exact and probable duplicates
-        exact_dup = None
-        probable_dups = []
+        # Check duplicates using O(1) indexed lookups (scale-ready for 1,000,000+ questions)
         if check_duplicates and conn:
-            text_hash = compute_question_hash(model.question, model.options)
-            
-            # Check ID duplicate first
-            id_row = conn.execute("SELECT id FROM questions WHERE id = ?", (model.id,)).fetchone()
-            if id_row:
-                return None, f"Question ID '{model.id}' already exists in database.", None, []
+            dup_info = check_duplicate_fast(conn, model.id, model.question, model.options)
+            if dup_info:
+                return None, dup_info["reason"], dup_info, []
 
-            exact_dup = check_exact_duplicate(conn, text_hash)
-            if exact_dup:
-                return None, f"Exact duplicate found (matches existing question ID {exact_dup['id']}).", exact_dup, []
-
-            # Check probable duplicates
-            sub_row = conn.execute("SELECT id FROM subjects WHERE name = ? COLLATE NOCASE", (model.subject,)).fetchone()
-            sub_id = sub_row["id"] if sub_row else None
-            probable_dups = find_probable_duplicates(conn, model.question, subject_id=sub_id)
-
-        return model, None, None, probable_dups
+        return model, None, None, []
 
     except Exception as e:
         return None, str(e), None, []
