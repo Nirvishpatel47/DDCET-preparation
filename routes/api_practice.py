@@ -62,6 +62,13 @@ def finish_session(req: CompleteSessionRequest):
             session_id=req.session_id,
             time_taken_seconds=req.time_taken_seconds
         )
+        try:
+            from services.stats_service import compute_comprehensive_stats
+            from services.supabase_sync_service import sync_current_user_stats
+            stats = compute_comprehensive_stats()
+            sync_current_user_stats(stats)
+        except Exception as sync_err:
+            print(f"[practice_api] Auto-sync notice: {sync_err}")
         return res
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

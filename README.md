@@ -237,3 +237,27 @@ python tests/benchmark_scale.py
 #   D D C E T - p r e p a r a t i o n  
  #   D D C E T - p r e p a r a t i o n  
  
+
+---
+
+## ⚔️ Battle Arena & Supabase Cloud Sync (Friends Competition)
+
+Compete head-to-head with friends while maintaining a strict 100% offline-first architecture:
+
+1. **Offline-First Architecture**:
+   - All questions, attempts, and sessions remain stored in your local SQLite database (data/ddcet.db).
+   - If there is no internet connection, your stats updates are stored safely in a local JSON queue (data/sync_queue.json).
+   - When an internet connection is detected, pending stats are automatically pushed to your Supabase PostgreSQL cloud database.
+
+2. **Head-to-Head Battle Duel**:
+   - Enter any friend's email address to compare stats side-by-side.
+   - **Core Metric Duels**: Total Score (+1.0 / -0.25), Accuracy %, MCQs Solved, Speed (s/q), Topics Mastered, Streak.
+   - **Granular Topic-Wise MCQs Done / Not Done Battle Matrix**: Chapter-by-chapter table showing which MCQs each student has completed, accuracy, mastery level, and who leads each topic in the Gujarat DDCET syllabus.
+   - **Competitors Leaderboard**: Live ranking of you and your friends sorted by total score.
+
+3. **Supabase PostgreSQL Setup**:
+   - Configure .env with:
+     `env
+     DATABASE_API_KEY=your_supabase_postgres_url_or_api_key
+     `
+   - Run the SQL script in database/supabase_schema.sql in your Supabase SQL Editor to create the required tables (ddcet_profiles, ddcet_user_stats, ddcet_friends) with RLS policies enabled.

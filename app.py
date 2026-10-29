@@ -11,6 +11,9 @@ from routes.api_revision import router as revision_router
 from routes.api_import_export import router as import_export_router
 from routes.api_analytics import router as analytics_router
 from routes.api_settings import router as settings_router
+from routes.api_auth import router as auth_router
+from routes.api_sync import router as sync_router
+from routes.api_battle import router as battle_router
 from services.import_export_service import SAMPLE_DEMO_QUESTIONS, process_import
 import json
 
@@ -43,6 +46,9 @@ app.include_router(revision_router)
 app.include_router(import_export_router)
 app.include_router(analytics_router)
 app.include_router(settings_router)
+app.include_router(auth_router)
+app.include_router(sync_router)
+app.include_router(battle_router)
 
 
 # Initialize database schema and configuration defaults on module load and startup

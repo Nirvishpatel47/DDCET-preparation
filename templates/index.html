@@ -23,10 +23,21 @@
                 <button class="nav-btn" data-tab="tab-practice">Practice</button>
                 <button class="nav-btn" data-tab="tab-revision">Revision <span class="badge" id="nav-rev-badge">0</span></button>
                 <button class="nav-btn" data-tab="tab-mock">Mock Exams</button>
+                <button class="nav-btn" data-tab="tab-battle">⚔️ Battle Arena</button>
                 <button class="nav-btn" data-tab="tab-analytics">Analytics</button>
                 <button class="nav-btn" data-tab="tab-bank">Question Bank</button>
                 <button class="nav-btn" data-tab="tab-settings">Settings</button>
             </nav>
+            <div class="header-actions">
+                <div class="header-sync-pill" id="header-sync-pill" onclick="App.triggerManualSync()" title="Click to sync stats with Supabase cloud">
+                    <span class="sync-dot online" id="sync-indicator-dot"></span>
+                    <span class="sync-text" id="sync-status-label">Cloud Ready</span>
+                </div>
+                <div class="header-user-pill" id="header-user-btn" onclick="App.openLoginModal()" title="User Profile & Login">
+                    <span class="user-avatar" id="header-user-avatar">⚡</span>
+                    <span class="user-name" id="header-user-name">Cadet</span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -324,6 +335,165 @@
                         </thead>
                         <tbody id="mock-history-table">
                             <tr><td colspan="7" class="text-center">No mock exams taken yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.5. BATTLE ARENA & FRIENDS COMPETITION TAB -->
+        <section id="tab-battle" class="tab-pane">
+            <div class="page-header flex-between">
+                <div>
+                    <h2>⚔️ Battle Arena & Friend Duels</h2>
+                    <p>Compete head-to-head with friends on syllabus mastery, topic MCQs completed, accuracy, and scores.</p>
+                </div>
+                <div class="battle-header-actions">
+                    <button class="btn btn-outline btn-sm" onclick="App.triggerManualSync()">
+                        🔄 Sync with Cloud
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="App.openLoginModal()">
+                        👤 Switch / Login Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cloud Sync & Current Profile Bar -->
+            <div class="battle-status-bar card">
+                <div class="user-status-col">
+                    <span class="battle-avatar" id="battle-user-avatar">⚡</span>
+                    <div>
+                        <div class="user-name-line">
+                            <strong id="battle-user-name">Cadet</strong>
+                            <span class="badge" id="battle-user-email">cadet@ddcet.local</span>
+                        </div>
+                        <span class="micro-note" id="battle-user-summary">Loading stats...</span>
+                    </div>
+                </div>
+                <div class="cloud-status-col">
+                    <div class="sync-info-box">
+                        <span class="sync-dot online" id="battle-sync-dot"></span>
+                        <span id="battle-sync-label">Checking Supabase Cloud...</span>
+                    </div>
+                    <span class="micro-note" id="battle-queue-count">0 pending offline syncs</span>
+                </div>
+            </div>
+
+            <!-- Friend Search & Duel Launcher -->
+            <div class="card" style="margin-top: 1.25rem;">
+                <h3>Add or Compare with a Friend</h3>
+                <p class="sub-text">Enter your friend's email to view their detailed performance and launch a head-to-head battle duel.</p>
+                <div class="friend-input-bar">
+                    <input type="email" id="battle-friend-email-input" placeholder="Enter friend's email (e.g. rahul@example.com)..." onkeyup="if(event.key==='Enter') App.addFriendFromInput();">
+                    <button class="btn btn-primary" onclick="App.addFriendFromInput()">⚔️ Start Duel / Compare</button>
+                    <button class="btn btn-outline" onclick="App.addFriendOnly()">➕ Add Friend</button>
+                </div>
+                <div class="tracked-friends-row" id="battle-tracked-friends">
+                    <span class="micro-note">Tracked Competitors:</span>
+                    <div class="friend-chips-container" id="battle-friend-chips">
+                        <span class="empty-state">No friends added yet. Enter an email above to start competing!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Head-to-Head Duel Card -->
+            <div id="battle-duel-card" class="card battle-duel-container hidden" style="margin-top: 1.5rem;">
+                <div class="duel-header">
+                    <div class="fighter-side user-side">
+                        <span class="fighter-avatar" id="duel-user-avatar">⚡</span>
+                        <h3 id="duel-user-name">You</h3>
+                        <span class="fighter-score" id="duel-user-score">0.00 pts</span>
+                        <span class="fighter-badge" id="duel-user-rounds-won">0 Rounds Won</span>
+                    </div>
+
+                    <div class="duel-center">
+                        <div class="vs-badge">VS</div>
+                        <div class="verdict-banner" id="duel-verdict-banner">
+                            <h4 id="duel-verdict-title">⚔️ Duel in Progress</h4>
+                            <p id="duel-verdict-desc">Analyzing metrics...</p>
+                        </div>
+                    </div>
+
+                    <div class="fighter-side friend-side">
+                        <span class="fighter-avatar" id="duel-friend-avatar">👤</span>
+                        <h3 id="duel-friend-name">Friend</h3>
+                        <span class="fighter-score" id="duel-friend-score">0.00 pts</span>
+                        <span class="fighter-badge" id="duel-friend-rounds-won">0 Rounds Won</span>
+                        <span class="micro-note" id="duel-friend-source">cloud_live</span>
+                    </div>
+                </div>
+
+                <!-- Core Metrics Comparison Grid -->
+                <div class="metrics-duel-grid" id="duel-metrics-grid">
+                    <!-- Populated dynamically: Score, Accuracy, Questions, Speed, Mastery, Streak -->
+                </div>
+
+                <!-- Topic-Wise MCQs Done / Not Done Battle Matrix -->
+                <div class="topic-battle-section" style="margin-top: 2rem;">
+                    <div class="flex-between" style="flex-wrap: wrap; gap: 0.75rem;">
+                        <div>
+                            <h3>📚 Topic-Wise MCQs Done / Not Done Battle Matrix</h3>
+                            <p class="sub-text">Granular chapter-by-chapter comparison showing questions completed, accuracy, and who leads each topic.</p>
+                        </div>
+                        <div class="matrix-filter-controls">
+                            <input type="text" id="topic-matrix-search" placeholder="Filter by topic or subject..." onkeyup="App.filterTopicBattles();" style="width: 200px;">
+                            <div class="chip-filter-group">
+                                <button class="chip-filter active" data-filter="all" onclick="App.setTopicBattleFilter('all')">All</button>
+                                <button class="chip-filter" data-filter="you" onclick="App.setTopicBattleFilter('you')">You Lead 🏆</button>
+                                <button class="chip-filter" data-filter="friend" onclick="App.setTopicBattleFilter('friend')">Friend Leads 🔥</button>
+                                <button class="chip-filter" data-filter="not_done" onclick="App.setTopicBattleFilter('not_done')">Not Done ⚪</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" style="margin-top: 1rem;">
+                        <table class="data-table battle-matrix-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject & Topic</th>
+                                    <th>Total Bank</th>
+                                    <th>Your MCQs Done</th>
+                                    <th>Your Accuracy</th>
+                                    <th>Friend's MCQs Done</th>
+                                    <th>Friend's Accuracy</th>
+                                    <th>Topic Winner</th>
+                                </tr>
+                            </thead>
+                            <tbody id="battle-matrix-tbody">
+                                <tr><td colspan="7" class="text-center">Select a friend to inspect topic battle matrix.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competitors Leaderboard Card -->
+            <div class="card" style="margin-top: 1.5rem;">
+                <div class="flex-between">
+                    <div>
+                        <h3>🏆 Friends & Competitors Leaderboard</h3>
+                        <p class="sub-text">Rankings calculated using DDCET standard marking scheme (+1.0 for correct, -0.25 for incorrect).</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="App.loadBattleLeaderboard()">Refresh Board</button>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 1rem;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Competitor</th>
+                                <th>Email</th>
+                                <th>Total Score</th>
+                                <th>Accuracy</th>
+                                <th>MCQs Solved</th>
+                                <th>Topics Mastered</th>
+                                <th>Last Active</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="battle-leaderboard-tbody">
+                            <tr><td colspan="9" class="text-center">Loading leaderboard...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -876,6 +1046,59 @@
                     <button type="button" class="btn btn-outline" onclick="App.closeAddQuestionModal()">Cancel</button>
                     <button type="button" class="btn btn-primary" id="btn-save-new-question" onclick="App.submitNewQuestion()">Save Question</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- USER LOGIN & PROFILE MODAL -->
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="modal-box card">
+            <div class="modal-header">
+                <h2>👤 Cadet Profile & Cloud Sync Login</h2>
+                <button class="close-btn" onclick="App.closeLoginModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" onsubmit="event.preventDefault(); App.submitLogin();">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="login-email"><strong>Your Email Address *</strong></label>
+                        <input type="email" id="login-email" class="input-field" placeholder="e.g. rahul.sharma@example.com" required style="width: 100%;">
+                        <span class="micro-note">Your friends will use this email to find your stats and challenge you in the Battle Arena.</span>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="login-name"><strong>Display Name</strong></label>
+                        <input type="text" id="login-name" class="input-field" placeholder="e.g. Rahul S." style="width: 100%;">
+                    </div>
+
+                    <div style="margin-bottom: 1.25rem;">
+                        <label><strong>Choose Your Battle Avatar:</strong></label>
+                        <div class="avatar-selection-grid" id="login-avatar-grid">
+                            <button type="button" class="avatar-opt-btn active" data-avatar="⚡" onclick="App.selectAvatar('⚡')">⚡</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🎯" onclick="App.selectAvatar('🎯')">🎯</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🚀" onclick="App.selectAvatar('🚀')">🚀</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="⚔️" onclick="App.selectAvatar('⚔️')">⚔️</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🛡️" onclick="App.selectAvatar('🛡️')">🛡️</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🧠" onclick="App.selectAvatar('🧠')">🧠</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="👑" onclick="App.selectAvatar('👑')">👑</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🔥" onclick="App.selectAvatar('🔥')">🔥</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="🏆" onclick="App.selectAvatar('🏆')">🏆</button>
+                            <button type="button" class="avatar-opt-btn" data-avatar="💎" onclick="App.selectAvatar('💎')">💎</button>
+                        </div>
+                    </div>
+
+                    <div class="card" style="padding: 0.75rem 1rem; background: var(--bg-surface-subtle); border-left: 3px solid var(--accent-gold); font-size: 0.85rem; margin-bottom: 1rem;">
+                        <strong style="color: var(--accent-gold);">⚡ Offline-First Cloud Architecture:</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.82rem; color: var(--text-secondary);">
+                            Your questions and practice history are stored locally. When internet is detected, stats are pushed to Supabase PostgreSQL so friends can compete with your real-time stats. If offline, stats are queued safely in a local JSON file.
+                        </p>
+                    </div>
+
+                    <div class="modal-footer flex-between" style="padding: 0; margin-top: 1rem;">
+                        <button type="button" class="btn btn-outline" onclick="App.closeLoginModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btn-save-profile">Save & Connect</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -16,13 +16,22 @@ const App = {
         isPaused: false,
         stagedImportFile: null,
         bankPage: 1,
-        bankLimit: 20
+        bankLimit: 20,
+        currentUser: null,
+        selectedAvatar: '⚡',
+        syncStatus: null,
+        activeDuel: null,
+        allTopicBattles: [],
+        currentTopicFilter: 'all',
+        friendsList: []
     },
 
     init: function () {
         this.bindEvents();
         this.loadHierarchy();
         this.loadSettings();
+        this.loadUserSession();
+        this.checkSyncStatus();
         this.loadTodayDashboard();
         this.loadDueRevisions();
         this.loadQuestionBank(1);
@@ -221,6 +230,7 @@ const App = {
         if (tabId === 'tab-today') this.loadTodayDashboard();
         if (tabId === 'tab-revision') this.loadDueRevisions();
         if (tabId === 'tab-analytics') this.loadAnalytics();
+        if (tabId === 'tab-battle') this.loadBattleArena();
         if (tabId === 'tab-bank') this.loadQuestionBank(this.state.bankPage);
         if (tabId === 'tab-settings') this.loadSettings();
     },
@@ -1345,6 +1355,507 @@ const App = {
         document.getElementById('summary-overlay').classList.add('hidden');
         this.state.activeSession = null;
         this.switchTab('tab-today');
+    },
+
+    // -------------------------------------------------------------
+    // User Profile & Authentication (Local + Cloud Hybrid)
+    // -------------------------------------------------------------
+    loadUserSession: function () {
+        fetch('/api/auth/current')
+            .then(res => res.json())
+            .then(data => {
+                this.state.currentUser = data.user || {};
+                this.updateUserUI(this.state.currentUser);
+            })
+            .catch(err => console.error("Error loading user session:", err));
+    },
+
+    updateUserUI: function (user) {
+        if (!user) return;
+        const nameEl = document.getElementById('header-user-name');
+        const avaEl = document.getElementById('header-user-avatar');
+        if (nameEl) nameEl.textContent = user.display_name || 'Cadet';
+        if (avaEl) avaEl.textContent = user.avatar || '⚡';
+
+        // Battle bar user elements
+        const bAva = document.getElementById('battle-user-avatar');
+        const bName = document.getElementById('battle-user-name');
+        const bEmail = document.getElementById('battle-user-email');
+        if (bAva) bAva.textContent = user.avatar || '⚡';
+        if (bName) bName.textContent = user.display_name || 'Cadet';
+        if (bEmail) bEmail.textContent = user.email || 'cadet@ddcet.local';
+
+        // Login form defaults
+        const inpEmail = document.getElementById('login-email');
+        const inpName = document.getElementById('login-name');
+        if (inpEmail && user.email) inpEmail.value = user.email;
+        if (inpName && user.display_name) inpName.value = user.display_name;
+        this.selectAvatar(user.avatar || '⚡');
+    },
+
+    openLoginModal: function () {
+        const u = this.state.currentUser;
+        if (u) {
+            const inpEmail = document.getElementById('login-email');
+            const inpName = document.getElementById('login-name');
+            if (inpEmail && u.email) inpEmail.value = u.email;
+            if (inpName && u.display_name) inpName.value = u.display_name;
+            this.selectAvatar(u.avatar || '⚡');
+        }
+        document.getElementById('login-modal').classList.remove('hidden');
+    },
+
+    closeLoginModal: function () {
+        document.getElementById('login-modal').classList.add('hidden');
+    },
+
+    selectAvatar: function (ava) {
+        this.state.selectedAvatar = ava;
+        document.querySelectorAll('.avatar-opt-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-avatar') === ava);
+        });
+    },
+
+    submitLogin: function () {
+        const email = document.getElementById('login-email').value.trim();
+        const name = document.getElementById('login-name').value.trim();
+        const ava = this.state.selectedAvatar || '⚡';
+
+        if (!email) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        const saveBtn = document.getElementById('btn-save-profile');
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Connecting...';
+
+        fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                display_name: name,
+                avatar: ava
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save & Connect';
+                if (data.success) {
+                    this.state.currentUser = data.user;
+                    this.updateUserUI(data.user);
+                    this.closeLoginModal();
+                    this.checkSyncStatus();
+                    if (this.state.activeTab === 'tab-battle') {
+                        this.loadBattleArena();
+                    }
+                    const syncMsg = data.sync && data.sync.synced ? "✓ Synced with Supabase Cloud!" : "Saved locally (Stats queued for offline sync).";
+                    alert(`Welcome, ${data.user.display_name}!\n${syncMsg}`);
+                } else {
+                    alert("Login failed: " + (data.detail || "Unknown error"));
+                }
+            })
+            .catch(err => {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save & Connect';
+                alert("Error connecting profile: " + err);
+            });
+    },
+
+    // -------------------------------------------------------------
+    // Cloud Sync Status & Triggers
+    // -------------------------------------------------------------
+    checkSyncStatus: function () {
+        fetch('/api/sync/status')
+            .then(res => res.json())
+            .then(data => {
+                this.state.syncStatus = data;
+                const dot = document.getElementById('sync-indicator-dot');
+                const label = document.getElementById('sync-status-label');
+                const bDot = document.getElementById('battle-sync-dot');
+                const bLabel = document.getElementById('battle-sync-label');
+                const bQueue = document.getElementById('battle-queue-count');
+
+                let statusText = 'Cloud Ready';
+                let dotClass = 'sync-dot online';
+
+                if (!data.online) {
+                    statusText = data.pending_count > 0 ? `Offline (${data.pending_count} pending)` : 'Offline Mode';
+                    dotClass = 'sync-dot offline';
+                } else if (!data.is_configured) {
+                    statusText = 'Local Mode (No Key)';
+                    dotClass = 'sync-dot offline';
+                } else if (data.pending_count > 0) {
+                    statusText = `Syncing (${data.pending_count} pending)`;
+                    dotClass = 'sync-dot offline';
+                } else {
+                    statusText = 'Cloud Synced';
+                    dotClass = 'sync-dot online';
+                }
+
+                if (dot) dot.className = dotClass;
+                if (label) label.textContent = statusText;
+                if (bDot) bDot.className = dotClass;
+                if (bLabel) bLabel.textContent = statusText;
+                if (bQueue) {
+                    bQueue.textContent = data.pending_count > 0
+                        ? `${data.pending_count} stats update(s) stored in local JSON queue waiting for internet.`
+                        : (data.online ? 'All stats up-to-date in Supabase PostgreSQL.' : 'Working in offline mode.');
+                }
+            })
+            .catch(err => console.error("Error checking sync status:", err));
+    },
+
+    triggerManualSync: function () {
+        const label = document.getElementById('sync-status-label');
+        if (label) label.textContent = 'Syncing...';
+
+        fetch('/api/sync/push', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                this.checkSyncStatus();
+                if (this.state.activeTab === 'tab-battle') {
+                    this.loadBattleArena();
+                }
+                const msg = data.direct_sync?.message || data.queue_sync?.message || "Sync finished.";
+                alert(`Cloud Sync Result:\n${msg}`);
+            })
+            .catch(err => alert("Sync error: " + err));
+    },
+
+    // -------------------------------------------------------------
+    // Battle Arena & Competitor Duels
+    // -------------------------------------------------------------
+    loadBattleArena: function () {
+        this.checkSyncStatus();
+        this.loadUserBattleSummary();
+        this.loadTrackedFriends();
+        this.loadBattleLeaderboard();
+    },
+
+    loadUserBattleSummary: function () {
+        fetch('/api/battle/stats')
+            .then(res => res.json())
+            .then(data => {
+                const s = data.stats;
+                const summaryEl = document.getElementById('battle-user-summary');
+                if (summaryEl) {
+                    summaryEl.textContent = `Score: ${s.total_score} | ${s.total_questions} Solved | ${s.accuracy_pct}% Acc | ${s.topics_mastered} Topics Mastered`;
+                }
+            })
+            .catch(err => console.error("Error loading battle stats:", err));
+    },
+
+    loadTrackedFriends: function () {
+        fetch('/api/battle/friends')
+            .then(res => res.json())
+            .then(data => {
+                this.state.friendsList = data.friends || [];
+                const container = document.getElementById('battle-friend-chips');
+                if (!container) return;
+
+                if (!this.state.friendsList.length) {
+                    container.innerHTML = '<span class="empty-state">No friends added yet. Enter an email above to start competing!</span>';
+                    return;
+                }
+
+                container.innerHTML = this.state.friendsList.map(f => `
+                    <div class="friend-chip ${this.state.activeDuel?.friend?.email === f.email ? 'active' : ''}" onclick="App.loadFriendDuel('${f.email}')">
+                        <span>${f.avatar || '👤'}</span>
+                        <strong>${f.display_name || f.email}</strong>
+                        <span style="font-size:0.75rem; color:var(--accent-gold);">${(f.total_score || 0).toFixed(1)} pts</span>
+                        <span class="friend-chip-remove" title="Remove friend" onclick="event.stopPropagation(); App.removeFriend('${f.email}');">✕</span>
+                    </div>
+                `).join('');
+
+                // Auto-load first friend duel if none active
+                if (!this.state.activeDuel && this.state.friendsList.length > 0) {
+                    this.loadFriendDuel(this.state.friendsList[0].email);
+                }
+            })
+            .catch(err => console.error("Error loading friends list:", err));
+    },
+
+    addFriendFromInput: function () {
+        const inp = document.getElementById('battle-friend-email-input');
+        if (!inp) return;
+        const email = inp.value.trim();
+        if (!email) {
+            alert("Please enter your friend's email address.");
+            return;
+        }
+
+        fetch('/api/battle/friends', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ friend_email: email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    inp.value = '';
+                    this.loadTrackedFriends();
+                    this.loadFriendDuel(email);
+                    this.loadBattleLeaderboard();
+                } else {
+                    alert(data.detail || "Could not add friend.");
+                }
+            })
+            .catch(err => alert("Error adding friend: " + err));
+    },
+
+    addFriendOnly: function () {
+        const inp = document.getElementById('battle-friend-email-input');
+        if (!inp) return;
+        const email = inp.value.trim();
+        if (!email) {
+            alert("Please enter your friend's email address.");
+            return;
+        }
+
+        fetch('/api/battle/friends', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ friend_email: email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    inp.value = '';
+                    alert(`✓ Added ${email} to tracked competitors!`);
+                    this.loadTrackedFriends();
+                    this.loadBattleLeaderboard();
+                } else {
+                    alert(data.detail || "Could not add friend.");
+                }
+            })
+            .catch(err => alert("Error adding friend: " + err));
+    },
+
+    removeFriend: function (friendEmail) {
+        if (!confirm(`Remove ${friendEmail} from your tracked competitors?`)) return;
+
+        fetch(`/api/battle/friends/${encodeURIComponent(friendEmail)}`, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(data => {
+                if (this.state.activeDuel?.friend?.email === friendEmail) {
+                    this.state.activeDuel = null;
+                    document.getElementById('battle-duel-card').classList.add('hidden');
+                }
+                this.loadTrackedFriends();
+                this.loadBattleLeaderboard();
+            })
+            .catch(err => alert("Error removing friend: " + err));
+    },
+
+    loadFriendDuel: function (friendEmail) {
+        const duelCard = document.getElementById('battle-duel-card');
+        duelCard.classList.remove('hidden');
+
+        fetch(`/api/battle/compare/${encodeURIComponent(friendEmail)}`)
+            .then(res => res.json())
+            .then(duel => {
+                this.state.activeDuel = duel;
+                this.state.allTopicBattles = duel.topic_battles || [];
+                this.renderDuelCard(duel);
+                this.filterTopicBattles();
+                // Highlight active friend chip
+                this.loadTrackedFriends();
+            })
+            .catch(err => {
+                console.error("Error loading duel:", err);
+                alert("Failed to load friend duel: " + err);
+            });
+    },
+
+    renderDuelCard: function (duel) {
+        const u = duel.user;
+        const f = duel.friend;
+
+        // Header avatars and scores
+        document.getElementById('duel-user-avatar').textContent = u.avatar || '⚡';
+        document.getElementById('duel-user-name').textContent = u.display_name || 'You';
+        document.getElementById('duel-user-rounds-won').textContent = `${u.rounds_won} Rounds Won`;
+
+        document.getElementById('duel-friend-avatar').textContent = f.avatar || '👤';
+        document.getElementById('duel-friend-name').textContent = f.display_name || f.email;
+        document.getElementById('duel-friend-rounds-won').textContent = `${f.rounds_won} Rounds Won`;
+        document.getElementById('duel-friend-source').textContent = f.source === 'cloud_live' ? '🟢 Cloud Live' : '🟠 Local Cache';
+
+        // Verdict banner
+        const titleEl = document.getElementById('duel-verdict-title');
+        const descEl = document.getElementById('duel-verdict-desc');
+        titleEl.textContent = duel.verdict_title;
+        descEl.textContent = duel.verdict_desc;
+
+        // Metric Duels Grid
+        const grid = document.getElementById('duel-metrics-grid');
+        grid.innerHTML = duel.metrics_comparison.map(m => {
+            let winCls = 'win-tie';
+            let winTxt = '🤝 Tied';
+            if (m.winner === 'YOU') {
+                winCls = 'win-you';
+                winTxt = '🏆 You Win';
+            } else if (m.winner === 'FRIEND') {
+                winCls = 'win-friend';
+                winTxt = `🔥 ${f.display_name} Leads`;
+            }
+
+            return `
+                <div class="metric-duel-card">
+                    <span class="metric-duel-label">${m.metric}</span>
+                    <div class="metric-duel-values">
+                        <span class="user-val" title="Your ${m.metric}">${m.user_display}</span>
+                        <span style="font-size:0.8rem; color:var(--text-muted);">vs</span>
+                        <span class="friend-val" title="${f.display_name}'s ${m.metric}">${m.friend_display}</span>
+                    </div>
+                    <span class="duel-winner-tag ${winCls}">${winTxt}</span>
+                </div>
+            `;
+        }).join('');
+
+        // Find Score for display
+        const scoreMetric = duel.metrics_comparison.find(m => m.metric === 'Total Score');
+        if (scoreMetric) {
+            document.getElementById('duel-user-score').textContent = scoreMetric.user_display;
+            document.getElementById('duel-friend-score').textContent = scoreMetric.friend_display;
+        }
+    },
+
+    setTopicBattleFilter: function (filterType) {
+        this.state.currentTopicFilter = filterType;
+        document.querySelectorAll('.chip-filter').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-filter') === filterType);
+        });
+        this.filterTopicBattles();
+    },
+
+    filterTopicBattles: function () {
+        const query = (document.getElementById('topic-matrix-search')?.value || '').trim().toLowerCase();
+        const filter = this.state.currentTopicFilter || 'all';
+        let list = this.state.allTopicBattles || [];
+
+        // Apply search query
+        if (query) {
+            list = list.filter(tb =>
+                tb.subject.toLowerCase().includes(query) ||
+                tb.topic.toLowerCase().includes(query)
+            );
+        }
+
+        // Apply category filter
+        if (filter === 'you') {
+            list = list.filter(tb => tb.leader === 'YOU');
+        } else if (filter === 'friend') {
+            list = list.filter(tb => tb.leader === 'FRIEND');
+        } else if (filter === 'not_done') {
+            list = list.filter(tb => !tb.user.is_done && !tb.friend.is_done);
+        }
+
+        this.renderTopicBattleTable(list);
+    },
+
+    renderTopicBattleTable: function (battles) {
+        const tbody = document.getElementById('battle-matrix-tbody');
+        if (!tbody) return;
+
+        if (!battles.length) {
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center">No topics match current filter.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = battles.map(tb => {
+            // User progress badge
+            let uBadge = `<span class="status-not-started">0/${tb.total_in_bank} (0%)</span>`;
+            if (tb.user.is_done) {
+                uBadge = `<span class="status-done">✓ ${tb.user.done_ratio} Done</span>`;
+            } else if (tb.user.attempted > 0) {
+                uBadge = `<span class="status-in-progress">${tb.user.done_ratio} Done</span>`;
+            }
+
+            // Friend progress badge
+            let fBadge = `<span class="status-not-started">0/${tb.total_in_bank} (0%)</span>`;
+            if (tb.friend.is_done) {
+                fBadge = `<span class="status-done">✓ ${tb.friend.done_ratio} Done</span>`;
+            } else if (tb.friend.attempted > 0) {
+                fBadge = `<span class="status-in-progress">${tb.friend.done_ratio} Done</span>`;
+            }
+
+            // Winner badge
+            let leaderCls = 'win-tie';
+            if (tb.leader === 'YOU') leaderCls = 'win-you';
+            else if (tb.leader === 'FRIEND') leaderCls = 'win-friend';
+
+            return `
+                <tr>
+                    <td>
+                        <strong>${tb.subject}</strong> &rsaquo; ${tb.topic}
+                    </td>
+                    <td><code>${tb.total_in_bank} MCQs</code></td>
+                    <td>
+                        ${uBadge}
+                        <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.35rem;">${tb.user.mastery}</span>
+                    </td>
+                    <td><strong style="color:var(--accent-gold);">${tb.user.attempted ? tb.user.accuracy_pct + '%' : '-'}</strong></td>
+                    <td>
+                        ${fBadge}
+                        <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.35rem;">${tb.friend.mastery}</span>
+                    </td>
+                    <td><strong style="color:#60a5fa;">${tb.friend.attempted ? tb.friend.accuracy_pct + '%' : '-'}</strong></td>
+                    <td>
+                        <span class="duel-winner-tag ${leaderCls}">${tb.leader_label}</span>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    },
+
+    loadBattleLeaderboard: function () {
+        const tbody = document.getElementById('battle-leaderboard-tbody');
+        if (!tbody) return;
+
+        fetch('/api/battle/leaderboard')
+            .then(res => res.json())
+            .then(data => {
+                const list = data.leaderboard || [];
+                if (!list.length) {
+                    tbody.innerHTML = '<tr><td colspan="9" class="text-center">No competitors found on leaderboard yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = list.map(item => {
+                    let rankBadge = `#${item.rank}`;
+                    if (item.rank === 1) rankBadge = '🥇 #1';
+                    else if (item.rank === 2) rankBadge = '🥈 #2';
+                    else if (item.rank === 3) rankBadge = '🥉 #3';
+
+                    const isSelf = item.is_current_user;
+                    const rowCls = isSelf ? 'style="background:rgba(197, 160, 89, 0.08); font-weight:600;"' : '';
+
+                    return `
+                        <tr ${rowCls}>
+                            <td><strong>${rankBadge}</strong></td>
+                            <td>
+                                <span>${item.avatar || '👤'}</span>
+                                <strong>${item.display_name || 'Cadet'}</strong>
+                                ${isSelf ? '<span class="badge" style="margin-left:0.35rem; background:var(--accent-gold-soft); color:var(--accent-gold);">YOU</span>' : ''}
+                            </td>
+                            <td><code style="font-size:0.82rem;">${item.email}</code></td>
+                            <td><strong style="color:var(--accent-gold); font-size:1.05rem;">${(item.total_score || 0).toFixed(2)}</strong></td>
+                            <td>${(item.accuracy_pct || 0).toFixed(1)}%</td>
+                            <td>${item.total_questions || 0} MCQs</td>
+                            <td>${item.topics_mastered || 0}</td>
+                            <td><span class="micro-note">${item.last_active ? item.last_active.split('T')[0] : 'Today'}</span></td>
+                            <td>
+                                ${!isSelf ? `<button class="btn btn-outline btn-sm" onclick="App.loadFriendDuel('${item.email}')">⚔️ Duel</button>` : '<span class="micro-note">&mdash;</span>'}
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            })
+            .catch(err => console.error("Error loading battle leaderboard:", err));
     }
 };
 
