@@ -168,6 +168,7 @@ def sync_public_questions_to_db(conn: sqlite3.Connection) -> Dict[str, int]:
 
     public_files = [
         os.path.join(REPO_DATA_DIR, "ddcet_2027_question_bank.json"),
+        os.path.join(REPO_DATA_DIR, "ddcet_2027_question_bank_extended_1.json"),
         os.path.join(REPO_DATA_DIR, "data.json"),
         os.path.join(REPO_DATA_DIR, "ddcet_canonical_questions.json"),
     ]
