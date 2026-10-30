@@ -1,5 +1,7 @@
 # Environment
 .env
+.env.local
+.env.*.local
 
 # Python
 __pycache__/
@@ -15,22 +17,41 @@ venv/
 .venv/
 env/
 
-# IDE
+# IDE & Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# Operating System
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Testing
+# Testing & Coverage
 .pytest_cache/
 htmlcov/
 .coverage
+.cache/
 
-# Uploads (local dev only)
+# User Private Data & SQLite Databases (Never commit personal study data)
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backups/
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/current_user.json
+data/friends.json
+data/friends_cache.json
+data/sync_queue.json
+.ddcet-preparation/
+
+# Uploads & temporary artifacts
 uploads/
+tmp/
+scratch/

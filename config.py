@@ -4,15 +4,64 @@ import base64
 from typing import Optional, Dict, Any
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+REPO_DATA_DIR = os.path.join(BASE_DIR, "data")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 ENV_EXAMPLE_PATH = os.path.join(BASE_DIR, ".env.example")
 
-os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(REPO_DATA_DIR, exist_ok=True)
 
-SYNC_QUEUE_FILE = os.path.join(DATA_DIR, "sync_queue.json")
-CURRENT_USER_FILE = os.path.join(DATA_DIR, "current_user.json")
-FRIENDS_CACHE_FILE = os.path.join(DATA_DIR, "friends_cache.json")
+# Legacy in-repo paths for migration
+LEGACY_DB_PATH = os.path.join(REPO_DATA_DIR, "ddcet.db")
+LEGACY_CURRENT_USER_FILE = os.path.join(REPO_DATA_DIR, "current_user.json")
+LEGACY_FRIENDS_CACHE_FILE = os.path.join(REPO_DATA_DIR, "friends_cache.json")
+LEGACY_SYNC_QUEUE_FILE = os.path.join(REPO_DATA_DIR, "sync_queue.json")
+LEGACY_FRIENDS_FILE = os.path.join(REPO_DATA_DIR, "friends.json")
+
+
+def get_user_data_dir() -> str:
+    """
+    Returns the persistent root directory for user personal study data.
+    Decoupled from Git repository source code to guarantee that pulling updates,
+    switching branches, or cloning a new version never overwrites personal progress.
+    Can be overridden via DDCET_USER_DATA_DIR or DDCET_DATA_DIR environment variables.
+    """
+    env_dir = os.environ.get("DDCET_USER_DATA_DIR") or os.environ.get("DDCET_DATA_DIR")
+    if env_dir and env_dir.strip():
+        return os.path.abspath(env_dir.strip())
+    # Cross-platform persistent path: ~/.ddcet-preparation
+    return os.path.join(os.path.expanduser("~"), ".ddcet-preparation")
+
+
+def get_persistent_paths() -> Dict[str, str]:
+    """Dynamically resolves current persistent paths (supports test monkeypatching)."""
+    user_root = get_user_data_dir()
+    data_dir = os.path.join(user_root, "data")
+    backups_dir = os.path.join(user_root, "backups")
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(backups_dir, exist_ok=True)
+    return {
+        "user_root": user_root,
+        "data_dir": data_dir,
+        "backups_dir": backups_dir,
+        "db_path": os.path.join(data_dir, "ddcet_user.db"),
+        "current_user_file": os.path.join(data_dir, "current_user.json"),
+        "friends_file": os.path.join(data_dir, "friends.json"),
+        "friends_cache_file": os.path.join(data_dir, "friends_cache.json"),
+        "sync_queue_file": os.path.join(data_dir, "sync_queue.json"),
+    }
+
+
+# Initial resolution
+_paths = get_persistent_paths()
+DATA_DIR = _paths["data_dir"]
+BACKUPS_DIR = _paths["backups_dir"]
+PERSISTENT_DATA_DIR = DATA_DIR
+PERSISTENT_BACKUPS_DIR = BACKUPS_DIR
+USER_DB_PATH = _paths["db_path"]
+SYNC_QUEUE_FILE = _paths["sync_queue_file"]
+CURRENT_USER_FILE = _paths["current_user_file"]
+FRIENDS_FILE = _paths["friends_file"]
+FRIENDS_CACHE_FILE = _paths["friends_cache_file"]
 
 
 def load_env_file() -> Dict[str, str]:

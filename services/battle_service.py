@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 
-from config import DATA_DIR
+from config import DATA_DIR, FRIENDS_FILE
 from services.auth_service import get_current_user
 from services.stats_service import compute_comprehensive_stats
 from services.supabase_sync_service import (
@@ -12,8 +12,6 @@ from services.supabase_sync_service import (
     save_friends_cache,
     load_friends_cache
 )
-
-FRIENDS_FILE = os.path.join(DATA_DIR, "friends.json")
 
 
 def load_friends_data() -> List[str]:

@@ -4,8 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DDCET Prep — Gujarat Diploma to Degree Mastery</title>
+    <!-- Immediate robust theme initialization & handler -->
+    <script>
+        (function() {
+            function resolveTheme(pref) {
+                if (pref === 'dark') return 'dark';
+                if (pref === 'light') return 'light';
+                return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            }
+
+            window.setAppTheme = function(preference, animate) {
+                var pref = (preference === 'light' || preference === 'dark' || preference === 'system') ? preference : 'system';
+                var resolved = resolveTheme(pref);
+
+                if (animate && (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    document.documentElement.classList.add('theme-transition');
+                    window.clearTimeout(window._themeTimer);
+                    window._themeTimer = window.setTimeout(function() {
+                        document.documentElement.classList.remove('theme-transition');
+                    }, 220);
+                }
+
+                document.documentElement.setAttribute('data-theme', resolved);
+                document.documentElement.setAttribute('data-theme-preference', pref);
+
+                try {
+                    localStorage.setItem('ddcet-theme', pref);
+                } catch(e) {}
+
+                // Update active state on all header buttons immediately
+                var btns = document.querySelectorAll('.theme-btn');
+                for (var i = 0; i < btns.length; i++) {
+                    var val = btns[i].getAttribute('data-theme-val');
+                    if (val === pref) {
+                        btns[i].classList.add('active');
+                    } else {
+                        btns[i].classList.remove('active');
+                    }
+                }
+
+                // Update settings tab cards if present
+                ['light', 'dark', 'system'].forEach(function(val) {
+                    var card = document.getElementById('theme-card-' + val);
+                    if (card) {
+                        if (val === pref) card.classList.add('active');
+                        else card.classList.remove('active');
+                    }
+                });
+            };
+
+            // Global App object fallback so clicks work immediately
+            window.App = window.App || {};
+            window.App.setTheme = function(pref, animate) {
+                window.setAppTheme(pref, animate);
+            };
+
+            // Immediate initial theme execution to prevent any FOUT
+            try {
+                var initialPref = localStorage.getItem('ddcet-theme') || 'system';
+                var initialResolved = resolveTheme(initialPref);
+                document.documentElement.setAttribute('data-theme', initialResolved);
+                document.documentElement.setAttribute('data-theme-preference', initialPref);
+            } catch (e) {}
+
+            // Listen for OS scheme transitions when system mode is selected
+            if (window.matchMedia) {
+                var mq = window.matchMedia('(prefers-color-scheme: dark)');
+                var handleSchemeChange = function(e) {
+                    var currentPref = localStorage.getItem('ddcet-theme') || 'system';
+                    if (currentPref === 'system') {
+                        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+                    }
+                };
+                if (mq.addEventListener) mq.addEventListener('change', handleSchemeChange);
+                else if (mq.addListener) mq.addListener(handleSchemeChange);
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/libs/katex.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
 </head>
 <body>
     <!-- Top Navigation Bar -->
@@ -29,6 +109,21 @@
                 <button class="nav-btn" data-tab="tab-settings">Settings</button>
             </nav>
             <div class="header-actions">
+                <!-- Theme Mode Selector (Light / Dark / System) -->
+                <div class="theme-switcher-group" id="header-theme-switcher" role="radiogroup" aria-label="Appearance Theme">
+                    <button type="button" class="theme-btn" data-theme-val="light" title="Light Theme (Warm Paper)" aria-label="Light Theme" onclick="App.setTheme('light', true)">
+                        <span class="theme-icon">☀️</span>
+                        <span class="theme-label">Light</span>
+                    </button>
+                    <button type="button" class="theme-btn" data-theme-val="dark" title="Dark Theme (Deep Charcoal)" aria-label="Dark Theme" onclick="App.setTheme('dark', true)">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-label">Dark</span>
+                    </button>
+                    <button type="button" class="theme-btn" data-theme-val="system" title="System Preference" aria-label="System Theme" onclick="App.setTheme('system', true)">
+                        <span class="theme-icon">💻</span>
+                        <span class="theme-label">Auto</span>
+                    </button>
+                </div>
                 <div class="header-sync-pill" id="header-sync-pill" onclick="App.triggerManualSync()" title="Click to sync stats with Supabase cloud">
                     <span class="sync-dot online" id="sync-indicator-dot"></span>
                     <span class="sync-text" id="sync-status-label">Cloud Ready</span>
@@ -639,6 +734,67 @@
             </div>
 
             <div class="two-column-grid">
+                <!-- Appearance & Theme Settings Card -->
+                <div class="card theme-settings-card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
+                    <div class="flex-between">
+                        <div>
+                            <h3>Appearance & Study Atmosphere</h3>
+                            <p class="sub-text">Switch between Warm Paper daylight mode, Deep Charcoal dark mode, or follow your operating system automatically.</p>
+                        </div>
+                    </div>
+                    <div class="theme-picker-grid" style="margin-top: 1.25rem;">
+                        <div class="theme-option-card" id="theme-card-light" onclick="App.setTheme('light', true)">
+                            <div class="theme-card-preview preview-light">
+                                <div class="preview-header"></div>
+                                <div class="preview-body">
+                                    <div class="preview-line line-main"></div>
+                                    <div class="preview-line line-sub"></div>
+                                    <div class="preview-accent"></div>
+                                </div>
+                            </div>
+                            <div class="theme-card-info">
+                                <div class="theme-card-title">
+                                    <strong>Warm Paper</strong>
+                                    <span class="theme-badge">Light</span>
+                                </div>
+                                <p>Calm #F6F5F0 surface, soft sage #789681 accents, and gentle graphite text for natural daylight study.</p>
+                            </div>
+                        </div>
+
+                        <div class="theme-option-card" id="theme-card-dark" onclick="App.setTheme('dark', true)">
+                            <div class="theme-card-preview preview-dark">
+                                <div class="preview-header"></div>
+                                <div class="preview-body">
+                                    <div class="preview-line line-main"></div>
+                                    <div class="preview-line line-sub"></div>
+                                    <div class="preview-accent"></div>
+                                </div>
+                            </div>
+                            <div class="theme-card-info">
+                                <div class="theme-card-title">
+                                    <strong>Deep Charcoal</strong>
+                                    <span class="theme-badge">Dark</span>
+                                </div>
+                                <p>Refined #171B19 background with muted sage #8EAB95 highlights, designed for late-night focus sessions.</p>
+                            </div>
+                        </div>
+
+                        <div class="theme-option-card" id="theme-card-system" onclick="App.setTheme('system', true)">
+                            <div class="theme-card-preview preview-system">
+                                <div class="preview-split-left"></div>
+                                <div class="preview-split-right"></div>
+                            </div>
+                            <div class="theme-card-info">
+                                <div class="theme-card-title">
+                                    <strong>System Automatic</strong>
+                                    <span class="theme-badge">Auto</span>
+                                </div>
+                                <p>Seamlessly match your device's operating system preferences as the day transitions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Config Form -->
                 <div class="card">
                     <h3>Exam & Practice Settings</h3>
@@ -1106,6 +1262,6 @@
     <!-- Scripts (Offline-ready KaTeX & Marked) -->
     <script src="/static/libs/katex.min.js"></script>
     <script src="/static/libs/marked.min.js"></script>
-    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.js?v=2.2"></script>
 </body>
 </html>

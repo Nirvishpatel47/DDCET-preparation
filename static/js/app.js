@@ -27,6 +27,7 @@ const App = {
     },
 
     init: function () {
+        this.initTheme();
         this.bindEvents();
         this.loadHierarchy();
         this.loadSettings();
@@ -35,6 +36,17 @@ const App = {
         this.loadTodayDashboard();
         this.loadDueRevisions();
         this.loadQuestionBank(1);
+    },
+
+    initTheme: function () {
+        const savedPref = localStorage.getItem('ddcet-theme') || 'system';
+        this.setTheme(savedPref, false);
+    },
+
+    setTheme: function (preference, animate = false) {
+        if (typeof window.setAppTheme === 'function') {
+            window.setAppTheme(preference, animate);
+        }
     },
 
     renderContent: function (text) {
@@ -198,14 +210,14 @@ const App = {
             dropZone.addEventListener('click', () => fileInput.click());
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                dropZone.style.borderColor = '#1e40af';
+                dropZone.style.borderColor = 'var(--primary-accent)';
             });
             dropZone.addEventListener('dragleave', () => {
-                dropZone.style.borderColor = '#e2e8f0';
+                dropZone.style.borderColor = 'var(--border-medium)';
             });
             dropZone.addEventListener('drop', (e) => {
                 e.preventDefault();
-                dropZone.style.borderColor = '#e2e8f0';
+                dropZone.style.borderColor = 'var(--border-medium)';
                 if (e.dataTransfer.files.length) {
                     this.handleImportFile(e.dataTransfer.files[0]);
                 }
@@ -424,12 +436,12 @@ const App = {
         tbody.innerHTML = list.map(item => `
             <tr>
                 <td><strong>${item.subject_name}</strong> &rsaquo; ${item.topic_name}</td>
-                <td><strong style="color:#1e40af">${(item.priority * 100).toFixed(1)}%</strong></td>
+                <td><strong style="color:var(--primary-accent);">${(item.priority * 100).toFixed(1)}%</strong></td>
                 <td>${(item.components.weakness_score * 100).toFixed(0)}%</td>
                 <td>${item.metrics.overdue_revisions} due</td>
                 <td>${item.metrics.days_since_practice} days</td>
-                <td>${item.is_diagnostic ? '<span class="badge" style="background:#0284c7">Diagnostic</span>' : '<span class="tag">Active</span>'}</td>
-                <td><small style="color:#475569">${item.explanation}</small></td>
+                <td>${item.is_diagnostic ? '<span class="badge" style="background:var(--sem-info-bg); color:var(--sem-info-text); border:1px solid var(--sem-info-border);">Diagnostic</span>' : '<span class="tag">Active</span>'}</td>
+                <td><small style="color:var(--text-secondary);">${item.explanation}</small></td>
             </tr>
         `).join('');
     },
@@ -469,13 +481,13 @@ const App = {
                     return;
                 }
                 container.innerHTML = data.questions.map(q => `
-                    <div class="card" style="padding: 1rem; border-left: 4px solid #ef4444;">
+                    <div class="card" style="padding: 1rem; border-left: 4px solid var(--sem-incorrect-accent);">
                         <div class="flex-between">
                             <strong>${q.subject} &rsaquo; ${q.topic}</strong>
                             <span class="tag difficulty-${q.difficulty}">${q.difficulty}</span>
                         </div>
                         <div style="margin: 0.5rem 0; font-size: 0.95rem;">${this.renderContent(q.question)}</div>
-                        <div class="flex-between" style="font-size: 0.8rem; color: #64748b;">
+                        <div class="flex-between" style="font-size: 0.8rem; color: var(--text-secondary);">
                             <span>Interval: ${q.interval_days} days | Attempts: ${q.total_attempts}</span>
                             <span>Last error: ${q.mistake_label}</span>
                         </div>
@@ -498,9 +510,9 @@ const App = {
                             <span>${m.count} times (${m.percentage}%)</span>
                         </div>
                         <div class="progress-track" style="height: 8px; border-radius: 4px;">
-                            <div class="progress-fill" style="width: ${m.percentage}%; background: #dc2626;"></div>
+                            <div class="progress-fill" style="width: ${m.percentage}%; background: var(--sem-incorrect-accent);"></div>
                         </div>
-                        <small style="color: #64748b;">Most frequent in: ${m.example_topic}</small>
+                        <small style="color: var(--text-muted);">Most frequent in: ${m.example_topic}</small>
                     </div>
                 `).join('');
             });
@@ -548,7 +560,7 @@ const App = {
                 <td><code>${q.id}</code></td>
                 <td>
                     <div style="font-size:0.95rem; font-weight:600;">${this.renderContent(q.question)}</div>
-                    <div style="font-size:0.82rem; color:#64748b; margin-top:0.35rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
+                    <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.35rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
                         <span><strong>A:</strong> ${this.renderContent(q.options.A)}</span>
                         <span><strong>B:</strong> ${this.renderContent(q.options.B)}</span>
                         <span><strong>C:</strong> ${this.renderContent(q.options.C)}</span>
@@ -557,8 +569,8 @@ const App = {
                 </td>
                 <td>${q.subject} &rsaquo; ${q.topic}</td>
                 <td><span class="tag difficulty-${q.difficulty}">${q.difficulty}</span></td>
-                <td><strong style="color:#059669">${q.correct_answer}</strong></td>
-                <td>${q.verified ? '<span class="tag" style="background:#dcfce7; color:#166534;">Verified</span>' : '<span class="tag">Unverified</span>'}</td>
+                <td><strong style="color:var(--sem-correct-accent);">${q.correct_answer}</strong></td>
+                <td>${q.verified ? '<span class="tag" style="background:var(--sem-correct-bg); color:var(--sem-correct-text); border:1px solid var(--sem-correct-border);">Verified</span>' : '<span class="tag">Unverified</span>'}</td>
             </tr>
         `).join('');
 
@@ -669,15 +681,15 @@ const App = {
             .then(data => {
                 banner.classList.remove('hidden');
                 if (data.is_duplicate) {
-                    banner.style.background = '#fef2f2';
-                    banner.style.color = '#dc2626';
-                    banner.style.border = '1px solid #fecaca';
-                    banner.innerHTML = `⚠️ <strong>Duplicate Detected:</strong> ${data.reason} <br><span style="font-size:0.82rem; color:#991b1b;">Existing Match ID: <code>${data.existing_id}</code> &mdash; "${data.existing_text.substring(0, 80)}..."</span><br><strong>This question will NOT be added to prevent duplication.</strong>`;
+                    banner.style.background = 'var(--sem-incorrect-bg)';
+                    banner.style.color = 'var(--sem-incorrect-text)';
+                    banner.style.border = '1px solid var(--sem-incorrect-border)';
+                    banner.innerHTML = `⚠️ <strong>Duplicate Detected:</strong> ${data.reason} <br><span style="font-size:0.82rem; color:var(--sem-incorrect-accent);">Existing Match ID: <code>${data.existing_id}</code> &mdash; "${data.existing_text.substring(0, 80)}..."</span><br><strong>This question will NOT be added to prevent duplication.</strong>`;
                     saveBtn.disabled = true;
                 } else {
-                    banner.style.background = '#f0fdf4';
-                    banner.style.color = '#166534';
-                    banner.style.border = '1px solid #bbf7d0';
+                    banner.style.background = 'var(--sem-correct-bg)';
+                    banner.style.color = 'var(--sem-correct-text)';
+                    banner.style.border = '1px solid var(--sem-correct-border)';
                     banner.innerHTML = `✓ <strong>Unique Question:</strong> No duplicate found in database. Safe to add.`;
                     saveBtn.disabled = false;
                 }
@@ -796,9 +808,9 @@ const App = {
                 if (data.probable_duplicates && data.probable_duplicates.length) {
                     flaggedSec.classList.remove('hidden');
                     flaggedList.innerHTML = data.probable_duplicates.map(p => `
-                        <div class="card" style="padding:0.5rem; background:#fffbeb; margin-bottom:0.4rem; font-size:0.85rem;">
+                        <div class="card" style="padding:0.5rem; background:var(--sem-warning-bg); border:1px solid var(--sem-warning-border); margin-bottom:0.4rem; font-size:0.85rem;">
                             <strong>Row ${p.row} (ID: ${p.id}):</strong> ${p.question}
-                            <div style="color:#d97706; margin-top:0.2rem;">
+                            <div style="color:var(--sem-warning-accent); margin-top:0.2rem;">
                                 ${p.candidates.map(c => `&bull; Similar to existing (${(c.similarity_score * 100).toFixed(0)}% match): "${c.existing_text}"`).join('<br>')}
                             </div>
                         </div>
@@ -813,7 +825,7 @@ const App = {
                 if (data.rejected && data.rejected.length) {
                     errSec.classList.remove('hidden');
                     errList.innerHTML = data.rejected.map(r => `
-                        <div class="card" style="padding:0.5rem; background:#fef2f2; margin-bottom:0.4rem; font-size:0.85rem;">
+                        <div class="card" style="padding:0.5rem; background:var(--sem-incorrect-bg); border:1px solid var(--sem-incorrect-border); margin-bottom:0.4rem; font-size:0.85rem;">
                             <strong>Row ${r.row} (ID: ${r.id || 'N/A'}):</strong> <span class="text-danger">${r.error}</span>
                         </div>
                     `).join('');
@@ -1061,15 +1073,18 @@ const App = {
         optContainer.innerHTML = keys.map(k => {
             const isSelected = q.selected_option === k;
             let optClass = 'option-card';
+            let statusTag = '';
             if (isSelected) optClass += ' selected';
 
-            // Show feedback colors ONLY if NOT mock exam AND checked
+            // Show feedback colors and textual status indicators ONLY if NOT mock exam AND checked
             if (!isMock && q.is_checked) {
                 optClass += ' locked';
                 if (k === q.correct_answer) {
                     optClass += ' correct';
+                    statusTag = '<span class="opt-status-tag tag-correct">✓ Correct Answer</span>';
                 } else if (isSelected && !q.is_correct) {
                     optClass += ' incorrect';
+                    statusTag = '<span class="opt-status-tag tag-incorrect">✗ Your Choice</span>';
                 }
             }
 
@@ -1078,6 +1093,7 @@ const App = {
                 <div class="${optClass}" onclick="App.selectOption('${k}')">
                     <span class="option-badge">${k}</span>
                     <span class="option-text">${renderedOptText}</span>
+                    ${statusTag}
                 </div>
             `;
         }).join('');
@@ -1340,7 +1356,7 @@ const App = {
         const misBox = document.getElementById('sum-mistake-breakdown');
         if (summary.mistake_breakdown && summary.mistake_breakdown.length) {
             misBox.innerHTML = summary.mistake_breakdown.map(mb => `
-                <span class="tag" style="background:#fee2e2; color:#dc2626; margin-right:0.4rem;">
+                <span class="tag" style="background:var(--sem-incorrect-bg); color:var(--sem-incorrect-text); border:1px solid var(--sem-incorrect-border); margin-right:0.4rem;">
                     ${mb.mistake_category}: ${mb.count}
                 </span>
             `).join('');
@@ -1798,12 +1814,12 @@ const App = {
                         ${uBadge}
                         <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.35rem;">${tb.user.mastery}</span>
                     </td>
-                    <td><strong style="color:var(--accent-gold);">${tb.user.attempted ? tb.user.accuracy_pct + '%' : '-'}</strong></td>
+                    <td><strong style="color:var(--primary-accent);">${tb.user.attempted ? tb.user.accuracy_pct + '%' : '-'}</strong></td>
                     <td>
                         ${fBadge}
                         <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.35rem;">${tb.friend.mastery}</span>
                     </td>
-                    <td><strong style="color:#60a5fa;">${tb.friend.attempted ? tb.friend.accuracy_pct + '%' : '-'}</strong></td>
+                    <td><strong style="color:var(--sem-info-accent);">${tb.friend.attempted ? tb.friend.accuracy_pct + '%' : '-'}</strong></td>
                     <td>
                         <span class="duel-winner-tag ${leaderCls}">${tb.leader_label}</span>
                     </td>

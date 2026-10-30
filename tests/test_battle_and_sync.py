@@ -29,16 +29,25 @@ from services.supabase_sync_service import (
 @pytest.fixture(autouse=True)
 def setup_test_environment(tmp_path, monkeypatch):
     """Isolate SQLite database, sync queue, and cache files for each test."""
-    test_db_file = str(tmp_path / "test_battle.db")
-    test_queue_file = str(tmp_path / "sync_queue.json")
-    test_user_file = str(tmp_path / "current_user.json")
-    test_cache_file = str(tmp_path / "friends_cache.json")
-    test_friends_file = str(tmp_path / "friends.json")
+    monkeypatch.setenv("DDCET_USER_DATA_DIR", str(tmp_path))
+    test_db_file = str(tmp_path / "data" / "ddcet_user.db")
+    test_queue_file = str(tmp_path / "data" / "sync_queue.json")
+    test_user_file = str(tmp_path / "data" / "current_user.json")
+    test_cache_file = str(tmp_path / "data" / "friends_cache.json")
+    test_friends_file = str(tmp_path / "data" / "friends.json")
+
+    os.makedirs(str(tmp_path / "data"), exist_ok=True)
+    os.makedirs(str(tmp_path / "backups"), exist_ok=True)
 
     monkeypatch.setattr("database.db.DB_PATH", test_db_file)
-    monkeypatch.setattr("database.db.DATA_DIR", str(tmp_path))
+    monkeypatch.setattr("database.db.DATA_DIR", str(tmp_path / "data"))
+    monkeypatch.setattr("database.db.BACKUPS_DIR", str(tmp_path / "backups"))
+    monkeypatch.setattr("config.DATA_DIR", str(tmp_path / "data"))
+    monkeypatch.setattr("config.BACKUPS_DIR", str(tmp_path / "backups"))
+    monkeypatch.setattr("config.USER_DB_PATH", test_db_file)
     monkeypatch.setattr("config.SYNC_QUEUE_FILE", test_queue_file)
     monkeypatch.setattr("config.CURRENT_USER_FILE", test_user_file)
+    monkeypatch.setattr("config.FRIENDS_FILE", test_friends_file)
     monkeypatch.setattr("config.FRIENDS_CACHE_FILE", test_cache_file)
     monkeypatch.setattr("config.ENV_PATH", str(tmp_path / ".env.test"))
     monkeypatch.setattr("services.auth_service.CURRENT_USER_FILE", test_user_file)
@@ -100,8 +109,9 @@ def test_auth_login_and_profile_management():
     assert up_res.json()["user"]["avatar"] == "👑"
 
 
-def test_offline_sync_queueing():
+def test_offline_sync_queueing(monkeypatch):
     """Verify that stats are stored in the local sync_queue.json file when offline."""
+    monkeypatch.setattr("services.supabase_sync_service.check_internet_connection", lambda: False)
     stats = {
         "email": "offline_student@example.com",
         "display_name": "Offline Student",

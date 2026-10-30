@@ -1,57 +1,226 @@
 /* ===================================================================
-   DDCET Exam Preparation System — Editorial Minimal Design
-   Visual Reference: madefornothing.com (Dark, Architectural, Refined)
-   Offline-First, KaTeX Mathematical Typesetting, Fully Responsive
+   DDCET Exam Preparation System — Theme & Design Tokens System
+   Two Complete Themes:
+   - Light: Warm Paper (#F6F5F0) + Sage Green (#789681)
+   - Dark:  Deep Charcoal (#171B19) + Muted Sage (#8EAB95)
+   - System: Follows OS prefers-color-scheme with smooth 180ms transition
+   Typography: Inter (Primary UI) + JetBrains Mono (Technical/Numerics)
    =================================================================== */
 
-:root {
-    /* Palette: Obsidian, Deep Charcoal, Crisp Light Typography, Warm Bronze Accent */
-    --bg-base: #090a0c;
-    --bg-surface: #121418;
-    --bg-surface-elevated: #181a21;
-    --bg-surface-subtle: #1e212b;
-    --bg-input: #111317;
+/* -------------------------------------------------------------
+   1. Design Tokens: Light Theme (Warm Paper + Sage Green)
+   ------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+    /* Exact base tokens */
+    --bg-base: #F6F5F0;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #E8EEE7;  /* Secondary Surface */
+    --bg-surface-subtle: #ECECE6;
+    --bg-input: #FFFFFF;
 
-    --border-subtle: rgba(255, 255, 255, 0.07);
-    --border-medium: rgba(255, 255, 255, 0.15);
-    --border-strong: rgba(255, 255, 255, 0.28);
-    --border-focus: #c5a059;
+    --primary-accent: #789681;
+    --primary-accent-hover: #67846F;
+    --primary-accent-subtle: #E8EEE7;
+    --primary-accent-border: #BCCDC1;
+    --primary-accent-contrast: #FFFFFF;
 
-    --text-primary: #f4f4f6;
-    --text-secondary: #c5cad6;
-    --text-muted: #727a8c;
-    --text-dim: #4b5263;
+    --text-primary: #29372F;
+    --text-secondary: #777D75;
+    --text-muted: #8A9188;
+    --text-dim: #A8AEA5;
 
-    /* Editorial Accents */
-    --accent-gold: #c5a059;
-    --accent-gold-soft: rgba(197, 160, 89, 0.12);
-    --accent-gold-border: rgba(197, 160, 89, 0.45);
+    --border: #E7E6DF;
+    --border-subtle: #E7E6DF;
+    --border-medium: #D8D6CD;
+    --border-strong: #BFBCB0;
+    --border-focus: #789681;
 
-    --accent-green: #22c55e;
-    --accent-green-soft: rgba(34, 197, 94, 0.12);
-    --accent-green-text: #4ade80;
+    /* Semantic Colours (Subtle & High-Contrast Readable) */
+    /* Correct */
+    --sem-correct-bg: #E5F0E6;
+    --sem-correct-text: #1C4927;
+    --sem-correct-border: #B4D7B8;
+    --sem-correct-accent: #2F7A40;
 
-    --accent-red: #ef4444;
-    --accent-red-soft: rgba(239, 68, 68, 0.12);
-    --accent-red-text: #f87171;
+    /* Incorrect */
+    --sem-incorrect-bg: #F5E8E5;
+    --sem-incorrect-text: #772621;
+    --sem-incorrect-border: #E8BDB6;
+    --sem-incorrect-accent: #B33931;
 
-    --accent-amber: #f59e0b;
-    --accent-amber-soft: rgba(245, 158, 11, 0.12);
-    --accent-amber-text: #fbbf24;
+    /* Warning */
+    --sem-warning-bg: #F4EBD9;
+    --sem-warning-text: #6C4D14;
+    --sem-warning-border: #E3CEA4;
+    --sem-warning-accent: #A2751C;
+
+    /* Information */
+    --sem-info-bg: #E7EDF3;
+    --sem-info-text: #1F476C;
+    --sem-info-border: #B6CFE4;
+    --sem-info-accent: #326C9E;
+
+    /* Mapped Aliases for Component Backward-Compatibility */
+    --accent-gold: var(--primary-accent);
+    --accent-gold-soft: var(--primary-accent-subtle);
+    --accent-gold-border: var(--primary-accent-border);
+    --accent-gold-text: var(--text-primary);
+
+    --accent-green: var(--sem-correct-accent);
+    --accent-green-soft: var(--sem-correct-bg);
+    --accent-green-border: var(--sem-correct-border);
+    --accent-green-text: var(--sem-correct-text);
+
+    --accent-red: var(--sem-incorrect-accent);
+    --accent-red-soft: var(--sem-incorrect-bg);
+    --accent-red-border: var(--sem-incorrect-border);
+    --accent-red-text: var(--sem-incorrect-text);
+
+    --accent-amber: var(--sem-warning-accent);
+    --accent-amber-soft: var(--sem-warning-bg);
+    --accent-amber-border: var(--sem-warning-border);
+    --accent-amber-text: var(--sem-warning-text);
+
+    --accent-blue: var(--sem-info-accent);
+    --accent-blue-soft: var(--sem-info-bg);
+    --accent-blue-border: var(--sem-info-border);
+    --accent-blue-text: var(--sem-info-text);
+
+    /* Primary button tokens */
+    --btn-primary-bg: #29372F;
+    --btn-primary-text: #FFFFFF;
+    --btn-primary-hover: #1E2822;
+
+    /* Surface Elevation & Overlays */
+    --header-bg: rgba(246, 245, 240, 0.94);
+    --modal-backdrop: rgba(41, 55, 47, 0.45);
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+    --shadow-modal: 0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04);
 
     --radius-sm: 6px;
     --radius-md: 10px;
-    --radius-lg: 16px;
+    --radius-lg: 14px;
 
-    --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
-    --shadow-modal: 0 16px 48px -4px rgba(0, 0, 0, 0.85);
-
-    --font-serif: "Newsreader", "Playfair Display", Georgia, "Times New Roman", serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    /* Typography scale */
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
 }
 
-/* Global Reset & Base Typography */
+/* -------------------------------------------------------------
+   2. Design Tokens: Dark Theme (Deep Charcoal + Muted Sage)
+   ------------------------------------------------------------- */
+[data-theme="dark"] {
+    /* Exact base tokens */
+    --bg-base: #171B19;
+    --bg-surface: #222925;
+    --bg-surface-elevated: #29332D;  /* Secondary Surface */
+    --bg-surface-subtle: #1D2420;
+    --bg-input: #1C231F;
+
+    --primary-accent: #8EAB95;
+    --primary-accent-hover: #A1BCA8;
+    --primary-accent-subtle: #29332D;
+    --primary-accent-border: #44544A;
+    --primary-accent-contrast: #171B19;
+
+    --text-primary: #E5EAE5;
+    --text-secondary: #A4ADA5;
+    --text-muted: #7E8980;
+    --text-dim: #59645B;
+
+    --border: #343D37;
+    --border-subtle: #343D37;
+    --border-medium: #404A43;
+    --border-strong: #546258;
+    --border-focus: #8EAB95;
+
+    /* Semantic Colours (Subtle & High-Contrast Readable) */
+    /* Correct */
+    --sem-correct-bg: #263D2E;
+    --sem-correct-text: #A6E4B5;
+    --sem-correct-border: #375A42;
+    --sem-correct-accent: #67BA7D;
+
+    /* Incorrect */
+    --sem-incorrect-bg: #442B2A;
+    --sem-incorrect-text: #F4B7B3;
+    --sem-incorrect-border: #613C3A;
+    --sem-incorrect-accent: #D66860;
+
+    /* Warning */
+    --sem-warning-bg: #403725;
+    --sem-warning-text: #F1D69C;
+    --sem-warning-border: #5D4F32;
+    --sem-warning-accent: #D3A851;
+
+    /* Information */
+    --sem-info-bg: #293744;
+    --sem-info-text: #A7CDEC;
+    --sem-info-border: #3A4F62;
+    --sem-info-accent: #639CCD;
+
+    /* Mapped Aliases for Component Backward-Compatibility */
+    --accent-gold: var(--primary-accent);
+    --accent-gold-soft: var(--primary-accent-subtle);
+    --accent-gold-border: var(--primary-accent-border);
+    --accent-gold-text: var(--text-primary);
+
+    --accent-green: var(--sem-correct-accent);
+    --accent-green-soft: var(--sem-correct-bg);
+    --accent-green-border: var(--sem-correct-border);
+    --accent-green-text: var(--sem-correct-text);
+
+    --accent-red: var(--sem-incorrect-accent);
+    --accent-red-soft: var(--sem-incorrect-bg);
+    --accent-red-border: var(--sem-incorrect-border);
+    --accent-red-text: var(--sem-incorrect-text);
+
+    --accent-amber: var(--sem-warning-accent);
+    --accent-amber-soft: var(--sem-warning-bg);
+    --accent-amber-border: var(--sem-warning-border);
+    --accent-amber-text: var(--sem-warning-text);
+
+    --accent-blue: var(--sem-info-accent);
+    --accent-blue-soft: var(--sem-info-bg);
+    --accent-blue-border: var(--sem-info-border);
+    --accent-blue-text: var(--sem-info-text);
+
+    /* Primary button tokens */
+    --btn-primary-bg: #8EAB95;
+    --btn-primary-text: #171B19;
+    --btn-primary-hover: #A1BCA8;
+
+    /* Surface Elevation & Overlays */
+    --header-bg: rgba(23, 27, 25, 0.94);
+    --modal-backdrop: rgba(8, 11, 10, 0.72);
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.16);
+    --shadow-modal: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* -------------------------------------------------------------
+   3. Smooth Theme Transition & Accessibility
+   ------------------------------------------------------------- */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease !important;
+    transition-delay: 0s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.theme-transition,
+    html.theme-transition *,
+    html.theme-transition *:before,
+    html.theme-transition *:after {
+        transition: none !important;
+    }
+}
+
+/* -------------------------------------------------------------
+   4. Global Reset & Base Typography
+   ------------------------------------------------------------- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -71,16 +240,16 @@ html, body {
 }
 
 h1, h2, h3, h4, .brand-title {
-    font-family: var(--font-serif);
-    font-weight: 500;
+    font-family: var(--font-sans);
+    font-weight: 600;
     letter-spacing: -0.025em;
     color: var(--text-primary);
 }
 
-h1 { font-size: 1.85rem; line-height: 1.25; }
-h2 { font-size: 1.55rem; line-height: 1.3; }
-h3 { font-size: 1.25rem; line-height: 1.35; }
-h4 { font-size: 1.05rem; line-height: 1.4; }
+h1 { font-size: 1.65rem; line-height: 1.25; }  /* ~26px */
+h2 { font-size: 1.35rem; line-height: 1.3; }   /* ~21px */
+h3 { font-size: 1.15rem; line-height: 1.35; }  /* ~18px */
+h4 { font-size: 0.98rem; line-height: 1.4; }
 
 p {
     color: var(--text-secondary);
@@ -90,80 +259,118 @@ code, pre {
     font-family: var(--font-mono);
 }
 
-/* Header & Navigation Bar */
+/* Tabular Numerals for Numerical and Quantitative Data */
+.tabular-nums,
+.metric-value,
+.score-val,
+#session-timer-display,
+.data-table td,
+.metric-duel-values,
+.fighter-score {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+/* Accessible Focus Outlines */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--primary-accent);
+    outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------
+   5. Header & Navigation Bar: Strict Single-Line Layout
+   ------------------------------------------------------------- */
 .app-header {
-    background: rgba(9, 10, 12, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: var(--header-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 0.85rem 1.75rem;
+    padding: 0.6rem 1.25rem;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .header-content {
-    max-width: 1360px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.25rem;
+    flex-wrap: nowrap; /* STRICTLY SAME LINE */
+    gap: 0.75rem;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.65rem;
+    flex-shrink: 0; /* Keep brand intact */
 }
 
 .logo-badge {
     background: var(--bg-surface-elevated);
-    border: 1px solid var(--accent-gold-border);
-    color: var(--accent-gold);
+    border: 1px solid var(--primary-accent-border);
+    color: var(--primary-accent);
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.82rem;
-    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    padding: 0.2rem 0.5rem;
     border-radius: var(--radius-sm);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
 }
 
 .brand-text h1 {
-    font-size: 1.15rem;
-    font-family: var(--font-serif);
-    font-weight: 500;
+    font-size: 0.98rem;
+    font-weight: 600;
     letter-spacing: -0.01em;
+    white-space: nowrap;
 }
 
 .brand-text .sub-text {
-    font-size: 0.76rem;
+    font-size: 0.68rem;
     color: var(--text-muted);
     letter-spacing: 0.03em;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
-/* Nav Tabs */
+/* Nav Tabs: Smooth horizontal overflow without wrapping */
 .nav-links {
     display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: nowrap; /* STRICTLY SAME LINE */
+    flex-shrink: 1;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-btn {
     background: transparent;
     border: 1px solid transparent;
-    color: var(--text-muted);
-    font-size: 0.88rem;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
     font-weight: 500;
-    padding: 0.45rem 0.85rem;
+    padding: 0.38rem 0.65rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.15s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.35rem;
+    white-space: nowrap; /* Never wrap button text */
+    flex-shrink: 0;
 }
 
 .nav-btn:hover {
@@ -174,32 +381,132 @@ code, pre {
 
 .nav-btn.active {
     color: var(--text-primary);
-    background: var(--bg-surface-elevated);
+    background: var(--bg-surface);
     border-color: var(--border-medium);
+    box-shadow: var(--shadow-subtle);
     font-weight: 600;
 }
 
 .badge {
-    background: var(--accent-red-soft);
-    color: var(--accent-red-text);
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: var(--sem-incorrect-bg);
+    color: var(--sem-incorrect-text);
+    border: 1px solid var(--sem-incorrect-border);
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    padding: 0.1rem 0.45rem;
+    padding: 0.08rem 0.4rem;
     border-radius: 999px;
 }
 
-/* Main Layout Container */
+/* Header Actions: Never wraps, always in line */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap; /* STRICTLY SAME LINE */
+    flex-shrink: 0;
+}
+
+/* Theme Switcher Segmented Control in Header */
+.theme-switcher-group {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.28rem;
+    padding: 0.25rem 0.55rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: calc(var(--radius-sm) - 2px);
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.theme-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-surface);
+}
+
+.theme-btn.active {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.header-sync-pill, .header-user-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.65rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.header-sync-pill:hover, .header-user-pill:hover {
+    background: var(--bg-surface-elevated);
+    border-color: var(--border-medium);
+}
+
+.sync-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sync-dot.online {
+    background: var(--sem-correct-accent);
+}
+
+.sync-dot.offline {
+    background: var(--sem-warning-accent);
+}
+
+.user-avatar {
+    font-size: 1rem;
+}
+
+.user-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* -------------------------------------------------------------
+   6. Main Layout & Page Containers
+   ------------------------------------------------------------- */
 .main-container {
     max-width: 1360px;
-    margin: 2.25rem auto 4rem auto;
+    margin: 2rem auto 4rem auto;
     padding: 0 1.5rem;
 }
 
 .tab-pane {
     display: none;
-    animation: fadeIn 0.2s ease-in-out;
+    animation: fadeIn 0.15s ease-in-out;
 }
 
 .tab-pane.active {
@@ -207,33 +514,32 @@ code, pre {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
+    from { opacity: 0; transform: translateY(3px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Page Header */
 .page-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
 }
 
 .page-header h2 {
-    font-size: 1.65rem;
-    margin-bottom: 0.35rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .page-header p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
 }
 
-/* Editorial Cards */
+/* Cards & Surfaces */
 .card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1.75rem 2rem;
+    padding: 1.6rem 1.85rem;
     box-shadow: var(--shadow-subtle);
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card:hover {
@@ -241,21 +547,24 @@ code, pre {
 }
 
 .card h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
+    font-size: 1.15rem;
 }
 
 .sub-text {
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
 }
 
-/* Daily Hero Recommendation Banner */
+/* -------------------------------------------------------------
+   7. Today Dashboard & Daily Hero
+   ------------------------------------------------------------- */
 .daily-hero-card {
-    background: linear-gradient(135deg, #13151b 0%, #171922 100%);
+    background: var(--bg-surface);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-lg);
-    padding: 2.25rem 2.5rem;
-    margin-bottom: 2.25rem;
+    padding: 2rem 2.25rem;
+    margin-bottom: 2rem;
     box-shadow: var(--shadow-subtle);
     position: relative;
     overflow: hidden;
@@ -267,8 +576,8 @@ code, pre {
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
 }
 
 .hero-header {
@@ -277,20 +586,19 @@ code, pre {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-header h2 {
-    font-size: 1.55rem;
-    font-family: var(--font-serif);
+    font-size: 1.45rem;
 }
 
 .target-tag {
-    background: var(--accent-gold-soft);
-    border: 1px solid var(--accent-gold-border);
-    color: var(--accent-gold);
+    background: var(--primary-accent-subtle);
+    border: 1px solid var(--primary-accent-border);
+    color: var(--primary-accent);
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 600;
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
@@ -301,32 +609,32 @@ code, pre {
 .hero-body {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 2.5rem;
+    gap: 2.25rem;
     align-items: center;
 }
 
 .hero-plan {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 .plan-step {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    padding: 1.15rem;
+    padding: 1.1rem;
     display: flex;
     gap: 0.85rem;
 }
 
 .step-num {
-    background: var(--bg-surface-elevated);
+    background: var(--bg-surface);
     border: 1px solid var(--border-medium);
-    color: var(--accent-gold);
+    color: var(--primary-accent);
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -338,26 +646,26 @@ code, pre {
 
 .plan-step strong {
     display: block;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     color: var(--text-primary);
     margin-bottom: 0.2rem;
 }
 
 .plan-step p {
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     line-height: 1.45;
 }
 
 .hero-actions {
     text-align: center;
-    min-width: 260px;
+    min-width: 250px;
 }
 
 .micro-note {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--text-muted);
-    margin-top: 0.65rem;
+    margin-top: 0.55rem;
     line-height: 1.4;
 }
 
@@ -366,49 +674,47 @@ code, pre {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.25rem;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
 }
 
 .metric-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1.5rem 1.75rem;
+    padding: 1.4rem 1.6rem;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-subtle);
     transition: all 0.15s ease;
 }
 
 .metric-card:hover {
     border-color: var(--border-medium);
-    background: var(--bg-surface-elevated);
 }
 
 .metric-label {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
-    margin-bottom: 0.4rem;
-}
-
-.metric-value {
-    font-family: var(--font-serif);
-    font-size: 2.25rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.15;
     margin-bottom: 0.35rem;
 }
 
+.metric-value {
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 0.3rem;
+}
+
 .metric-value.highlight {
-    color: var(--accent-gold);
+    color: var(--primary-accent);
 }
 
 .metric-value.focus-topic {
-    font-family: var(--font-sans);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
     overflow: hidden;
@@ -418,71 +724,73 @@ code, pre {
 
 .metric-sub {
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 /* Diagnosis Grid */
 .diagnosis-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.25rem;
+    gap: 1.25rem;
+    margin-top: 1.15rem;
 }
 
 .diag-item {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    padding: 1.15rem 1.35rem;
+    padding: 1.1rem 1.25rem;
 }
 
 .diag-title {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--accent-gold);
+    color: var(--primary-accent);
     display: block;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.4rem;
 }
 
 .diag-item p {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
 }
 
-/* Practice Modes Grid */
+/* -------------------------------------------------------------
+   8. Practice Modes Grid
+   ------------------------------------------------------------- */
 .practice-modes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 1.35rem;
 }
 
 .mode-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 2rem;
+    padding: 1.85rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: var(--shadow-subtle);
     transition: all 0.15s ease;
 }
 
 .mode-card:hover {
     border-color: var(--border-medium);
-    background: var(--bg-surface-elevated);
 }
 
 .mode-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.45rem;
 }
 
 .mode-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.35rem;
     flex-grow: 1;
 }
 
@@ -491,25 +799,27 @@ code, pre {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0.85rem;
     flex-wrap: wrap;
 }
 
 .mode-action label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    font-size: 0.84rem;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
     gap: 0.45rem;
 }
 
-/* Buttons */
+/* -------------------------------------------------------------
+   9. Buttons & Controls
+   ------------------------------------------------------------- */
 .btn {
     font-family: var(--font-sans);
     font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.01em;
-    padding: 0.6rem 1.2rem;
+    padding: 0.55rem 1.15rem;
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
     cursor: pointer;
@@ -517,85 +827,86 @@ code, pre {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     text-decoration: none;
     line-height: 1.4;
+    user-select: none;
 }
 
 .btn:disabled {
-    opacity: 0.35;
+    opacity: 0.4;
     cursor: not-allowed !important;
 }
 
-/* Primary Button: Pure Crisp White Background, Pitch Black Text */
+/* Primary Button: High Contrast, Editorial */
 .btn-primary {
-    background: #f4f4f6;
-    color: #090a0c;
-    border-color: rgba(255, 255, 255, 0.4);
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #ffffff;
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+    background: var(--btn-primary-hover);
+    border-color: var(--btn-primary-hover);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Outline Button: Dark Surface, Subtle Border */
+/* Outline Button: Clean Surface, Subtle Border */
 .btn-outline {
-    background: var(--bg-surface-elevated);
+    background: var(--bg-surface);
     border-color: var(--border-medium);
     color: var(--text-primary);
 }
 
 .btn-outline:hover:not(:disabled) {
-    background: var(--bg-surface-subtle);
+    background: var(--bg-surface-elevated);
     border-color: var(--border-strong);
 }
 
 .btn-warning {
-    background: var(--accent-amber-soft);
-    border-color: rgba(245, 158, 11, 0.4);
-    color: var(--accent-amber-text);
+    background: var(--sem-warning-bg);
+    border-color: var(--sem-warning-border);
+    color: var(--sem-warning-text);
 }
 
 .btn-warning:hover:not(:disabled) {
-    background: rgba(245, 158, 11, 0.2);
-    border-color: var(--accent-amber);
+    border-color: var(--sem-warning-accent);
 }
 
 .btn-danger {
-    background: var(--accent-red-soft);
-    border-color: rgba(239, 68, 68, 0.4);
-    color: var(--accent-red-text);
+    background: var(--sem-incorrect-bg);
+    border-color: var(--sem-incorrect-border);
+    color: var(--sem-incorrect-text);
 }
 
 .btn-danger:hover:not(:disabled) {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: var(--accent-red);
+    border-color: var(--sem-incorrect-accent);
 }
 
 .btn-success {
-    background: var(--accent-green-soft);
-    border-color: rgba(34, 197, 94, 0.4);
-    color: var(--accent-green-text);
+    background: var(--sem-correct-bg);
+    border-color: var(--sem-correct-border);
+    color: var(--sem-correct-text);
 }
 
 .btn-success:hover:not(:disabled) {
-    background: rgba(34, 197, 94, 0.2);
-    border-color: var(--accent-green);
+    border-color: var(--sem-correct-accent);
 }
 
 .btn-lg {
-    padding: 0.85rem 1.85rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.98rem;
     border-radius: var(--radius-sm);
 }
 
 .btn-sm {
-    padding: 0.35rem 0.75rem;
+    padding: 0.32rem 0.7rem;
     font-size: 0.8rem;
 }
 
-/* Inputs & Form Elements */
+/* -------------------------------------------------------------
+   10. Form Elements & Inputs
+   ------------------------------------------------------------- */
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -609,15 +920,16 @@ textarea {
     padding: 0.55rem 0.85rem;
     border-radius: var(--radius-sm);
     outline: none;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
+input[type="email"]:focus,
 select:focus,
 textarea:focus {
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 0 1px var(--accent-gold-border);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px var(--primary-accent-subtle);
 }
 
 select option {
@@ -626,14 +938,14 @@ select option {
 }
 
 .form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
 }
 
 .form-group label {
     display: block;
     font-size: 0.84rem;
     color: var(--text-secondary);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
 }
 
 .form-row {
@@ -649,7 +961,9 @@ select option {
     min-width: 130px;
 }
 
-/* Tables: Editorial & Minimalist */
+/* -------------------------------------------------------------
+   11. Tables & Data Presentations
+   ------------------------------------------------------------- */
 .table-responsive {
     overflow-x: auto;
     width: 100%;
@@ -658,69 +972,67 @@ select option {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     text-align: left;
 }
 
 .data-table th {
-    padding: 0.85rem 1.25rem;
+    padding: 0.8rem 1.15rem;
     color: var(--text-muted);
-    font-size: 0.76rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     border-bottom: 1px solid var(--border-medium);
+    background: var(--bg-surface-elevated);
 }
 
 .data-table td {
-    padding: 1.15rem 1.25rem;
+    padding: 1rem 1.15rem;
     border-bottom: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     vertical-align: middle;
 }
 
-.data-table tbody tr:hover td {
+.data-table tbody tr:hover {
     background: var(--bg-surface-elevated);
 }
 
-/* Status Tags & Badges */
-.tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.2rem 0.6rem;
+/* Difficulty Badges */
+.difficulty-badge, .difficulty-tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
     border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 600;
-    font-family: var(--font-mono);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-surface-elevated);
-    color: var(--text-secondary);
-    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
 }
 
 .difficulty-easy {
-    background: var(--accent-green-soft);
-    border-color: rgba(34, 197, 94, 0.35);
-    color: var(--accent-green-text);
+    background: var(--sem-correct-bg);
+    border-color: var(--sem-correct-border);
+    color: var(--sem-correct-text);
 }
 
 .difficulty-medium {
-    background: var(--accent-amber-soft);
-    border-color: rgba(245, 158, 11, 0.35);
-    color: var(--accent-amber-text);
+    background: var(--sem-warning-bg);
+    border-color: var(--sem-warning-border);
+    color: var(--sem-warning-text);
 }
 
 .difficulty-hard {
-    background: var(--accent-red-soft);
-    border-color: rgba(239, 68, 68, 0.35);
-    color: var(--accent-red-text);
+    background: var(--sem-incorrect-bg);
+    border-color: var(--sem-incorrect-border);
+    color: var(--sem-incorrect-text);
 }
 
 /* Two-Column Grid */
 .two-column-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem;
+    gap: 1.5rem;
 }
 
 @media (max-width: 900px) {
@@ -732,7 +1044,7 @@ select option {
     }
 }
 
-/* Flex Utilities */
+/* Utilities */
 .flex-between {
     display: flex;
     justify-content: space-between;
@@ -743,7 +1055,7 @@ select option {
 
 .action-buttons {
     display: flex;
-    gap: 0.6rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
 }
 
@@ -755,18 +1067,22 @@ select option {
 
 .empty-state {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    padding: 2.5rem 1rem;
+    font-size: 0.88rem;
+    padding: 2.25rem 1rem;
     text-align: center;
     font-style: italic;
 }
 
 .text-center { text-align: center; }
 
+.text-success { color: var(--sem-correct-accent) !important; }
+.text-danger  { color: var(--sem-incorrect-accent) !important; }
+.text-warning { color: var(--sem-warning-accent) !important; }
+
 /* Filter Bar */
 .filter-bar {
     margin-bottom: 1rem;
-    padding: 1.25rem 1.75rem;
+    padding: 1.15rem 1.6rem;
 }
 
 .filter-controls {
@@ -793,19 +1109,18 @@ select option {
     flex-wrap: wrap;
 }
 
-/* ===================================================================
-   ACTIVE PRACTICE & EXAM SESSION MODAL OVERLAY
-   =================================================================== */
-
+/* -------------------------------------------------------------
+   12. ACTIVE PRACTICE & EXAM SESSION MODAL OVERLAY
+   ------------------------------------------------------------- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(5, 6, 8, 0.88);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: var(--modal-backdrop);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -831,11 +1146,10 @@ select option {
     overflow: hidden;
 }
 
-/* Session Header */
 .session-header {
     background: var(--bg-surface-elevated);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 1rem 1.75rem;
+    padding: 0.9rem 1.6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -846,15 +1160,15 @@ select option {
 .session-info {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.75rem;
 }
 
 .session-info .badge {
     background: var(--bg-surface);
     border-color: var(--border-medium);
     color: var(--text-secondary);
-    font-size: 0.78rem;
-    padding: 0.25rem 0.65rem;
+    font-size: 0.76rem;
+    padding: 0.2rem 0.6rem;
 }
 
 .session-timer-box {
@@ -868,7 +1182,7 @@ select option {
     font-family: var(--font-mono);
     font-size: 1.05rem;
     font-weight: 600;
-    color: var(--accent-gold);
+    color: var(--primary-accent);
 }
 
 .session-controls {
@@ -876,7 +1190,6 @@ select option {
     gap: 0.5rem;
 }
 
-/* Progress Track */
 .progress-track {
     width: 100%;
     height: 3px;
@@ -886,12 +1199,11 @@ select option {
 
 .progress-fill {
     height: 100%;
-    background: var(--accent-gold);
+    background: var(--primary-accent);
     width: 0%;
     transition: width 0.25s ease-out;
 }
 
-/* Session Main Body */
 .session-body {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -909,7 +1221,7 @@ select option {
 }
 
 .question-main-pane {
-    padding: 2.25rem 3rem;
+    padding: 2rem 2.75rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -919,40 +1231,51 @@ select option {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
+}
+
+.tag {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
 }
 
 .question-text-box {
-    font-size: 1.22rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     color: var(--text-primary);
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 1.85rem;
 }
 
-/* Options Container */
+/* MCQ Options Container */
 .options-container {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
-    margin-bottom: 1.75rem;
+    gap: 0.85rem;
+    margin-bottom: 1.6rem;
 }
 
 .option-card {
-    background: #14161d;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1.15rem 1.45rem;
+    padding: 1.1rem 1.35rem;
     display: flex;
     align-items: center;
-    gap: 1.15rem;
+    gap: 1.1rem;
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
+    position: relative;
 }
 
 .option-card:hover:not(.locked) {
-    background: #191c25;
+    background: var(--bg-surface-elevated);
     border-color: var(--border-medium);
 }
 
@@ -962,7 +1285,7 @@ select option {
     color: var(--text-secondary);
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     width: 32px;
     height: 32px;
     border-radius: var(--radius-sm);
@@ -974,63 +1297,87 @@ select option {
 }
 
 .option-text {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     color: var(--text-primary);
     line-height: 1.55;
     flex-grow: 1;
 }
 
-/* Option Selected (Prior to Clicking "Check Answer") */
+/* Option Selected (Prior to Clicking Check Answer) */
 .option-card.selected:not(.correct):not(.incorrect) {
-    background: var(--accent-gold-soft);
-    border: 1.5px solid var(--accent-gold);
+    background: var(--primary-accent-subtle);
+    border: 1.5px solid var(--primary-accent);
 }
 
 .option-card.selected:not(.correct):not(.incorrect) .option-badge {
-    background: var(--accent-gold);
-    color: #090a0c;
-    border-color: var(--accent-gold);
+    background: var(--primary-accent);
+    color: var(--primary-accent-contrast);
+    border-color: var(--primary-accent);
 }
 
 /* Option Correct (Post Check Answer) */
 .option-card.correct {
-    background: var(--accent-green-soft) !important;
-    border: 1.5px solid var(--accent-green) !important;
+    background: var(--sem-correct-bg) !important;
+    border: 1.5px solid var(--sem-correct-border) !important;
 }
 
 .option-card.correct .option-badge {
-    background: var(--accent-green);
-    color: #090a0c;
-    border-color: var(--accent-green);
+    background: var(--sem-correct-accent);
+    color: #FFFFFF;
+    border-color: var(--sem-correct-accent);
 }
 
 .option-card.correct .option-text {
-    color: var(--accent-green-text);
+    color: var(--sem-correct-text);
+    font-weight: 500;
 }
 
 /* Option Incorrect (Post Check Answer) */
 .option-card.incorrect {
-    background: var(--accent-red-soft) !important;
-    border: 1.5px solid var(--accent-red) !important;
+    background: var(--sem-incorrect-bg) !important;
+    border: 1.5px solid var(--sem-incorrect-border) !important;
 }
 
 .option-card.incorrect .option-badge {
-    background: var(--accent-red);
-    color: #ffffff;
-    border-color: var(--accent-red);
+    background: var(--sem-incorrect-accent);
+    color: #FFFFFF;
+    border-color: var(--sem-incorrect-accent);
 }
 
 .option-card.incorrect .option-text {
-    color: var(--accent-red-text);
+    color: var(--sem-incorrect-text);
 }
 
 .option-card.locked {
     cursor: default;
 }
 
+/* Option Status Tags for Visual Discrimination beyond Color */
+.opt-status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.opt-status-tag.tag-correct {
+    background: var(--sem-correct-accent);
+    color: #FFFFFF;
+}
+
+.opt-status-tag.tag-incorrect {
+    background: var(--sem-incorrect-accent);
+    color: #FFFFFF;
+}
+
 /* Check Answer Action Button Bar */
 .check-action-bar {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
     display: flex;
     justify-content: flex-start;
 }
@@ -1040,28 +1387,28 @@ select option {
 }
 
 .btn-check-answer {
-    padding: 0.85rem 2.25rem;
-    font-size: 0.98rem;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
     border-radius: var(--radius-sm);
-    background: #f4f4f6;
-    color: #090a0c;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--btn-primary-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn-check-answer:hover:not(:disabled) {
-    background: #ffffff;
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+    background: var(--btn-primary-hover);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Feedback Box (Revealed upon Check Answer) */
+/* Feedback Box */
 .feedback-box {
-    background: #141720;
+    background: var(--bg-surface-elevated);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
-    padding: 1.75rem 2rem;
-    margin-bottom: 2rem;
-    animation: fadeIn 0.2s ease-in;
+    padding: 1.6rem 1.85rem;
+    margin-bottom: 1.85rem;
+    animation: fadeIn 0.15s ease-in;
 }
 
 .feedback-box.hidden {
@@ -1069,80 +1416,82 @@ select option {
 }
 
 .feedback-status {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 600;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
 }
 
 .status-indicator {
-    display: inline-block;
-    padding: 0.4rem 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.8rem;
     border-radius: var(--radius-sm);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .status-correct {
-    background: var(--accent-green-soft);
-    color: var(--accent-green-text);
-    border: 1px solid rgba(34, 197, 94, 0.35);
+    background: var(--sem-correct-bg);
+    color: var(--sem-correct-text);
+    border: 1px solid var(--sem-correct-border);
 }
 
 .status-incorrect {
-    background: var(--accent-red-soft);
-    color: var(--accent-red-text);
-    border: 1px solid rgba(239, 68, 68, 0.35);
+    background: var(--sem-incorrect-bg);
+    color: var(--sem-incorrect-text);
+    border: 1px solid var(--sem-incorrect-border);
 }
 
 .explanation-box {
     line-height: 1.7;
     color: var(--text-secondary);
-    font-size: 0.96rem;
+    font-size: 0.95rem;
     border-top: 1px solid var(--border-subtle);
-    padding-top: 1.25rem;
+    padding-top: 1.15rem;
     margin-top: 0.75rem;
 }
 
 .explanation-box strong {
     color: var(--text-primary);
     display: block;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
+    margin-bottom: 0.45rem;
+    font-size: 1rem;
 }
 
 /* Mistake Tagging Section */
 .mistake-section {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
     border-top: 1px solid var(--border-subtle);
 }
 
 .mistake-section label,
 .confidence-section label {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.6rem;
 }
 
 .mistake-chips,
 .confidence-chips {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.45rem;
     flex-wrap: wrap;
 }
 
 .chip-btn,
 .conf-btn {
-    background: var(--bg-surface-elevated);
+    background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     font-family: var(--font-sans);
-    font-size: 0.82rem;
-    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    padding: 0.32rem 0.7rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -1150,57 +1499,59 @@ select option {
 
 .chip-btn:hover,
 .conf-btn:hover {
-    background: var(--bg-surface-subtle);
+    background: var(--bg-surface-elevated);
     color: var(--text-primary);
 }
 
 .chip-btn.active {
-    background: var(--accent-red-soft);
-    border-color: var(--accent-red);
-    color: var(--accent-red-text);
+    background: var(--sem-incorrect-bg);
+    border-color: var(--sem-incorrect-border);
+    color: var(--sem-incorrect-text);
+    font-weight: 600;
 }
 
 .conf-btn.active {
-    background: var(--accent-gold-soft);
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+    background: var(--primary-accent-subtle);
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+    font-weight: 600;
 }
 
 .confidence-section {
-    margin-top: 1.25rem;
+    margin-top: 1.15rem;
 }
 
-/* Session Footer & Controls */
+/* Session Footer */
 .session-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     margin-top: auto;
-    padding-top: 1.75rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border-subtle);
     flex-wrap: wrap;
 }
 
 .keyboard-hint {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-family: var(--font-mono);
-    color: var(--text-dim);
+    color: var(--text-muted);
 }
 
 /* Question Palette Sidebar */
 .session-palette-pane {
     background: var(--bg-surface-elevated);
     border-left: 1px solid var(--border-subtle);
-    padding: 1.75rem 1.5rem;
+    padding: 1.6rem 1.4rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
 
 .session-palette-pane h4 {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1209,18 +1560,18 @@ select option {
 .palette-legend {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    gap: 0.45rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.9rem;
     border-bottom: 1px solid var(--border-subtle);
 }
 
 .palette-legend span {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .dot {
@@ -1230,9 +1581,9 @@ select option {
     display: inline-block;
 }
 
-.dot.answered { background: var(--accent-green); }
-.dot.reviewed { background: var(--accent-amber); }
-.dot.current { background: var(--accent-gold); }
+.dot.answered { background: var(--sem-correct-accent); }
+.dot.reviewed { background: var(--sem-warning-accent); }
+.dot.current { background: var(--primary-accent); }
 .dot.untouched { background: var(--border-strong); }
 
 .palette-grid {
@@ -1246,9 +1597,9 @@ select option {
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    height: 38px;
+    height: 36px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -1263,29 +1614,33 @@ select option {
 }
 
 .palette-btn.current {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
-    background: var(--accent-gold-soft);
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+    background: var(--primary-accent-subtle);
     font-weight: 700;
+    box-shadow: 0 0 0 2px var(--primary-accent-border);
 }
 
 .palette-btn.answered {
-    background: var(--accent-green-soft);
-    border-color: rgba(34, 197, 94, 0.4);
-    color: var(--accent-green-text);
+    background: var(--sem-correct-bg);
+    border-color: var(--sem-correct-border);
+    color: var(--sem-correct-text);
 }
 
 .palette-btn.reviewed {
-    border-color: var(--accent-amber);
-    color: var(--accent-amber-text);
+    background: var(--sem-warning-bg);
+    border-color: var(--sem-warning-border);
+    color: var(--sem-warning-text);
 }
 
 .palette-btn.selected-unconfirmed {
-    border-color: rgba(197, 160, 89, 0.4);
-    color: var(--accent-gold);
+    border-color: var(--primary-accent-border);
+    color: var(--primary-accent);
 }
 
-/* Modal Box (Summary & General) */
+/* -------------------------------------------------------------
+   13. Modals & Dialogs
+   ------------------------------------------------------------- */
 .modal-box {
     background: var(--bg-surface);
     border: 1px solid var(--border-medium);
@@ -1293,24 +1648,30 @@ select option {
     width: 100%;
     max-width: 680px;
     box-shadow: var(--shadow-modal);
-    padding: 2.25rem 2.5rem;
+    padding: 2rem 2.25rem;
     position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box.large {
+    max-width: 900px;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 1rem;
+    padding-bottom: 0.9rem;
 }
 
 .close-btn {
     background: transparent;
     border: none;
     color: var(--text-muted);
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     cursor: pointer;
     line-height: 1;
 }
@@ -1322,41 +1683,40 @@ select option {
 .summary-score-hero {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    gap: 1rem;
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1.5rem;
-    margin-bottom: 1.75rem;
+    padding: 1.35rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
 .score-label {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
 }
 
 .score-val {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 1.85rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
 .score-val.highlight {
-    color: var(--accent-gold);
+    color: var(--primary-accent);
 }
 
 .breakdown-row {
     display: flex;
     justify-content: space-between;
-    padding: 0.75rem 0;
+    padding: 0.7rem 0;
     border-bottom: 1px solid var(--border-subtle);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
@@ -1365,82 +1725,31 @@ select option {
     color: var(--text-primary);
 }
 
-/* KaTeX Math Tweaks for Dark Theme */
+/* -------------------------------------------------------------
+   14. KaTeX Math Typesetting
+   ------------------------------------------------------------- */
 .katex {
-    color: #f9fafb !important;
-    font-size: 1.08em;
+    color: var(--text-primary) !important;
+    font-size: 1.05em;
 }
 
 .katex-display {
-    margin: 1.15em 0 !important;
+    margin: 1em 0 !important;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 0.4em 0;
+    padding: 0.35em 0;
 }
 
 /* Pagination Controls */
 .pagination-controls {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
-/* ===================================================================
-   Header Actions: Sync Pill & User Profile
-   =================================================================== */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.header-sync-pill, .header-user-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.75rem;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font-size: 0.82rem;
-    transition: all 0.15s ease;
-}
-
-.header-sync-pill:hover, .header-user-pill:hover {
-    background: var(--bg-surface-elevated);
-    border-color: var(--border-medium);
-}
-
-.sync-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.sync-dot.online {
-    background: var(--accent-green);
-    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-}
-
-.sync-dot.offline {
-    background: var(--accent-amber);
-    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-}
-
-.user-avatar {
-    font-size: 1rem;
-}
-
-.user-name {
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-/* ===================================================================
-   Battle Arena & Friends Competition Styles
-   =================================================================== */
+/* -------------------------------------------------------------
+   15. Battle Arena & Social Arena
+   ------------------------------------------------------------- */
 .battle-header-actions {
     display: flex;
     gap: 0.5rem;
@@ -1453,8 +1762,10 @@ select option {
     flex-wrap: wrap;
     gap: 1.25rem;
     padding: 1.25rem 1.5rem;
-    background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(24, 26, 33, 0.9) 100%);
+    background: var(--bg-surface);
     border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-subtle);
 }
 
 .user-status-col {
@@ -1464,7 +1775,7 @@ select option {
 }
 
 .battle-avatar {
-    font-size: 2.2rem;
+    font-size: 2rem;
     width: 48px;
     height: 48px;
     display: flex;
@@ -1478,8 +1789,8 @@ select option {
 .user-name-line {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 1.05rem;
+    gap: 0.55rem;
+    font-size: 1rem;
 }
 
 .cloud-status-col {
@@ -1492,8 +1803,8 @@ select option {
 .sync-info-box {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.88rem;
+    gap: 0.45rem;
+    font-size: 0.86rem;
     font-weight: 500;
 }
 
@@ -1509,11 +1820,11 @@ select option {
     min-width: 260px;
     background: var(--bg-input);
     border: 1px solid var(--border-medium);
-    padding: 0.65rem 1rem;
+    padding: 0.6rem 0.95rem;
     border-radius: var(--radius-sm);
     color: var(--text-primary);
     font-family: inherit;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
 }
 
 .friend-input-bar input:focus {
@@ -1538,21 +1849,21 @@ select option {
 .friend-chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.75rem;
+    gap: 0.45rem;
+    padding: 0.32rem 0.7rem;
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
 .friend-chip:hover, .friend-chip.active {
-    border-color: var(--accent-gold-border);
+    border-color: var(--primary-accent-border);
     color: var(--text-primary);
-    background: var(--accent-gold-soft);
+    background: var(--primary-accent-subtle);
 }
 
 .friend-chip-remove {
@@ -1563,17 +1874,18 @@ select option {
 }
 
 .friend-chip-remove:hover {
-    color: var(--accent-red-text);
+    color: var(--sem-incorrect-accent);
 }
 
 /* Duel Card */
 .battle-duel-container {
-    padding: 1.75rem;
+    padding: 1.6rem;
     background: var(--bg-surface);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-subtle);
 }
 
 .duel-header {
@@ -1581,7 +1893,7 @@ select option {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.35rem;
     border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -1594,9 +1906,9 @@ select option {
 }
 
 .fighter-avatar {
-    font-size: 2.8rem;
-    width: 64px;
-    height: 64px;
+    font-size: 2.6rem;
+    width: 62px;
+    height: 62px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1607,24 +1919,21 @@ select option {
 }
 
 .fighter-side.user-side .fighter-avatar {
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 16px rgba(197, 160, 89, 0.25);
+    border-color: var(--primary-accent);
 }
 
 .fighter-side.friend-side .fighter-avatar {
-    border-color: #3b82f6;
-    box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+    border-color: var(--sem-info-accent);
 }
 
 .fighter-score {
-    font-family: var(--font-serif);
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
 .fighter-badge {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     padding: 0.2rem 0.55rem;
     border-radius: var(--radius-sm);
     background: var(--bg-surface-elevated);
@@ -1637,32 +1946,32 @@ select option {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
 }
 
 .vs-badge {
     font-family: var(--font-mono);
-    font-weight: 900;
-    font-size: 1.25rem;
-    letter-spacing: 0.15em;
-    color: var(--accent-gold);
-    background: var(--accent-gold-soft);
-    border: 1px solid var(--accent-gold-border);
-    padding: 0.35rem 0.9rem;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    color: var(--primary-accent);
+    background: var(--primary-accent-subtle);
+    border: 1px solid var(--primary-accent-border);
+    padding: 0.3rem 0.85rem;
     border-radius: var(--radius-sm);
 }
 
 .verdict-banner {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-medium);
-    padding: 0.75rem 1.25rem;
+    padding: 0.7rem 1.15rem;
     border-radius: var(--radius-sm);
     max-width: 380px;
 }
 
 .verdict-banner h4 {
-    color: var(--accent-gold);
-    font-size: 1rem;
+    color: var(--primary-accent);
+    font-size: 0.95rem;
     margin-bottom: 0.2rem;
 }
 
@@ -1676,21 +1985,21 @@ select option {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 0.85rem;
-    margin-top: 1.5rem;
+    margin-top: 1.35rem;
 }
 
 .metric-duel-card {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
-    padding: 1rem;
+    padding: 0.95rem;
     border-radius: var(--radius-sm);
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .metric-duel-label {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
@@ -1700,21 +2009,20 @@ select option {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-family: var(--font-mono);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 600;
 }
 
 .metric-duel-values .user-val {
-    color: var(--accent-gold);
+    color: var(--primary-accent);
 }
 
 .metric-duel-values .friend-val {
-    color: #60a5fa;
+    color: var(--sem-info-accent);
 }
 
 .duel-winner-tag {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 500;
     padding: 0.15rem 0.45rem;
     border-radius: var(--radius-sm);
@@ -1722,17 +2030,19 @@ select option {
 }
 
 .duel-winner-tag.win-you {
-    background: var(--accent-green-soft);
-    color: var(--accent-green-text);
+    background: var(--sem-correct-bg);
+    color: var(--sem-correct-text);
+    border: 1px solid var(--sem-correct-border);
 }
 
 .duel-winner-tag.win-friend {
-    background: rgba(59, 130, 246, 0.15);
-    color: #93c5fd;
+    background: var(--sem-info-bg);
+    color: var(--sem-info-text);
+    border: 1px solid var(--sem-info-border);
 }
 
 .duel-winner-tag.win-tie {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-surface-subtle);
     color: var(--text-muted);
 }
 
@@ -1752,9 +2062,9 @@ select option {
 .chip-filter {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-size: 0.8rem;
-    padding: 0.35rem 0.65rem;
+    padding: 0.32rem 0.65rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -1766,36 +2076,39 @@ select option {
 }
 
 .chip-filter.active {
-    background: var(--bg-surface-elevated);
-    border-color: var(--accent-gold-border);
-    color: var(--accent-gold);
+    background: var(--primary-accent-subtle);
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
     font-weight: 600;
 }
 
 .status-done {
-    color: var(--accent-green-text);
-    background: var(--accent-green-soft);
+    color: var(--sem-correct-text);
+    background: var(--sem-correct-bg);
+    border: 1px solid var(--sem-correct-border);
     padding: 0.15rem 0.45rem;
     border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
 }
 
 .status-in-progress {
-    color: var(--accent-amber-text);
-    background: var(--accent-amber-soft);
+    color: var(--sem-warning-text);
+    background: var(--sem-warning-bg);
+    border: 1px solid var(--sem-warning-border);
     padding: 0.15rem 0.45rem;
     border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
 }
 
 .status-not-started {
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
     padding: 0.15rem 0.45rem;
     border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
 }
 
 /* Avatar selection grid in Login modal */
@@ -1807,8 +2120,8 @@ select option {
 }
 
 .avatar-opt-btn {
-    font-size: 1.5rem;
-    padding: 0.6rem;
+    font-size: 1.45rem;
+    padding: 0.55rem;
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
@@ -1822,22 +2135,204 @@ select option {
 }
 
 .avatar-opt-btn.active {
-    background: var(--accent-gold-soft);
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 10px rgba(197, 160, 89, 0.35);
+    background: var(--primary-accent-subtle);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 2px var(--primary-accent-border);
 }
 
-/* Responsive Rules */
+/* -------------------------------------------------------------
+   16. Theme Option Cards in Settings Tab
+   ------------------------------------------------------------- */
+.theme-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.theme-option-card {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    user-select: none;
+    position: relative;
+}
+
+.theme-option-card:hover {
+    border-color: var(--border-medium);
+    transform: translateY(-1px);
+}
+
+.theme-option-card.active {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 2px var(--primary-accent-border);
+}
+
+.theme-card-preview {
+    height: 85px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    overflow: hidden;
+}
+
+.preview-light {
+    background: #F6F5F0;
+}
+.preview-light .preview-header {
+    height: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E7E6DF;
+    border-radius: 3px;
+}
+.preview-light .preview-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.preview-light .line-main {
+    height: 7px;
+    width: 60%;
+    background: #29372F;
+    border-radius: 2px;
+}
+.preview-light .line-sub {
+    height: 5px;
+    width: 85%;
+    background: #777D75;
+    border-radius: 2px;
+}
+.preview-light .preview-accent {
+    height: 12px;
+    width: 35%;
+    background: #789681;
+    border-radius: 3px;
+    margin-top: 4px;
+}
+
+.preview-dark {
+    background: #171B19;
+}
+.preview-dark .preview-header {
+    height: 12px;
+    background: #222925;
+    border: 1px solid #343D37;
+    border-radius: 3px;
+}
+.preview-dark .preview-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.preview-dark .line-main {
+    height: 7px;
+    width: 60%;
+    background: #E5EAE5;
+    border-radius: 2px;
+}
+.preview-dark .line-sub {
+    height: 5px;
+    width: 85%;
+    background: #A4ADA5;
+    border-radius: 2px;
+}
+.preview-dark .preview-accent {
+    height: 12px;
+    width: 35%;
+    background: #8EAB95;
+    border-radius: 3px;
+    margin-top: 4px;
+}
+
+.preview-system {
+    display: flex;
+    padding: 0;
+}
+.preview-split-left {
+    flex: 1;
+    background: #F6F5F0;
+    border-right: 1px solid #E7E6DF;
+}
+.preview-split-right {
+    flex: 1;
+    background: #171B19;
+}
+
+.theme-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.theme-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme-card-title strong {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.theme-badge {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+}
+
+.theme-card-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+/* -------------------------------------------------------------
+   17. Responsive Rules
+   ------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .brand-text .sub-text {
+        display: none;
+    }
+    .theme-btn .theme-label {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-sync-pill .sync-text {
+        display: none;
+    }
+    .header-user-pill .user-name {
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
 @media (max-width: 768px) {
     .main-container {
         padding: 0 1rem;
         margin-top: 1.25rem;
     }
     .question-main-pane {
-        padding: 1.5rem 1.25rem;
+        padding: 1.35rem 1.15rem;
     }
     .daily-hero-card {
-        padding: 1.5rem;
+        padding: 1.35rem;
     }
     .hero-plan {
         grid-template-columns: 1fr;
@@ -1849,5 +2344,11 @@ select option {
         height: 100vh;
         border-radius: 0;
         border: none;
+    }
+    .theme-switcher-group .theme-label {
+        display: none;
+    }
+    .theme-btn {
+        padding: 0.25rem 0.45rem;
     }
 }
