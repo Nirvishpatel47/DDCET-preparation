@@ -7,157 +7,151 @@ The primary objective is **mastery, revision, accuracy, and speed**—not merely
 
 ---
 
-## Key Features & Architecture
+## 🗑️ Data Reset & Clean-Slate Guide (How to Remove Everything)
 
-- **100% Offline & Private**: Zero external cloud databases, zero paid APIs, zero telemetry, and zero LLM dependencies. Everything runs locally on your computer.
-- **60-Minute Daily Mastery Structure**:
-  - **5 Mins**: Review due spaced-repetition revisions.
-  - **35 Mins**: Adaptive focused practice prioritizing high-impact syllabus areas.
-  - **15 Mins**: Error and concept analysis with mistake reason categorization.
-  - **5 Mins**: Progress and accuracy review to plan tomorrow's session.
-- **Adaptive Priority Algorithm (Configurable & Explainable)**:
-  $$\text{Priority} = 0.35 \times \text{Weakness} + 0.25 \times \text{Revision Urgency} + 0.20 \times \text{Syllabus Importance} + 0.10 \times \text{Neglect} + 0.10 \times \text{Speed Difficulty}$$
-  - **Bayesian/Laplace Smoothing**: Prevents a single wrong answer from wildly swinging topic priority.
-  - **Diagnostic Mode**: Unseen topics receive initial diagnostic questions rather than automatically being marked as weak.
-  - **Anti-Monopoly Topic Cap**: Prevents a single topic from consuming the entire session.
-  - **Transparent Explanations**: Tells the student *why* a topic was prioritized.
-- **Spaced Repetition Revision System**:
-  - Incorrect answers: scheduled for review tomorrow (1 day).
-  - Correct low-confidence: 2 days.
-  - Correct medium-confidence: 4 days.
-  - Correct high-confidence: 7 days.
-  - Consecutive correct answers: exponentially expand interval (capped to prevent premature retirement).
-  - Mistake categories tracked: *Didn't understand concept*, *Forgot formula*, *Calculation error*, *Misread question*, *Guessed correctly*, *Ran out of time*, *Other*.
-- **Full DDCET Mock Exam Simulation**:
-  - Official Gujarat DDCET pattern: 100 questions, 90 minutes.
-  - Standard marking scheme: **+1.0 mark** for correct, **-0.25 marks** negative penalty for incorrect (configurable in Settings).
-  - Answers and explanations are **hidden** during mock exams and revealed only after submission.
-  - Question palette navigation, auto-saving, and review flagging.
-- **Import / Export System**:
-  - Bulk import from **Excel (.xlsx)**, **CSV (.csv)**, and **JSON (.json)**.
-  - 2-Stage workflow: Preview with exact duplicate hash detection, probable duplicate flagging (offline token similarity), and validation quarantine.
-  - Pre-built downloadable templates with sample demonstration questions clearly labeled as sample data.
-  - Export question bank, attempts history, and quarantined records.
-- **Data Safety & Integrity**:
-  - SQLite database stored securely in `data/ddcet.db` (outside static folder).
-  - Safe live point-in-time database backups (`backups/`) and one-click restore.
+If you need to reset questions, wipe your study history, or start from a completely clean slate, choose one of the options below:
 
----
+### 1. Complete Nuclear Reset (Wipe Everything)
+This completely deletes your local SQLite database, attempt history, practice sessions, revision schedules, backups, and pending cloud sync queues. The next time you launch the app, it will initialize a fresh, clean database automatically.
 
-## Technology Stack
-
-- **Frontend**: HTML5, Responsive CSS3, Vanilla JavaScript (Fast, accessible, mobile-friendly, keyboard navigation: `A`/`B`/`C`/`D`, `1`-`4`, `Enter`/`N` for Next, `M` for Review).
-- **Backend**: Python 3.10+, FastAPI, Uvicorn.
-- **Database**: SQLite with WAL mode, foreign keys, and indexes.
-- **Data Interchange**: OpenPyXL (Excel), CSV, JSON.
-
----
-
-## Directory Structure
-
-```
-f:\Prep\
-├── app.py                      # FastAPI application entry point
-├── requirements.txt            # Dependencies list
-├── run.bat                     # Windows one-click startup script
-├── run.sh                      # Unix/Linux/macOS startup script
-├── data\                       # Non-static database storage
-│   └── ddcet.db                # SQLite database (auto-created on startup)
-├── backups\                    # Live point-in-time database backups
-├── database\
-│   ├── schema.sql              # Versioned schema with optimized indexes
-│   └── db.py                   # Connection manager, transactions, backup/restore
-├── models\
-│   └── schemas.py              # Pydantic validation models
-├── routes\
-│   ├── api_questions.py        # Question bank & syllabus hierarchy APIs
-│   ├── api_practice.py         # Practice sessions, auto-save & scoring APIs
-│   ├── api_revision.py         # Due revisions & mistake tracking APIs
-│   ├── api_import_export.py    # Import preview/commit, templates, backups
-│   ├── api_analytics.py        # 60-min daily dashboard & priorities APIs
-│   └── api_settings.py         # Configurable marking & weights APIs
-├── services\
-│   ├── validation_service.py   # Strict MCQ validation & hierarchy mapping
-│   ├── duplicate_service.py    # Exact text hash & offline probable duplicate detection
-│   ├── import_export_service.py# Excel/CSV/JSON parser, exporter & template generator
-│   ├── adaptive_service.py     # Rule-based priority score & diagnostic engine
-│   ├── revision_service.py     # Spaced repetition scheduling & error tracking
-│   ├── practice_service.py     # Session generation, timer & scoring engine
-│   └── analytics_service.py    # Dashboard metrics & 5-point honest summary
-├── templates\
-│   └── index.html              # Responsive single-page application UI
-├── static\
-│   ├── css\style.css           # Clean, accessible stylesheet
-│   └── js\app.js               # Vanilla JS application controller & keyboard handler
-├── import_templates\           # Downloadable Excel, CSV, and JSON templates
-└── tests\
-    ├── test_all.py             # Automated unit & integration tests
-    └── benchmark_scale.py      # Synthetic scale & performance benchmark
+**PowerShell (Windows):**
+```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\.ddcet-preparation"
 ```
 
----
-
-## Quick Start Guide
-
-### 1. Requirements
-Ensure Python 3.10+ is installed on your computer.
-
-### 2. Start Application
-On **Windows**, double-click:
-```cmd
-run.bat
-```
-Or run directly from PowerShell / Terminal:
+**Python (Cross-Platform):**
 ```bash
-python -m uvicorn app:app --host 127.0.0.1 --port 8000 --reload
-```
-
-### 3. Open in Browser
-Visit in your web browser:
-```
-http://127.0.0.1:8000
+python -c "import shutil, os; p = os.path.expanduser('~/.ddcet-preparation'); shutil.rmtree(p, ignore_errors=True); print('All local user data, progress, and database completely removed.')"
 ```
 
 ---
 
-## Question Data Format
+### 2. Delete All Questions Only (Preserve Account & Settings)
+If you want to clear the entire question bank from the database while keeping your user profile and application settings intact:
 
-Every question conforms to this exact structure:
-
-```json
-{
-  "id": "MATH-CALC-001",
-  "question": "What is the derivative of sin(2x) with respect to x?",
-  "options": {
-    "A": "2 * cos(2x)",
-    "B": "-2 * cos(2x)",
-    "C": "cos(2x)",
-    "D": "2 * sin(2x)"
-  },
-  "correct_answer": "A",
-  "explanation": "Using chain rule: d/dx[sin(u)] = cos(u) * du/dx = 2*cos(2x).",
-  "subject": "Mathematics",
-  "topic": "Calculus",
-  "subtopic": "Derivatives",
-  "difficulty": "easy",
-  "source": {
-    "name": "DDCET Official Syllabus Guide",
-    "page": 12
-  },
-  "tags": ["calculus", "chain_rule"],
-  "verified": true,
-  "created_at": "2026-10-24T10:00:00"
-}
+```bash
+python -c "from database.db import get_db; conn = get_db().__enter__(); conn.execute('PRAGMA foreign_keys = ON;'); conn.execute('DELETE FROM questions;'); conn.commit(); print('All questions deleted successfully.')"
 ```
 
 ---
 
-## Mathematics & Markdown Format Support (.md)
+### 3. Prevent Master Questions from Auto-Reseeding
+By default, the application seeds questions from `data/ddcet_1500_master.json` when the database is empty. If you want the question bank to **stay completely empty** (for example, to import your own custom question files from scratch without default questions):
 
-The application includes built-in, offline **KaTeX** mathematical rendering and **GFM Markdown** parsing.
-You can directly import math question banks in `.md` format!
+**PowerShell (Windows):**
+```powershell
+Set-Content -Path "data\ddcet_1500_master.json" -Value "[]"
+```
 
-### Example Markdown Question Bank (`.md` format):
+**Python (Cross-Platform):**
+```bash
+python -c "open('data/ddcet_1500_master.json', 'w', encoding='utf-8').write('[]'); print('Master bank cleared.')"
+```
+
+---
+
+## 🎨 Dual Theme System (Light & Dark)
+
+The application features two distraction-free, publication-grade themes designed for long, comfortable study sessions:
+
+| Theme | Background | Surface / Cards | Primary Accent | Text Primary | Border |
+|---|---|---|---|---|---|
+| **Light (Warm Paper)** | `#F6F5F0` | `#FFFFFF` | `#789681` (Sage Green) | `#29372F` | `#E7E6DF` |
+| **Dark (Deep Charcoal)** | `#171B19` | `#222925` | `#8EAB95` (Muted Sage) | `#E5EAE5` | `#343D37` |
+
+- **Three Modes**: `Light`, `Dark`, and `Auto (System)` matching your operating system preference.
+- **Zero FOUT**: Theme preference is loaded synchronously in the `<head>` to prevent flashes of unstyled content.
+- **Smooth 180ms Transitions**: Subtle surface transitions that respect `prefers-reduced-motion`.
+
+---
+
+## ⚡ 4 Difficulty Levels
+
+Questions are strictly categorized into four standardized difficulty tiers, each with dedicated high-contrast semantic badges:
+
+| Level | Light Badge | Dark Badge | Description |
+|---|---|---|---|
+| **Easy** | Soft Green (`#E5F0E6`) | Dark Forest (`#263D2E`) | Direct recall, basic formulas, standard textbook definitions |
+| **Moderate** | Soft Amber (`#F4EBD9`) | Muted Bronze (`#403725`) | Multi-step calculation, conceptual application, standard DDCET level |
+| **Hard** | Soft Coral (`#F5E8E5`) | Deep Rose (`#442B2A`) | Complex integrations, tricky edge cases, trap options |
+| **Stretch** | Soft Purple (`#F0EAF8`) | Deep Lavender (`#322543`) | Advanced competitive rank-decider questions |
+
+*Note: Any legacy datasets referencing `medium` are automatically normalized to `moderate` on import and migration.*
+
+---
+
+## 🔒 User Data Protection & Architecture
+
+```
+User Computer
+├── F:\Prep\                          # Public Codebase (tracked in Git)
+│   ├── app.py                       # FastAPI application entry point
+│   ├── data\
+│   │   └── ddcet_1500_master.json   # Public seed questions
+│   ├── database\
+│   │   ├── db.py                    # Connection manager, transactions & migrations
+│   │   └── schema.sql               # SQLite schema with WAL mode & indexes
+│   ├── models\schemas.py            # Pydantic models & validation rules
+│   ├── routes\                      # Modular API routers
+│   ├── services\                    # Business logic (practice, revision, analytics)
+│   ├── static\                      # CSS, Vanilla JS, and KaTeX vendor assets
+│   └── templates\index.html         # Responsive SPA interface
+│
+└── C:\Users\<Username>\.ddcet-preparation\  # Isolated User Data (Never in Git)
+    ├── data\
+    │   ├── ddcet_user.db            # Persistent private SQLite database
+    │   └── sync_queue.json          # Offline queue for Supabase cloud sync
+    └── backups\                     # Point-in-time database backups
+```
+
+- **Git-Immune Progress**: User attempts, personal scores, and progress records reside strictly in `~/.ddcet-preparation/`. Pulling new updates from GitHub will **never** overwrite or delete your study history.
+- **Zero-Loss Auto-Migration**: Database schema updates are managed through version-controlled migrations (`Migration 1` through `Migration 4`) preserving existing attempts.
+
+---
+
+## 🎯 Practice Workflow & DDCET Rules
+
+1. **Strict 4-Step Sequence**:
+   $$\text{Select Option} \longrightarrow \text{Check Answer} \longrightarrow \text{View Feedback \& Explanation} \longrightarrow \text{Next Question}$$
+   - Selecting an option never reveals correctness before clicking **Check Answer**.
+   - Answers and options are locked immediately upon checking.
+   - Detailed mathematical explanation and mistake reason taggers appear instantly.
+2. **Anti-Memorization Randomization**:
+   - Question ordering is randomized across sessions.
+   - Option choices (A, B, C, D) are shuffled dynamically with correct answer keys automatically remapped so students cannot memorize by letter position.
+3. **Official Marking Scheme**:
+   - **+1.0 mark** for correct answers.
+   - **-0.25 marks** negative penalty for incorrect answers (configurable in Settings).
+   - In **Full Mock Exams** (100 questions, 90 minutes), all feedback and explanations remain hidden until the entire exam is submitted.
+
+---
+
+## ⚔️ Battle Arena & Supabase Cloud Sync
+
+Compete head-to-head with friends while preserving an uncompromising offline-first model:
+
+1. **100% Offline-First**:
+   - All questions, attempts, and sessions operate locally from SQLite.
+   - If there is no internet connection, stats are queued in `sync_queue.json`.
+   - Once online, stats push automatically to Supabase.
+2. **Head-to-Head Duels**:
+   - Enter a friend's email address to inspect a side-by-side metric comparison: Total Score, Accuracy %, MCQs Solved, Speed (s/q), and Streak.
+3. **Topic-Wise MCQs Done Matrix**:
+   - Chapter-by-chapter matrix showing which syllabus topics each student has completed and mastered.
+4. **Supabase Cloud Setup**:
+   - Add your connection URL in `.env`:
+     ```env
+     DATABASE_API_KEY=your_supabase_postgres_url
+     ```
+   - Run the script in `database/supabase_schema.sql` inside your Supabase SQL Editor.
+
+---
+
+## 📐 Mathematical Typesetting & Markdown Format (.md)
+
+The application bundles offline **KaTeX** math rendering and **GFM Markdown** parsing.
+
+### Example Markdown Question Format:
 
 ```markdown
 # Gujarat DDCET Mathematics Questions
@@ -167,7 +161,7 @@ You can directly import math question banks in `.md` format!
 **Subject**: Mathematics
 **Topic**: Calculus
 **Subtopic**: Definite Integrals
-**Difficulty**: medium
+**Difficulty**: moderate
 **Verified**: true
 
 Evaluate the definite integral:
@@ -187,77 +181,53 @@ $$\int_0^{\frac{\pi}{2}} \frac{1 - \cos(2x)}{2} \, dx = \left[ \frac{x}{2} - \fr
 ### Supported Math Notation:
 - **Inline math**: `$x^2 + y^2 = r^2$` or `\( \lim_{x \to 0} \frac{\sin x}{x} = 1 \)`
 - **Display equations**: `$$\int_a^b f(x) dx$$` or `\[ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \]`
-- **Markdown syntax**: `**bold**`, `*italic*`, ```code blocks```, blockquotes, bullet lists, tables.
-- **Offline rendering**: All KaTeX math fonts (`.woff2`) and scripts are bundled locally inside `static/libs/`. No internet connection is needed.
+- **Offline fonts**: KaTeX fonts are locally served; no CDN connection is required.
 
 ---
 
-### Strict Validation Rules:
-1. Exactly four options (`A`, `B`, `C`, `D`).
-2. Correct answer must match one option key (`A`, `B`, `C`, or `D`).
-3. Question text cannot be empty or whitespace only.
-4. Subject, topic, and subtopic must be identifiable.
-5. Difficulty must be one of `easy`, `medium`, or `hard`.
-6. Verified questions **must** have a non-empty explanation.
-7. Unverified questions are **never** silently marked as verified.
-8. Invalid rows are quarantined into `quarantined_imports` with clear error diagnostics and can be exported for correction.
+## 🚀 Quick Start Guide
 
----
+### 1. Requirements
+- Python 3.10+ installed.
 
-## Testing & Benchmarking
-
-### Run Automated Test Suite
-To run all 18 unit and integration tests:
-```bash
-pytest tests/test_all.py -v
+### 2. Launch Application
+On **Windows**, double-click:
+```cmd
+run.bat
+```
+Or start via terminal / PowerShell:
+```powershell
+python -m uvicorn app:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-### Run Synthetic Scale Benchmark
-To test database indexing, deep pagination, and session selection speed on tens of thousands of synthetic questions:
-```bash
-python tests/benchmark_scale.py
+### 3. Open in Browser
+Visit in your web browser:
 ```
-*(All synthetic benchmark records are isolated in temporary storage and never mixed with real question banks).*
+http://127.0.0.1:8000
+```
 
 ---
 
-## Keyboard Shortcuts During Practice / Exam
+## ⌨️ Practice Keyboard Shortcuts
 
-- `A`, `B`, `C`, `D`: Select option A, B, C, or D.
-- `1`, `2`, `3`, `4`: Alternative option selection.
-- `Enter` or `N`: Move to next question.
-- `P` or `←`: Move to previous question.
+- `A`, `B`, `C`, `D` or `1`, `2`, `3`, `4`: Select option.
+- `Enter`: Check answer / Proceed to next question.
+- `N` or `→`: Next question.
+- `P` or `←`: Previous question.
 - `M`: Toggle "Mark for Review".
 
 ---
 
-## License & Data Safety
-- All user data and attempt histories remain strictly on your local machine.
-- Backups are stored in `f:\Prep\backups\`. It is recommended to periodically copy backup files to external storage.
-#   D D C E T - p r e p a r a t i o n  
- #   D D C E T - p r e p a r a t i o n  
- 
+## 🧪 Automated Testing
+
+Run the full pytest suite (44 tests covering answer integrity, workflow, battle sync, persistence, and duplicate checks):
+
+```powershell
+python -m pytest
+```
 
 ---
 
-## ⚔️ Battle Arena & Supabase Cloud Sync (Friends Competition)
-
-Compete head-to-head with friends while maintaining a strict 100% offline-first architecture:
-
-1. **Offline-First Architecture**:
-   - All questions, attempts, and sessions remain stored in your local SQLite database (data/ddcet.db).
-   - If there is no internet connection, your stats updates are stored safely in a local JSON queue (data/sync_queue.json).
-   - When an internet connection is detected, pending stats are automatically pushed to your Supabase PostgreSQL cloud database.
-
-2. **Head-to-Head Battle Duel**:
-   - Enter any friend's email address to compare stats side-by-side.
-   - **Core Metric Duels**: Total Score (+1.0 / -0.25), Accuracy %, MCQs Solved, Speed (s/q), Topics Mastered, Streak.
-   - **Granular Topic-Wise MCQs Done / Not Done Battle Matrix**: Chapter-by-chapter table showing which MCQs each student has completed, accuracy, mastery level, and who leads each topic in the Gujarat DDCET syllabus.
-   - **Competitors Leaderboard**: Live ranking of you and your friends sorted by total score.
-
-3. **Supabase PostgreSQL Setup**:
-   - Configure .env with:
-     `env
-     DATABASE_API_KEY=your_supabase_postgres_url_or_api_key
-     `
-   - Run the SQL script in database/supabase_schema.sql in your Supabase SQL Editor to create the required tables (ddcet_profiles, ddcet_user_stats, ddcet_friends) with RLS policies enabled.
+## 📄 License & Privacy
+- **100% Private**: Your study habits, mistakes, and attempts never leave your local computer unless you explicitly enable cloud sync with Supabase.
+- Point-in-time database backups can be generated and restored at any time from the Settings tab or `backups/` directory.
