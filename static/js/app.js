@@ -158,6 +158,31 @@ const App = {
             });
         });
 
+        // Header Theme Mode Buttons
+        document.querySelectorAll('#header-theme-switcher .theme-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const themeVal = btn.getAttribute('data-theme-val');
+                this.setTheme(themeVal, true);
+            });
+        });
+
+        // Header Cloud Sync Pill
+        const syncPill = document.getElementById('header-sync-pill');
+        if (syncPill) {
+            syncPill.addEventListener('click', () => {
+                this.triggerManualSync();
+            });
+        }
+
+        // Header User Profile Pill
+        const userBtn = document.getElementById('header-user-btn');
+        if (userBtn) {
+            userBtn.addEventListener('click', () => {
+                this.openLoginModal();
+            });
+        }
+
         // 1-Click Start Today's Session
         const btnDaily = document.getElementById('btn-start-daily');
         if (btnDaily) {
@@ -1875,7 +1900,11 @@ const App = {
     }
 };
 
+// Expose App globally for all inline HTML event handlers and external callers
+window.App = Object.assign(window.App || {}, App);
+Object.assign(App, window.App);
+
 // Initialize Application on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
-    App.init();
+    window.App.init();
 });

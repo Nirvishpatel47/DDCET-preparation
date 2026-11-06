@@ -57,8 +57,10 @@ class QuestionModel(BaseModel):
     @classmethod
     def validate_difficulty(cls, v: str) -> str:
         clean = v.strip().lower() if isinstance(v, str) else ""
-        if clean not in {"easy", "medium", "hard"}:
-            raise ValueError(f"Difficulty must be 'easy', 'medium', or 'hard'. Got: '{v}'")
+        if clean == "medium":
+            clean = "moderate"
+        if clean not in {"easy", "moderate", "hard", "stretch"}:
+            raise ValueError(f"Difficulty must be 'easy', 'moderate', 'hard', or 'stretch'. Got: '{v}'")
         return clean
 
     @field_validator("subject", "topic", "subtopic")
@@ -95,7 +97,7 @@ class SessionStartRequest(BaseModel):
     subject_id: Optional[int] = None
     topic_id: Optional[int] = None
     subtopic_id: Optional[int] = None
-    difficulty: Optional[str] = None # 'easy', 'medium', 'hard' or None
+    difficulty: Optional[str] = None # 'easy', 'moderate', 'hard', 'stretch' or None
     time_limit_minutes: Optional[int] = None
 
 

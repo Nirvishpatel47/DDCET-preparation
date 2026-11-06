@@ -85,7 +85,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/libs/katex.min.css">
-    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+    <link rel="stylesheet" href="/static/css/style.css?v=2.3">
 </head>
 <body>
     <!-- Top Navigation Bar -->
@@ -270,8 +270,9 @@
                         <select id="practice-difficulty-select">
                             <option value="">All Difficulties</option>
                             <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
+                            <option value="moderate">Moderate</option>
                             <option value="hard">Hard</option>
+                            <option value="stretch">Stretch</option>
                         </select>
                     </div>
                     <div class="mode-action">
@@ -682,8 +683,9 @@
                     <select id="bank-filter-difficulty" onchange="App.onBankFilterChange()">
                         <option value="">All Difficulties</option>
                         <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
+                        <option value="moderate">Moderate</option>
                         <option value="hard">Hard</option>
+                        <option value="stretch">Stretch</option>
                     </select>
                     <select id="bank-filter-verified" onchange="App.onBankFilterChange()">
                         <option value="">All Verification</option>
@@ -910,7 +912,7 @@
                         <span class="tag" id="q-meta-subject">Subject</span>
                         <span class="tag" id="q-meta-topic">Topic</span>
                         <span class="tag" id="q-meta-subtopic">Subtopic</span>
-                        <span class="tag difficulty-tag" id="q-meta-diff">Medium</span>
+                        <span class="tag difficulty-tag" id="q-meta-diff">Moderate</span>
                         <span class="tag" id="q-meta-id">ID: 001</span>
                     </div>
 
@@ -1138,8 +1140,9 @@
                             <label for="add-q-difficulty"><strong>Difficulty *</strong></label>
                             <select id="add-q-difficulty" class="input-field" style="width:100%;">
                                 <option value="easy">Easy</option>
-                                <option value="medium" selected>Medium</option>
+                                <option value="moderate" selected>Moderate</option>
                                 <option value="hard">Hard</option>
+                                <option value="stretch">Stretch</option>
                             </select>
                         </div>
                         <div style="flex:1; display:flex; align-items:flex-end; padding-bottom:0.5rem;">
@@ -1262,6 +1265,6 @@
     <!-- Scripts (Offline-ready KaTeX & Marked) -->
     <script src="/static/libs/katex.min.js"></script>
     <script src="/static/libs/marked.min.js"></script>
-    <script src="/static/js/app.js?v=2.2"></script>
+    <script src="/static/js/app.js?v=2.3"></script>
 </body>
 </html>

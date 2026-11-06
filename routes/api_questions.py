@@ -74,8 +74,11 @@ def list_questions(
         where_clauses.append("q.subtopic_id = ?")
         params.append(subtopic_id)
     if difficulty:
+        diff_val = difficulty.strip().lower()
+        if diff_val == "medium":
+            diff_val = "moderate"
         where_clauses.append("q.difficulty = ?")
-        params.append(difficulty.lower())
+        params.append(diff_val)
     if verified_only is not None:
         where_clauses.append("q.verified = ?")
         params.append(1 if verified_only else 0)

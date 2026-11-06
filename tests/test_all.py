@@ -323,7 +323,7 @@ def test_session_creation_no_intra_session_duplicates():
                 INSERT INTO questions (id, question_text, option_a, option_b, option_c, option_d,
                                        correct_answer, explanation, subject_id, topic_id, subtopic_id,
                                        difficulty, verified, text_hash, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, 'A', 'Verified explanation', ?, ?, ?, 'medium', 1, ?, datetime('now'))
+                VALUES (?, ?, ?, ?, ?, ?, 'A', 'Verified explanation', ?, ?, ?, 'moderate', 1, ?, datetime('now'))
                 """, (qid, f"Question text {i}", f"A{i}", f"B{i}", f"C{i}", f"D{i}", sub_id, top_id, st_id, h)
             )
 

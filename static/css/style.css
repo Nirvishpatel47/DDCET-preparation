@@ -61,6 +61,12 @@
     --sem-info-border: #B6CFE4;
     --sem-info-accent: #326C9E;
 
+    /* Stretch */
+    --sem-stretch-bg: #F0EAF8;
+    --sem-stretch-text: #5A2B8A;
+    --sem-stretch-border: #D2BFEC;
+    --sem-stretch-accent: #783BAE;
+
     /* Mapped Aliases for Component Backward-Compatibility */
     --accent-gold: var(--primary-accent);
     --accent-gold-soft: var(--primary-accent-subtle);
@@ -159,6 +165,12 @@
     --sem-info-text: #A7CDEC;
     --sem-info-border: #3A4F62;
     --sem-info-accent: #639CCD;
+
+    /* Stretch */
+    --sem-stretch-bg: #322543;
+    --sem-stretch-text: #D5BFF2;
+    --sem-stretch-border: #4D3866;
+    --sem-stretch-accent: #A578DE;
 
     /* Mapped Aliases for Component Backward-Compatibility */
     --accent-gold: var(--primary-accent);
@@ -289,27 +301,30 @@ textarea:focus-visible,
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 0.6rem 1.25rem;
+    padding: 0.5rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
+    width: 100%;
 }
 
 .header-content {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap; /* STRICTLY SAME LINE */
-    gap: 0.75rem;
+    flex-wrap: nowrap !important; /* STRICTLY SAME LINE */
+    gap: 0.5rem;
+    overflow: hidden;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    flex-shrink: 0; /* Keep brand intact */
+    gap: 0.5rem;
+    flex-shrink: 0 !important; /* Keep brand intact */
 }
 
 .logo-badge {
@@ -325,14 +340,14 @@ textarea:focus-visible,
 }
 
 .brand-text h1 {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     white-space: nowrap;
 }
 
 .brand-text .sub-text {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
     letter-spacing: 0.03em;
     text-transform: uppercase;
@@ -341,11 +356,11 @@ textarea:focus-visible,
 
 /* Nav Tabs: Smooth horizontal overflow without wrapping */
 .nav-links {
-    display: flex;
+    display: flex !important;
     align-items: center;
-    gap: 0.25rem;
-    flex-wrap: nowrap; /* STRICTLY SAME LINE */
-    flex-shrink: 1;
+    gap: 0.2rem;
+    flex-wrap: nowrap !important; /* STRICTLY SAME LINE */
+    flex: 1 1 auto;
     min-width: 0;
     overflow-x: auto;
     scrollbar-width: none;
@@ -360,28 +375,28 @@ textarea:focus-visible,
     background: transparent;
     border: 1px solid transparent;
     color: var(--text-secondary);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    padding: 0.38rem 0.65rem;
+    padding: 0.35rem 0.55rem;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.15s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    white-space: nowrap; /* Never wrap button text */
-    flex-shrink: 0;
+    gap: 0.3rem;
+    white-space: nowrap !important; /* Never wrap button text */
+    flex-shrink: 0 !important;
 }
 
 .nav-btn:hover {
     color: var(--text-primary);
-    background: var(--bg-surface);
+    background: var(--bg-surface-elevated);
     border-color: var(--border-subtle);
 }
 
 .nav-btn.active {
     color: var(--text-primary);
-    background: var(--bg-surface);
+    background: var(--bg-surface-elevated);
     border-color: var(--border-medium);
     box-shadow: var(--shadow-subtle);
     font-weight: 600;
@@ -400,7 +415,14 @@ textarea:focus-visible,
 
 /* Header Actions: Never wraps, always in line */
 .header-actions {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: nowrap !important; /* STRICTLY SAME LINE */
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+}
     align-items: center;
     gap: 0.5rem;
     flex-wrap: nowrap; /* STRICTLY SAME LINE */
@@ -1016,6 +1038,7 @@ select option {
     color: var(--sem-correct-text);
 }
 
+.difficulty-moderate,
 .difficulty-medium {
     background: var(--sem-warning-bg);
     border-color: var(--sem-warning-border);
@@ -1026,6 +1049,12 @@ select option {
     background: var(--sem-incorrect-bg);
     border-color: var(--sem-incorrect-border);
     color: var(--sem-incorrect-text);
+}
+
+.difficulty-stretch {
+    background: var(--sem-stretch-bg);
+    border-color: var(--sem-stretch-border);
+    color: var(--sem-stretch-text);
 }
 
 /* Two-Column Grid */
@@ -2302,18 +2331,24 @@ select option {
 /* -------------------------------------------------------------
    17. Responsive Rules
    ------------------------------------------------------------- */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
     .brand-text .sub-text {
-        display: none;
-    }
-    .theme-btn .theme-label {
-        display: none;
+        display: none !important;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+    .theme-btn .theme-label {
+        display: none !important;
+    }
+    .theme-btn {
+        padding: 0.25rem 0.45rem;
+    }
+}
+
+@media (max-width: 950px) {
     .header-sync-pill .sync-text {
-        display: none;
+        display: none !important;
     }
     .header-user-pill .user-name {
         max-width: 80px;

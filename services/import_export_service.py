@@ -61,7 +61,7 @@ SAMPLE_DEMO_QUESTIONS = [
         "subject": "Mathematics",
         "topic": "Matrices and Determinants",
         "subtopic": "Matrix Multiplication",
-        "difficulty": "medium",
+        "difficulty": "moderate",
         "source": {
             "name": "DDCET Sample Demonstration Bank",
             "page": 2
@@ -216,7 +216,7 @@ Therefore, $\\frac{d}{dx}[\\sin(2x)] = 2\\cos(2x)$.
 **Subject**: Mathematics
 **Topic**: Calculus
 **Subtopic**: Definite Integrals
-**Difficulty**: medium
+**Difficulty**: moderate
 **Verified**: true
 
 Evaluate the definite integral:
@@ -237,7 +237,7 @@ $$\\int_0^{\\frac{\\pi}{2}} \\frac{1 - \\cos(2x)}{2} \\, dx = \\left[ \\frac{x}{
 **Subject**: Mathematics
 **Topic**: Matrices and Determinants
 **Subtopic**: Eigenvalues
-**Difficulty**: medium
+**Difficulty**: stretch
 **Verified**: true
 
 If matrix $A$ is given by:

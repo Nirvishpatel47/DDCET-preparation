@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS questions (
     subject_id INTEGER NOT NULL REFERENCES subjects(id),
     topic_id INTEGER NOT NULL REFERENCES topics(id),
     subtopic_id INTEGER NOT NULL REFERENCES subtopics(id),
-    difficulty TEXT NOT NULL CHECK(difficulty IN ('easy', 'medium', 'hard')),
+    difficulty TEXT NOT NULL CHECK(difficulty IN ('easy', 'moderate', 'hard', 'stretch')),
     source_json TEXT DEFAULT '{}',
     tags_json TEXT DEFAULT '[]',
     verified INTEGER NOT NULL DEFAULT 0 CHECK(verified IN (0, 1)),

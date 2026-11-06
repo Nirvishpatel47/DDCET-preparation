@@ -167,10 +167,7 @@ def sync_public_questions_to_db(conn: sqlite3.Connection) -> Dict[str, int]:
     from services.duplicate_service import compute_question_hash, compute_question_text_hash, check_duplicate_fast
 
     public_files = [
-        os.path.join(REPO_DATA_DIR, "ddcet_2027_question_bank.json"),
-        os.path.join(REPO_DATA_DIR, "ddcet_2027_question_bank_extended_1.json"),
-        os.path.join(REPO_DATA_DIR, "data.json"),
-        os.path.join(REPO_DATA_DIR, "ddcet_canonical_questions.json"),
+        os.path.join(REPO_DATA_DIR, "ddcet_1500_master.json")
     ]
 
     existing_rows = conn.execute("SELECT id, text_hash, question_text_hash FROM questions").fetchall()
@@ -235,6 +232,14 @@ def sync_public_questions_to_db(conn: sqlite3.Connection) -> Dict[str, int]:
             if correct_ans not in ("A", "B", "C", "D"):
                 correct_ans = "A"
 
+            diff_val = q.get("difficulty", "moderate")
+            if diff_val:
+                diff_val = str(diff_val).strip().lower()
+            if diff_val == "medium":
+                diff_val = "moderate"
+            if diff_val not in ("easy", "moderate", "hard", "stretch"):
+                diff_val = "moderate"
+
             conn.execute(
                 """
                 INSERT INTO questions (
@@ -246,7 +251,7 @@ def sync_public_questions_to_db(conn: sqlite3.Connection) -> Dict[str, int]:
                 (
                     qid, q["question"], opts["A"], opts["B"], opts["C"], opts["D"],
                     correct_ans, q.get("explanation", ""), sub_id, top_id, subtop_id,
-                    q.get("difficulty", "medium"), source_json, tags_json, verified_int,
+                    diff_val, source_json, tags_json, verified_int,
                     t_hash, q_hash, created_at
                 )
             )
@@ -310,6 +315,67 @@ def apply_migrations(conn: sqlite3.Connection):
         conn.execute("INSERT OR REPLACE INTO schema_version (version, applied_at) VALUES (3, ?)",
                      (datetime.utcnow().isoformat(),))
         current_version = 3
+
+    # Migration 4: Support 4 difficulty levels (easy, moderate, hard, stretch)
+    if current_version < 4:
+        cur = conn.cursor()
+        cur.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='questions'")
+        table_sql_row = cur.fetchone()
+        table_sql = table_sql_row[0] if table_sql_row else ""
+
+        if "moderate" not in table_sql or "stretch" not in table_sql:
+            conn.execute("PRAGMA foreign_keys = OFF;")
+            conn.execute("""
+                CREATE TABLE questions_migrated (
+                    id TEXT PRIMARY KEY,
+                    question_text TEXT NOT NULL,
+                    option_a TEXT NOT NULL,
+                    option_b TEXT NOT NULL,
+                    option_c TEXT NOT NULL,
+                    option_d TEXT NOT NULL,
+                    correct_answer TEXT NOT NULL CHECK(correct_answer IN ('A', 'B', 'C', 'D')),
+                    explanation TEXT,
+                    subject_id INTEGER NOT NULL REFERENCES subjects(id),
+                    topic_id INTEGER NOT NULL REFERENCES topics(id),
+                    subtopic_id INTEGER NOT NULL REFERENCES subtopics(id),
+                    difficulty TEXT NOT NULL CHECK(difficulty IN ('easy', 'moderate', 'hard', 'stretch')),
+                    source_json TEXT DEFAULT '{}',
+                    tags_json TEXT DEFAULT '[]',
+                    verified INTEGER NOT NULL DEFAULT 0 CHECK(verified IN (0, 1)),
+                    text_hash TEXT NOT NULL,
+                    question_text_hash TEXT DEFAULT '',
+                    created_at TEXT NOT NULL
+                );
+            """)
+            conn.execute("""
+                INSERT INTO questions_migrated (
+                    id, question_text, option_a, option_b, option_c, option_d,
+                    correct_answer, explanation, subject_id, topic_id, subtopic_id,
+                    difficulty, source_json, tags_json, verified, text_hash,
+                    question_text_hash, created_at
+                )
+                SELECT
+                    id, question_text, option_a, option_b, option_c, option_d,
+                    correct_answer, explanation, subject_id, topic_id, subtopic_id,
+                    CASE WHEN LOWER(difficulty) = 'medium' THEN 'moderate' ELSE LOWER(difficulty) END,
+                    source_json, tags_json, verified, text_hash,
+                    COALESCE(question_text_hash, ''), created_at
+                FROM questions;
+            """)
+            conn.execute("DROP TABLE questions;")
+            conn.execute("ALTER TABLE questions_migrated RENAME TO questions;")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_questions_text_hash ON questions(text_hash);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_questions_q_text_hash ON questions(question_text_hash);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_questions_difficulty ON questions(difficulty);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_questions_hierarchy ON questions(subject_id, topic_id, subtopic_id);")
+            conn.execute("PRAGMA foreign_keys = ON;")
+        else:
+            conn.execute("UPDATE questions SET difficulty = 'moderate' WHERE LOWER(difficulty) = 'medium';")
+
+        conn.execute("UPDATE revision_schedules SET difficulty_rating = 'moderate' WHERE LOWER(difficulty_rating) = 'medium';")
+        conn.execute("INSERT OR REPLACE INTO schema_version (version, applied_at) VALUES (4, ?)",
+                     (datetime.utcnow().isoformat(),))
+        current_version = 4
 
 
 def init_db(seed_public_questions: Optional[bool] = None):

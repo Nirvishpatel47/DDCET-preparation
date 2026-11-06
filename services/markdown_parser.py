@@ -79,7 +79,7 @@ def parse_single_markdown_block(block: str, default_index: int) -> Optional[Dict
         "subject": "Mathematics",
         "topic": "General Mathematics",
         "subtopic": "Core",
-        "difficulty": "medium",
+        "difficulty": "moderate",
         "verified": True,
         "source": {"name": "Markdown Question Bank"},
         "tags": ["math", "markdown"]
@@ -99,6 +99,14 @@ def parse_single_markdown_block(block: str, default_index: int) -> Optional[Dict
             field_match = re.search(rf"^{field}[\s:=]+([^\n]+)", block, re.IGNORECASE | re.MULTILINE)
         if field_match:
             data[field] = field_match.group(1).strip()
+
+    # Normalize difficulty
+    diff_val = data.get("difficulty", "moderate").lower().strip()
+    if diff_val == "medium":
+        diff_val = "moderate"
+    if diff_val not in ("easy", "moderate", "hard", "stretch"):
+        diff_val = "moderate"
+    data["difficulty"] = diff_val
 
     # Extract Correct Answer
     ans_match = re.search(r"(?:\*\*correct\s*answer\*\*|\*\*answer\*\*|correct\s*answer|answer)[\s:=]+([A-Da-d])\b", block, re.IGNORECASE)

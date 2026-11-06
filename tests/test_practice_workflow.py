@@ -60,7 +60,7 @@ def setup_practice_test_db(tmp_path, monkeypatch):
             "subject": "Mathematics",
             "topic": "Calculus",
             "subtopic": "Differentiation",
-            "difficulty": "medium"
+            "difficulty": "moderate"
         },
         {
             "id": "TEST-Q-04",
@@ -71,7 +71,7 @@ def setup_practice_test_db(tmp_path, monkeypatch):
             "subject": "Mathematics",
             "topic": "Calculus",
             "subtopic": "Integration",
-            "difficulty": "medium"
+            "difficulty": "moderate"
         },
         {
             "id": "TEST-Q-05",
@@ -94,6 +94,17 @@ def setup_practice_test_db(tmp_path, monkeypatch):
             "topic": "Matrices",
             "subtopic": "Determinants",
             "difficulty": "hard"
+        },
+        {
+            "id": "TEST-Q-07",
+            "question": "Advanced Stretch Question on Vector Calculus?",
+            "options": {"A": "Curl", "B": "Div", "C": "Grad", "D": "Laplacian"},
+            "correct_answer": "D",
+            "explanation": "Laplacian is divergence of gradient.",
+            "subject": "Mathematics",
+            "topic": "Calculus",
+            "subtopic": "Vector Calculus",
+            "difficulty": "stretch"
         }
     ]
 
@@ -191,14 +202,27 @@ def test_practice_answer_checking_workflow():
 
 
 def test_difficulty_filtering():
-    """Verify difficulty filter in practice sessions."""
+    """Verify difficulty filter in practice sessions across easy, moderate, hard, and stretch."""
     easy_session = create_practice_session(session_type="daily_mixed", size=2, difficulty="easy")
     for q in easy_session["questions"]:
         assert q["difficulty"] == "easy"
 
+    mod_session = create_practice_session(session_type="daily_mixed", size=2, difficulty="moderate")
+    for q in mod_session["questions"]:
+        assert q["difficulty"] == "moderate"
+
+    # Backward compatibility: legacy 'medium' maps to 'moderate'
+    legacy_session = create_practice_session(session_type="daily_mixed", size=2, difficulty="medium")
+    for q in legacy_session["questions"]:
+        assert q["difficulty"] == "moderate"
+
     hard_session = create_practice_session(session_type="daily_mixed", size=2, difficulty="hard")
     for q in hard_session["questions"]:
         assert q["difficulty"] == "hard"
+
+    stretch_session = create_practice_session(session_type="daily_mixed", size=1, difficulty="stretch")
+    for q in stretch_session["questions"]:
+        assert q["difficulty"] == "stretch"
 
 
 def test_mock_exam_hides_answers_until_completed():

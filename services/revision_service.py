@@ -42,7 +42,7 @@ def update_spaced_repetition(
     if not row:
         # First time answering this question
         diff_row = conn.execute("SELECT difficulty FROM questions WHERE id = ?", (question_id,)).fetchone()
-        difficulty = diff_row["difficulty"] if diff_row else "medium"
+        difficulty = diff_row["difficulty"] if diff_row else "moderate"
         consecutive_correct = 1 if is_correct else 0
         consecutive_incorrect = 0 if is_correct else 1
         total_attempts = 1

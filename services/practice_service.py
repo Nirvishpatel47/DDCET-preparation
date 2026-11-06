@@ -27,6 +27,14 @@ def create_practice_session(
     now_iso = datetime.utcnow().isoformat()
     today_str = date.today().isoformat()
 
+    # Normalize difficulty (support 4 levels: easy, moderate, hard, stretch; map legacy 'medium' -> 'moderate')
+    if difficulty:
+        difficulty = difficulty.strip().lower()
+        if difficulty == "medium":
+            difficulty = "moderate"
+        if difficulty not in ("easy", "moderate", "hard", "stretch"):
+            difficulty = None
+
     # Determine time limit
     if session_type == "full_mock":
         duration_mins = int(settings.get("mock_exam_duration_mins", 90))
